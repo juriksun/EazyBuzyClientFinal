@@ -7,12 +7,58 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content>
+  <ion-list no-lines>
+    <ion-item (click)="onList();">
+      <ion-icon item-start name="logo-usd" class="taskIcon"></ion-icon>
+      <h2>Woody</h2>
+      <ion-icon name="md-time" item-end class="clockItem"></ion-icon>
+      <ion-note item-end>
+        <p>13:43</p>
+        <p>14:43</p>
+      </ion-note>
+      <ion-icon name="md-pin" item-end></ion-icon>
+    </ion-item>
+    <hr>
+    <ion-item (click)="onList();">
+      <ion-icon item-start name="logo-usd"></ion-icon>
+      <h2>Woody</h2>
+      <ion-icon name="md-time" item-end class="clockItem"></ion-icon>
+      <ion-note item-end>
+        <p>13:43</p>
+        <p>14:43</p>
+      </ion-note>
+      <ion-icon name="md-pin" item-end></ion-icon>
+    </ion-item>
+    <hr>
+    <ion-item (click)="onList();">
+      <ion-icon item-start name="logo-usd"></ion-icon>
+      <h2>Woody</h2>
+      <ion-icon name="md-time" item-end class="clockItem"></ion-icon>
+      <ion-note item-end>
+        <p>13:43</p>
+        <p>14:43</p>
+      </ion-note>
+      <ion-icon name="md-pin" item-end></ion-icon>
+    </ion-item>
+    <hr>
+    <ion-item (click)="onList();">
+      <ion-icon item-start name="logo-usd"></ion-icon>
+      <h2>Woody</h2>
+      <ion-icon name="md-time" item-end class="clockItem"></ion-icon>
+      <ion-note item-end>
+        <p>13:43</p>
+        <p>14:43</p>
+      </ion-note>
+      <ion-icon name="md-pin" item-end></ion-icon>
+    </ion-item>
+    <hr>
+  </ion-list>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <!-- <ion-icon name="md-add-circle" class="addButton" (click)="onAddTask()"></ion-icon> -->
+  <ion-fab bottom right>
+      <button ion-fab (click)="onAddTask()">
+        <ion-icon name="add" ></ion-icon>
+      </button>
+  </ion-fab>
 </ion-content>

@@ -6,24 +6,34 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AlexPage } from '../pages/alex/alex';
+import { AddNewTaskPage } from '../pages/add-new-task/add-new-task';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    AlexPage,
+    AddNewTaskPage
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    AlexPage,
+    AddNewTaskPage
   ],
   providers: [
     StatusBar,

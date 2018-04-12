@@ -1,3 +1,18 @@
 page-home {
-
+    ion-note {
+        font-size: 12px;
+        align-self: flex-start;
+        margin-top: 14px;
+      }
+    
+    .addButton{
+        position: fixed;
+        bottom: 5%;
+        right: 10%;
+        zoom: 4.0;
+        color: blue;
+    }
+    .clockItem{
+        zoom:0.8;
+    }
 }
