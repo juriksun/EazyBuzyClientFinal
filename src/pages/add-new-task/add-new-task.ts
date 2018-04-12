@@ -14,7 +14,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: 'add-new-task.html',
 })
 export class AddNewTaskPage {
-  documenSummaryForm: FormGroup;
+  newTaskForm: FormGroup;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -25,8 +25,14 @@ export class AddNewTaskPage {
     console.log('ionViewDidLoad AddNewTaskPage');
   }
   ngOnInit() {
-    this.documenSummaryForm = this.fb.group({
-      date_from: ['sssss', [Validators.required, Validators.minLength(2)]]
+    this.newTaskForm = this.fb.group({
+      task_name: ['', [Validators.required, Validators.minLength(2)]],
+      task_type: ['', [Validators.required, Validators.minLength(2)]],
+      time_start: ['', [Validators.required]],
+      time_end: ['', [Validators.required]],
+      priorety: ['', [Validators.required, Validators.minLength(2)]],
+      place: ['', [Validators.required, Validators.minLength(2)]],
+      shered_to: ['', [Validators.required, Validators.minLength(2)]]
     });
   }
   onSubmit({ value }){
