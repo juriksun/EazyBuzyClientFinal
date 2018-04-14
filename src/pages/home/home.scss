@@ -4,14 +4,21 @@ page-home {
         align-self: flex-start;
         margin-top: 14px;
       }
-    
-    .addButton{
-        position: fixed;
-        bottom: 5%;
-        right: 10%;
-        zoom: 4.0;
-        color: blue;
+    ion-item {
+        border-bottom: 1px solid rgb(207, 206, 206) !important;
     }
+    .placeForPin{
+        width: 17.5px;
+        height: 28px;
+        padding: 0;
+    }
+    // .addButton{
+    //     position: fixed;
+    //     bottom: 5%;
+    //     right: 10%;
+    //     zoom: 4.0;
+    //     color: blue;
+    // }
     .clockItem{
         zoom:0.8;
     }

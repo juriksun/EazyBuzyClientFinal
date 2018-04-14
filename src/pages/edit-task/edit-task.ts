@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TaskResponse } from '../../models/tasks-response.model';
 import { TasksServiseModule } from '../../modules/tasks_mdl.component';
+import { Task } from '../../models/task.model';
+
 /**
- * Generated class for the AddNewTaskPage page.
+ * Generated class for the EditTaskPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,10 +13,11 @@ import { TasksServiseModule } from '../../modules/tasks_mdl.component';
 
 @IonicPage()
 @Component({
-  selector: 'page-add-new-task',
-  templateUrl: 'add-new-task.html',
+  selector: 'page-edit-task',
+  templateUrl: 'edit-task.html',
 })
-export class AddNewTaskPage {
+export class EditTaskPage {
+  task: Task;
   newTaskForm: FormGroup;
   alex;
   constructor(
@@ -29,19 +31,23 @@ export class AddNewTaskPage {
     console.log('ionViewDidLoad AddNewTaskPage');
   }
   ngOnInit() {
+    this.task = this.navParams.data;
     this.newTaskForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(4)]],
-      type: ['', [Validators.required, Validators.minLength(4)]],
-      time_start: [''],
-      time_end: [''],
+      name: [this.task.name , [Validators.required, Validators.minLength(4)]],
+      type: [this.task.type, [Validators.required, Validators.minLength(4)]],
+      time_start: [(this.task.time)?(this.task.time.start_time || ''):''],
+      time_end: [(this.task.time)?(this.task.time.duration || ''):''],
       priorety: [''],
       place: ['', [Validators.minLength(4)]],
       shered_to: ['', [Validators.minLength(4)]]
     });
+
+    this.newTaskForm.disable();
   }
   onSubmit({ value }){
+    this.newTaskForm.enable();
     //console.log(value);
-    this.addNewTask(value);
+    // this.addNewTask(value);
   }
 
   private addNewTask(value){
