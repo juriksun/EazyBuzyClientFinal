@@ -1,15 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, ModalController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TasksServiseModule } from '../../modules/tasks_mdl.component';
 import { Task } from '../../models/task.model';
-
-/**
- * Generated class for the EditTaskPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { MoreOptionsPage } from '../more-options/more-options';
+import { HomePage } from '../home/home';
+import { PlaceSearchAutocomplitePage } from '../place-search-autocomplite/place-search-autocomplite';
 
 @IonicPage()
 @Component({
@@ -18,21 +14,34 @@ import { Task } from '../../models/task.model';
 })
 export class EditTaskPage {
   task: Task;
-  newTaskForm: FormGroup;
-  alex;
+  editTaskForm: FormGroup;
+
+  createRouteForm: FormGroup;
+
+  location = {};
+
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private fb: FormBuilder,
-    public tasksServiseModule: TasksServiseModule
+    public tasksServiseModule: TasksServiseModule,
+    public popoverCtrl: PopoverController,
+    private modalCtrl: ModalController
   ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddNewTaskPage');
   }
+
   ngOnInit() {
     this.task = this.navParams.data;
-    this.newTaskForm = this.fb.group({
+    this.setEditFormDefaulParams();
+    this.editTaskForm.disable();
+  }
+
+  setEditFormDefaulParams(){
+    this.editTaskForm = this.fb.group({
       name: [this.task.name , [Validators.required, Validators.minLength(4)]],
       type: [this.task.type, [Validators.required, Validators.minLength(4)]],
       time_start: [(this.task.time)?(this.task.time.start_time || ''):''],
@@ -42,21 +51,23 @@ export class EditTaskPage {
       shered_to: ['', [Validators.minLength(4)]]
     });
 
-    this.newTaskForm.disable();
-  }
-  onSubmit({ value }){
-    this.newTaskForm.enable();
-    //console.log(value);
-    // this.addNewTask(value);
   }
 
-  private addNewTask(value){
+  editFormReset(){
+    this.setEditFormDefaulParams();
+    setTimeout(() => {
+      this.editTaskForm.disable();
+    }, 150);
+  }
+
+  onSubmit({ value }){
+    this.updateTask(value, this.task._id);
+    this.navCtrl.setRoot(HomePage);
+  }
+
+  private deleteTask(value){
     
-    this.tasksServiseModule.addNewTask(
-      {
-        username:"alex",
-        password: "djura"
-      },
+    this.tasksServiseModule.deleteTask(
       value
     )
       .subscribe(
@@ -69,5 +80,69 @@ export class EditTaskPage {
           console.log(error);
         }
       )
+  }
+
+  private updateTask(value, taskId){
+    this.tasksServiseModule.updateTask(
+      taskId,
+      value
+    )
+    .subscribe(
+      response => {
+        if (response) {
+          console.log(JSON.stringify(response));
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  onMoreOption(myEvent){
+    let popover = this.popoverCtrl.create(
+      MoreOptionsPage, {
+        newTaskForm: this.editTaskForm,
+        taskId: this.task._id
+      }
+    );
+    popover.onDidDismiss((button)=>{
+      switch(button){
+        case 'delete': {
+          this.navCtrl.pop();
+          break;
+        }
+        case 'edit': {
+          setTimeout(() => {
+            this.editTaskForm.enable();
+          }, 150);
+        }
+      }
+    });
+    setTimeout(() => {
+      popover.present({ ev: myEvent});
+    }, 150);
+  }
+
+  onDiscard(){
+    this.editFormReset();
+  }
+
+  showAddressModal(placeFeild) {
+    let modal = this.modalCtrl.create(PlaceSearchAutocomplitePage,{pointName: placeFeild});
+    let me = this;
+    
+    modal.onDidDismiss(data => {
+      if(data !== undefined){
+        this.createRouteForm.patchValue({
+          place: data.field_adress
+        });
+
+        this.location = data.data;
+      }
+    });
+    setTimeout(() => {
+      modal.present();
+    }, 150);
   }
 }

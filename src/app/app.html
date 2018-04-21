@@ -6,13 +6,76 @@
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+      <button menuClose ion-item (click)="onTestMap()">
+          <h2></h2>
       </button>
-    </ion-list>
-  </ion-content>
+      <button menuClose ion-item (click)="onTestMap()">
+        <h2></h2>
+      </button>
+      <button menuClose ion-item (click)="onTestMap()">
+        <h2></h2>
+      </button>
+      <button menuClose ion-item (click)="onTestMap()">
+        <h2></h2>
+      </button>
+      <button menuClose ion-item (click)="onTestMap()">
+        <h2></h2>
+      </button>
+      <ion-list>
 
+        <button menuClose ion-item
+          color="royal" 
+          (click)="onAddTask()"
+        >
+        <ion-icon item-start name="add" color="primary" style="zoom: 1;"></ion-icon>
+          Create New Task
+          
+        </button>
+        <button menuClose ion-item
+          color="royal" 
+          (click)="onCreateRoute()"
+        >
+          <ion-icon item-start name="ios-map-outline" color="primary" style="zoom: 1; opacity:0.6;"></ion-icon>
+          <ion-icon item-start name="add" color="primary" style="zoom: 0.5; position: absolute; left: 47px; top: 25px;"></ion-icon>
+          Create New Route
+        </button>
+        <button menuClose ion-item
+          color="royal" 
+          (click)="onCreateRoute()"
+        >
+          <ion-icon item-start name="ios-map-outline" color="secondary" style="zoom: 1; opacity:0.6;"></ion-icon>
+          <ion-icon item-start name="md-navigate"  color="secondary" style="zoom: 0.5; position: absolute; left: 47px; top: 25px;"></ion-icon>
+          Execute Route
+        </button>
+      </ion-list>
+      <button menuClose ion-item (click)="onTestMap()">
+          <h2></h2>
+        </button>
+        
+        <button menuClose ion-item (click)="onTestMap()">
+          <h2></h2>
+        </button>
+        <button menuClose ion-item (click)="onTestMap()">
+          <h2></h2>
+        </button>
+        <button menuClose ion-item (click)="onTestMap()">
+          <h2></h2>
+        </button>
+        <button menuClose ion-item (click)="onTestMap()">
+            <h2></h2>
+          </button>
+          
+          
+      <button
+        menuClose ion-item 
+        color="royal" 
+        (click)="logOut()"
+      >
+        <ion-icon name="md-exit"></ion-icon>
+        Log Out
+      </button> 
+    </ion-content>
+      
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

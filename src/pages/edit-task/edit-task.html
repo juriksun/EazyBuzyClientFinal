@@ -8,18 +8,29 @@
   <ion-navbar>
     <ion-title>{{task.name}}</ion-title>
     <ion-buttons end>
-        <form item-start ion-button (ngSubmit)="onSubmit(newTaskForm)" [formGroup]="newTaskForm">
+        <form item-start ion-button (ngSubmit)="onSubmit(editTaskForm)" [formGroup]="editTaskForm" *ngIf="editTaskForm.enabled">
           <button 
-            [formGroup]="newTaskForm" 
+            [formGroup]="editTaskForm" 
             ion-button color="dark" 
             clear type="submit"
-            [disabled]="newTaskForm.invalid"
+            [disabled]="editTaskForm.invalid"
           >
             Save
           </button>
         </form>
-        <button item-end ion-button icon-only color="royal">
+        <button 
+          item-end ion-button icon-only color="royal" 
+          (click)="onMoreOption($event)"
+          *ngIf="editTaskForm.disabled"
+        >
           <ion-icon name="md-more"></ion-icon>
+        </button>
+        <button 
+          item-end ion-button icon-only color="royal" 
+          (click)="onDiscard()"
+          *ngIf="editTaskForm.enabled"
+        >
+          Discard
         </button>
       </ion-buttons>
   </ion-navbar>
@@ -29,52 +40,96 @@
 <ion-content padding>
   
     <ion-list no-lines>
-      <form (ngSubmit)="onSubmit(newTaskForm)" [formGroup]="newTaskForm">
-      <ion-item>
-        <ion-icon item-start name="md-clipboard"></ion-icon>
-        <ion-input  type="text" placeholder="Task name" formControlName="name"></ion-input>
-      </ion-item>
-      <hr>
-      <ion-item>
-        <ion-icon item-start name="md-briefcase"></ion-icon>
-        <ion-input type="text" placeholder="Task type" formControlName="type"></ion-input>
-      </ion-item>
-      <hr>
-      <ion-item>
-        <ion-icon item-start name="md-time"></ion-icon>
-        <ion-input type="time" formControlName="time_start"></ion-input>
-        <ion-input type="time" formControlName="time_end"></ion-input>
-      </ion-item>
-      <hr>
-      <ion-item>
-        <ion-icon item-start name="md-stats"></ion-icon>
-         <ion-label fixed>Priority</ion-label>
-      </ion-item>
-      <ion-item>
-          <ion-segment formControlName="priorety">
-              <ion-segment-button value="low">
-                Low
-              </ion-segment-button>
-              <ion-segment-button value="medium">
-                Medium
-              </ion-segment-button>
-              <ion-segment-button value="hight">
-                Hight
-              </ion-segment-button>
-            </ion-segment>
-      </ion-item>
-      <hr>
-      <ion-item>
-        <ion-icon item-start name="md-pin"></ion-icon>
-        <ion-input type="text" placeholder="Choose place" formControlName="place"></ion-input>
-        <ion-icon name="md-map" item-end></ion-icon>
-      </ion-item>
-      <hr>
-      <ion-item>
-          <ion-icon item-start name="person-add"></ion-icon>
-          <ion-input type="text" placeholder="Share task" formControlName="shered_to"></ion-input>
-      </ion-item>
-    </form>
+      <form (ngSubmit)="onSubmit(editTaskForm)" [formGroup]="editTaskForm">
+        <ion-item>
+          <ion-icon item-start name="md-clipboard"></ion-icon>
+          <ion-input  type="text" placeholder="Task name" formControlName="name"></ion-input>
+        </ion-item>
+        <hr>
+        <ion-item>
+          <ion-icon item-start name="md-briefcase"></ion-icon>
+          <ion-input type="text" placeholder="Task type" formControlName="type"></ion-input>
+        </ion-item>
+        <hr>
+        <!--  -->
+        
+        <ion-item>
+          <ion-avatar item-start>
+            <ion-icon name="md-time"></ion-icon>
+          </ion-avatar>
+          <ion-label>Start Time</ion-label>
+          <ion-input type="time" formControlName="time_start"></ion-input>
+          <ion-label>Start Time</ion-label>
+          <ion-input type="time" formControlName="time_end"></ion-input> -->
+          <!-- <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" ></ion-datetime> --> -->
+          
+        </ion-item>
+        <hr>
+
+          <!-- <ion-label>Start Time</ion-label>
+          <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" ></ion-datetime>
+          <ion-label>Start Time</ion-label>
+          <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" ></ion-datetime> -->
+          <!-- <ion-list no-lines>
+              <ion-item>
+                  <ion-label floating>Priority</ion-label>
+                <ion-input type="time"  ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label floating>Priority</ion-label>
+                <ion-input type="time" formControlName="time_end"></ion-input>
+              </ion-item>
+          </ion-list> -->
+       
+        <!--  -->
+        <!-- <ion-item>
+            <ion-avatar imtem-start></ion-avatar><ion-icon item-start name="md-time"></ion-icon></ion-avatar>
+            <ion-list no-lines>
+                <ion-item>
+                    <ion-label floating>Priority</ion-label>
+                  <ion-input type="time" formControlName="time_start"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Priority</ion-label>
+                  <ion-input type="time" formControlName="time_end"></ion-input>
+                </ion-item>
+            </ion-list>
+          </ion-item>
+          <hr> -->
+        <ion-item>
+          <ion-icon item-start name="md-stats"></ion-icon>
+          <ion-label fixed>Priority</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-segment formControlName="priorety">
+                <ion-segment-button value="low">
+                  Low
+                </ion-segment-button>
+                <ion-segment-button value="medium">
+                  Medium
+                </ion-segment-button>
+                <ion-segment-button value="hight">
+                  Hight
+                </ion-segment-button>
+              </ion-segment>
+        </ion-item>
+        <hr>
+        <ion-item>
+            <ion-icon item-start name="md-pin"></ion-icon>
+            <ion-input 
+              (ionFocus)="showAddressModal('place')" 
+              formControlName="place"
+              type="text"
+              placeholder="Choose place"
+            ></ion-input>
+            <ion-icon name="md-map" item-end></ion-icon>
+        </ion-item>
+        <hr>
+        <ion-item>
+            <ion-icon item-start name="person-add"></ion-icon>
+            <ion-input type="text" placeholder="Share task" formControlName="shered_to"></ion-input>
+        </ion-item>
+      </form>
     </ion-list>
   
 </ion-content>

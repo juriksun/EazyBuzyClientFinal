@@ -5,28 +5,27 @@
   Ionic pages and navigation.
 -->
 <ion-header>
+  <ion-navbar>
   <ion-toolbar>
 
     <ion-title>
       Create Route
     </ion-title>
     <ion-buttons end>
-        <button ion-button (click)="dismiss()">
-          <span ion-text color="primary">Discard</span>
-        </button>
         <form item-start ion-button (ngSubmit)="onSubmit(createRouteForm)" [formGroup]="createRouteForm">
-            <button 
-              [formGroup]="createRouteForm" 
-              ion-button color="dark" 
-              clear type="submit"
-              [disabled]="createRouteForm.invalid"
-            >
-              Save
-            </button>
-          </form>
+          <button [formGroup]="createRouteForm" ion-button color="dark" clear type="submit" [disabled]="createRouteForm.invalid">
+            Save
+          </button>
+        </form>
+        <button ion-button (click)="discard()">
+          <span ion-text color="dark">Discard</span>
+        </button>
     </ion-buttons>
   </ion-toolbar>
+</ion-navbar>
 </ion-header>
+
+
 <ion-content padding>
     <ion-list no-lines>
       <form (ngSubmit)="onSubmit(createRouteForm)" [formGroup]="createRouteForm">
@@ -54,12 +53,24 @@
           <ion-label>Time Window</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label fixed>Begin</ion-label>
-          <ion-input type="time" formControlName="begin"></ion-input>
+          <ion-label floating>Begin</ion-label>
+          <ion-input type="time" formControlName="start_time"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label fixed >End</ion-label>
-          <ion-input type="time" formControlName="end"></ion-input>
+          <ion-label floating>End</ion-label>
+          <ion-input type="time" formControlName="end_time" ></ion-input>
+        </ion-item>
+        <hr>
+        <ion-item>
+            <ion-label>Location</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Begin</ion-label>
+          <ion-input (ionFocus)="showAddressModal('start_point')" formControlName="start_point" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>End</ion-label>
+          <ion-input (ionFocus)="showAddressModal('end_point')" formControlName="end_point" type="text"></ion-input>
         </ion-item>
         <hr>
       </form>

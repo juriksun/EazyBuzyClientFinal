@@ -1,0 +1,29 @@
+<ion-content class="popover-page">
+    
+      <ion-list class="popover-page">
+          <button ion-item (click)="onEdit()">
+            Edit
+          </button>
+          <form 
+            ion-item 
+            (ngSubmit)="onSubmit(editTaskForm)" 
+            [formGroup]="editTaskForm" 
+            *ngIf="editTaskForm.enabled"
+          >
+            <button 
+              [formGroup]="editTaskForm" 
+              ion-button color="dark" 
+              clear type="submit" 
+              [disabled]="editTaskForm.invalid"
+            >
+              Save
+            </button>
+          </form>
+          <button ion-item (click)="onDelete()">
+            Delete
+          </button>
+          <button ion-item (click)="onShare()">
+            Share
+          </button>
+      </ion-list>
+</ion-content>

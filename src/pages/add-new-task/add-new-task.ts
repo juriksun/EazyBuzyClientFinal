@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TaskResponse } from '../../models/tasks-response.model';
 import { TasksServiseModule } from '../../modules/tasks_mdl.component';
+import { HomePage } from '../home/home';
 /**
  * Generated class for the AddNewTaskPage page.
  *
@@ -46,22 +47,18 @@ export class AddNewTaskPage {
 
   private addNewTask(value){
     
-    this.tasksServiseModule.addNewTask(
-      {
-        username:"alex",
-        password: "djura"
-      },
-      value
-    )
-      .subscribe(
-        response  =>{
-          if(response){
-            console.log(JSON.stringify(response));
-          }
-        },
-        error =>{
-          console.log(error);
+    this.tasksServiseModule.addNewTask(value)
+    .subscribe(
+      response  =>{
+        if(response){
+          console.log(JSON.stringify(response));
         }
-      )
+      },
+      error =>{
+        console.log(error);
+      }
+    );
+    
+    this.navCtrl.pop();
   }
 }

@@ -4,6 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
+    
   </ion-navbar>
 </ion-header>
 
@@ -25,18 +26,20 @@
       </div>
     </ion-item>
   </ion-list>
-
-  <!-- <ion-icon name="md-add-circle" class="addButton" (click)="onAddTask()"></ion-icon> -->
-  <ion-fab bottom left>
-    <button ion-fab color="secondary" (click)="onCreateRoute()">
-      
-      <ion-icon name="ios-map-outline"  style="zoom: 1.75; opacity:0.6;"></ion-icon>
-      <ion-icon name="md-navigate" style="position: absolute; "></ion-icon>
-    </button>
-</ion-fab>
-  <ion-fab bottom right>
-      <button ion-fab (click)="onAddTask()">
-        <ion-icon name="add" ></ion-icon>
-      </button>
-  </ion-fab>
+  <ion-fab right bottom>
+      <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+      <ion-fab-list side="left">
+        <button ion-fab color="primary" (click)="onAddTask()">
+          <ion-icon name="add" ></ion-icon>
+        </button>
+        <button ion-fab color="primary" (click)="onCreateRoute()">
+          <ion-icon name="ios-map-outline"  style="zoom: 1.75; opacity:0.6;"></ion-icon>
+          <ion-icon name="add" style="position: absolute; "></ion-icon>
+        </button>
+        <button ion-fab color="secondary" (click)="onCreateRoute()">
+          <ion-icon name="ios-map-outline"  style="zoom: 1.75; opacity:0.6;"></ion-icon>
+          <ion-icon name="md-navigate" style="position: absolute; "></ion-icon>
+        </button>
+      </ion-fab-list>
+    </ion-fab>
 </ion-content>
