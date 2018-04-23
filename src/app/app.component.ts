@@ -12,6 +12,8 @@ import { AlexPage } from '../pages/alex/alex';
 import { MapTastPage } from '../pages/map-tast/map-tast';
 import { CreateRoutePage } from '../pages/create-route/create-route';
 import { AddNewTaskPage } from '../pages/add-new-task/add-new-task';
+import { RouteListPage } from '../pages/route-list/route-list';
+import { RouteDetailsPage } from '../pages/route-details/route-details';
 @Component({
   templateUrl: 'app.html'
 })
@@ -128,5 +130,9 @@ export class MyApp {
 
   onAddTask(){
     this.nav.push(AddNewTaskPage);
+  }
+
+  onListRoute(){
+    this.nav.setRoot(RouteDetailsPage);
   }
 }

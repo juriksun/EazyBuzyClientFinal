@@ -13,9 +13,9 @@ export class Task{
             last_edited: number
         },
         public time: {
-            start_time: number,
-            end_time: number,
-            duration: number
+            start_time: string,
+            end_time: string,
+            date: string
         },
         public priority: number,
         public task_place: {

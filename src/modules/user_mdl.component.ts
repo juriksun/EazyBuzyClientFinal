@@ -7,12 +7,14 @@ import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 
 import { UserResponse } from "../models/user-response.model";
+import { Url } from "../models/url.model";
 
 @Injectable()
 export class UserServiseModule{
 
-  // private url: string = 'http://localhost:3000/';
-  private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+  private url: string = 'http://localhost:3000/';
+  // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+  // private url: string = Url.getUrl();
   constructor(
     private http: Http,
     private storage: Storage

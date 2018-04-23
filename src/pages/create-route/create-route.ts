@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 
 import { PlaceSearchAutocomplitePage } from '../place-search-autocomplite/place-search-autocomplite';
 import { RouteServiseModule } from '../../modules/route_mdl.component';
+import { RouteDetailsPage } from '../route-details/route-details';
 
 
 
@@ -41,10 +42,11 @@ export class CreateRoutePage {
     
     this.createRouteForm = this.fb.group({
       mode:         ['driving' , [Validators.required, ]],
-      start_point:  [ '', [Validators.required]], 
+      start_point:  ['', [Validators.required]], 
       end_point:    ['', [Validators.required]],
-      start_time:        ['08:00' , [Validators.required]],
-      end_time:          ['17:00' , [Validators.required]]
+      start_time:   ['', [Validators.required]],
+      end_time:     ['', [Validators.required]],
+      date:         ['', [Validators.required]]
     });
   }
 
@@ -76,7 +78,8 @@ export class CreateRoutePage {
         mode:value.mode,
         time:{
           start_time: value.start_time,
-          end_time: value.end_time
+          end_time: value.end_time,
+          date: value.date
         },
         location: this.location
       }
@@ -85,6 +88,12 @@ export class CreateRoutePage {
       response => {
         if (response) {
           console.log(JSON.stringify(response));
+          // if(response.status === true){
+            this.routeServiseModule.route = response.data.recommended_route;
+            this.navCtrl.setRoot(RouteDetailsPage);
+          // } else {
+          //   console.log(response);
+          // }
         }
       },
       error => {

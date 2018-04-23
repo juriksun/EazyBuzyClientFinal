@@ -28,6 +28,8 @@ import { AutocompletePage } from '../pages/map-tast/auto-complite-page';
 import { MapTastPage } from '../pages/map-tast/map-tast';
 import { PlaceSearchAutocomplitePage } from '../pages/place-search-autocomplite/place-search-autocomplite';
 import { RouteServiseModule } from '../modules/route_mdl.component';
+import { RouteListPage } from '../pages/route-list/route-list';
+import { RouteDetailsPage } from '../pages/route-details/route-details';
 
 
 @NgModule({
@@ -44,11 +46,13 @@ import { RouteServiseModule } from '../modules/route_mdl.component';
     SignInPage,
     MapTastPage,
     AutocompletePage,
-    PlaceSearchAutocomplitePage
+    PlaceSearchAutocomplitePage,
+    RouteListPage,
+    RouteDetailsPage
   ],
   imports: [
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyCSi8yOke4lolqMPNsB9AlouSQi9h3dBeM",
+      apiKey: "AIzaSyAkz6xddABYhnT-iPqJePo3MIsiy1kxE9Q",
       libraries: ["places"]
     }),
     BrowserModule,
@@ -72,7 +76,9 @@ import { RouteServiseModule } from '../modules/route_mdl.component';
     SignInPage,
     AutocompletePage,
     MapTastPage,
-    PlaceSearchAutocomplitePage
+    PlaceSearchAutocomplitePage,
+    RouteListPage,
+    RouteDetailsPage
   ],
   providers: [
     StatusBar,

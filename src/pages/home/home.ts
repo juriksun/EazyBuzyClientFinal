@@ -9,6 +9,8 @@ import { EditTaskPage } from '../edit-task/edit-task';
 import { CreateRoutePage } from '../create-route/create-route';
 import { LoginPage } from '../login/login';
 import { UserServiseModule } from '../../modules/user_mdl.component';
+import { RouteListPage } from '../route-list/route-list';
+import { RouteDetailsPage } from '../route-details/route-details';
 
 @Component({
   selector: 'page-home',
@@ -69,5 +71,9 @@ export class HomePage {
 
   onAddTask(){
     this.navCtrl.push(AddNewTaskPage);
+  }
+
+  onListRoute(){
+    this.navCtrl.setRoot(RouteDetailsPage);
   }
 }

@@ -8,12 +8,15 @@ import 'rxjs/add/operator/map';
 import { TaskResponse } from "../models/tasks-response.model";
 import { User } from "../models/user.model";
 import { UserServiseModule } from "./user_mdl.component";
+import { Url } from "../models/url.model";
 
 @Injectable()
 export class TasksServiseModule{
 
-  // private url: string = 'http://localhost:3000/';
-  private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+  private url: string = 'http://localhost:3000/';
+  // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+  // private url: string = Url.getUrl();
+
   constructor(
     private http: Http,
     private userServiseModule: UserServiseModule

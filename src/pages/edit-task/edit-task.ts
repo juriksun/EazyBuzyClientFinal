@@ -16,7 +16,7 @@ export class EditTaskPage {
   task: Task;
   editTaskForm: FormGroup;
 
-  createRouteForm: FormGroup;
+  // createRouteForm: FormGroup;
 
   location = {};
 
@@ -45,7 +45,7 @@ export class EditTaskPage {
       name: [this.task.name , [Validators.required, Validators.minLength(4)]],
       type: [this.task.type, [Validators.required, Validators.minLength(4)]],
       time_start: [(this.task.time)?(this.task.time.start_time || ''):''],
-      time_end: [(this.task.time)?(this.task.time.duration || ''):''],
+      time_end: [(this.task.time)?(this.task.time.end_time || ''):''],
       priorety: [''],
       place: ['', [Validators.minLength(4)]],
       shered_to: ['', [Validators.minLength(4)]]
@@ -83,6 +83,62 @@ export class EditTaskPage {
   }
 
   private updateTask(value, taskId){
+
+    // taskId,
+    // {
+    // //   name: [this.task.name , [Validators.required, Validators.minLength(4)]],
+    // // type: [this.task.type, [Validators.required, Validators.minLength(4)]],
+    // // time_start: [(this.task.time)?(this.task.time.start_time || ''):''],
+    // // time_end: [(this.task.time)?(this.task.time.duration || ''):''],
+    // // priorety: [''],
+    // // place: ['', [Validators.minLength(4)]],
+    // // shered_to: ['', [Validators.minLength(4)]]
+
+
+    //   _id: taskId,
+    //   name: value.name,
+    //   type: value.type,
+    //   /*sharing parameters{
+
+
+    //   }*/
+    //   edit_time: {
+    //     create: this.task.edit_time.create || 0,
+    //     last_edited: new Date()
+    //   },
+    //   time: {
+    //     start_time: 
+    //       value.start_time.split(":")[0] * 3600000 
+    //       +
+    //       value.start_time.split(":")[0] * 60000
+    //     ,
+    //     end_time:
+    //       value.end_time.split(":")[0] * 3600000 
+    //       +
+    //       value.end_time.split(":")[0] * 60000
+    //     ,
+    //     priorety: value.priorety,
+
+    // //   public priority: number,
+    // //   public task_place: {
+    // //       place_type: string,
+    // //       palce_key_word: string
+    // //   },
+    // //   public location: {
+    // //       address: string,
+    // //       place_id: string,
+    // //       coordinate: {
+    // //           lat: number,
+    // //           long: number
+    // //       }
+    // //   }
+    //   name:'',
+
+    //   time:{
+    //     start_time: value.start_time,
+    //     end_time: value.end_time
+    //   },
+    //   location: this.location
     this.tasksServiseModule.updateTask(
       taskId,
       value
@@ -106,6 +162,7 @@ export class EditTaskPage {
         taskId: this.task._id
       }
     );
+    
     popover.onDidDismiss((button)=>{
       switch(button){
         case 'delete': {
@@ -134,8 +191,8 @@ export class EditTaskPage {
     
     modal.onDidDismiss(data => {
       if(data !== undefined){
-        this.createRouteForm.patchValue({
-          place: data.field_adress
+        this.editTaskForm.patchValue({
+          'place': data.field_adress
         });
 
         this.location = data.data;

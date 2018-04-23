@@ -101,16 +101,17 @@ export class PlaceSearchAutocomplitePage {
     geoCode(address:any, item) {
         let geocoder = new google.maps.Geocoder();
         geocoder.geocode({ 'address': address }, (results, status) => {
-
         this.viewCtrl.dismiss({
             point_name: this.pointName,
             field_adress: item,
             data: {
                 address: results[0].formatted_address,
                 place_id: results[0].place_id,
-                coordinate: {
-                    lat: results[0].geometry.location.lat(),
-                    long: results[0].geometry.location.lng()
+                geometry: {
+                    location: {
+                        lat: results[0].geometry.location.lat(),
+                        lng: results[0].geometry.location.lng()
+                    }       
                 }
             }      
         });
