@@ -87,7 +87,7 @@ export class CreateRoutePage {
     .subscribe(
       response => {
         if (response) {
-          console.log(JSON.stringify(response));
+          // console.log(JSON.stringify(response));
           // if(response.status === true){
             this.routeServiseModule.route = response.data.recommended_route;
             this.navCtrl.setRoot(RouteDetailsPage);

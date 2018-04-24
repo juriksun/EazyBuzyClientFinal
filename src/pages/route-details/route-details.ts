@@ -1,5 +1,5 @@
 import { Component, NgZone, ElementRef, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { MapsAPILoader } from '@agm/core';
 import { RouteServiseModule } from '../../modules/route_mdl.component';
@@ -16,25 +16,44 @@ export class RouteDetailsPage {
   // lat: number = 51.678418;
   // lng: number = 7.809007;
 
-  polylines: number[];
-  markers: number[];
+  segments: any = null;
+  tasks: any = null;
+
+  mapHeight: number;
+  platformHeight: number;
+  scrollContentMarginTop: number;
+  maxMapHeight: number;
+
+  headetHeight: number = 60;
+  routeDetailsHeight: number = 102;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private zone: NgZone,
     private mapsAPILoader: MapsAPILoader,
-    private routeServiseModule: RouteServiseModule
+    public routeServiseModule: RouteServiseModule,
+    private platform: Platform
   ) {
-    // this.mapsAPILoader.load().then(() => {
-    //   this.mapService =  new google.maps.places.AutocompleteService();
-    // });
+    this.tasks = this.routeServiseModule.route.tasks;
+    this.segments = this.routeServiseModule.route.segments;
+
+    this.platformHeight = this.platform.height();
+    this.maxMapHeight = this.platformHeight - this.headetHeight - this.routeDetailsHeight;
+    this.mapHeight = this.maxMapHeight;
   }
 
   ionViewDidLoad() {
-    this.markers = this.routeServiseModule.route.markers;
-    this.polylines = this.routeServiseModule.route.polylins;
-    // this.InitMap();
+    
+  }
+
+  ionViewDidEnter(){
+
+    setTimeout(() => {
+      this.mapHeight = (this.platformHeight - this.headetHeight - this.routeDetailsHeight)/2;
+      this.scrollContentMarginTop = this.mapHeight + this.routeDetailsHeight;
+    },500);
+    
   }
 
   discard(){
@@ -72,5 +91,31 @@ export class RouteDetailsPage {
     //   position: latLng,
     //   map: this.map,
     // });
+  }
+  onCloseMap(){
+
+    switch(this.mapHeight){
+      case ((this.platformHeight - this.headetHeight - this.routeDetailsHeight)/2):{
+          this.mapHeight = 0;
+          this.scrollContentMarginTop = this.routeDetailsHeight - this.mapHeight;
+        break;
+      }
+      case (this.platformHeight - this.headetHeight - this.routeDetailsHeight):{
+        this.mapHeight = (this.platformHeight - this.headetHeight - this.routeDetailsHeight)/2;
+        this.scrollContentMarginTop = this.routeDetailsHeight - this.mapHeight;
+        break;
+      }
+      default:{
+        break;
+      }
+    }    
+  }
+
+  onOpenMap(){
+
+    this.mapHeight = this.platformHeight - 170;
+
+    console.log("open map");
+    console.log("close map");
   }
 }

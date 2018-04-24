@@ -18,34 +18,78 @@
         </ion-buttons>
       </ion-toolbar>
   </ion-navbar>
+  <agm-map 
+      [style.height]="mapHeight + 'px'"
+      [latitude]="tasks[0].place.location.lat"
+      [longitude]="tasks[0].place.location.lng" 
+      [zoom]="14"
+    >
+    <ng-container *ngIf="tasks">
+      <agm-marker *ngFor="let task of tasks; let i = index"
+        [latitude]="task.place.location.lat"
+        [longitude]="task.place.location.lng"
+      ></agm-marker>
+
+      <ng-container *ngFor="let segment of segments; let i = index">
+        <agm-polyline *ngFor="let polyline of segment.polylines; let k = index"
+          [strokeColor]="'red'"
+          [strokeWeight]=7
+        >
+            <agm-polyline-point 
+              [latitude]="polyline.start.lat" 
+              [longitude]="polyline.start.lng"
+            ></agm-polyline-point>
+
+            <agm-polyline-point
+            [latitude]="polyline.end.lat" 
+            [longitude]="polyline.end.lng"
+            ></agm-polyline-point>
+        </agm-polyline>
+      </ng-container>
+    </ng-container>
+      </agm-map>
+      <ion-item no-lines>
+          <h2>Bla</h2>
+          <p>bla</p>
+          <ion-note item-end>
+            <button (click)="onCloseMap()"
+              ion-button 
+              clear 
+              full 
+              icon-only 
+              color="dark"
+            >
+              <ion-icon name="md-arrow-dropup"></ion-icon>
+            </button>
+            <button (click)="onOpenMap()"
+              ion-button clear full icon-only color="dark"
+            >
+              <ion-icon name="md-arrow-dropdown"></ion-icon>
+            </button>
+          </ion-note>
+      </ion-item>
 </ion-header>
 
-
 <ion-content>
-    <agm-map *ngIf="markers" [latitude]="markers[0][0]" [longitude]="markers[0][1]" [zoom]="12">
 
-        <agm-marker 
-          *ngFor="let marker of markers"
-          [latitude]="marker[0]"
-          [longitude]="marker[1]"
-        ></agm-marker>
+  <ion-list no-lines [style.margin-top]="scrollContentMarginTop + 'px'">
+    <ng-container *ngFor="let task of tasks; let i = index">
+      <ion-item
+      >
+        <ion-avatar item-start>
+          <ion-icon item-start name="logo-usd" class="taskIcon"></ion-icon>
+        </ion-avatar>
+        <h2>{{task.name}}</h2>
+        <p>{{task.place.address}}.</p>
+      </ion-item>
+      <hr>
+      <ng-container *ngIf="segments[i]">
+        <ion-item>
+          <h2>{{segments[i].duration}}</h2>
+        </ion-item>
+        <hr>
+      </ng-container>
 
-        <agm-polyline 
-          *ngFor="let polyline of polylines; let i = index"
-          [strokeColor]="'red'"
-          [strokeWeight]=5
-        >
-          <agm-polyline-point 
-            [latitude]="polylines[i][0]" 
-            [longitude]="polylines[i][1]"
-          ></agm-polyline-point>
-
-          <ng-container *ngIf="polylines[i+1]">
-            <agm-polyline-point
-              [latitude]="polylines[i+1][0]"
-              [longitude]="polylines[i+1][1]"
-            ></agm-polyline-point>
-          </ng-container> 
-        </agm-polyline>
-      </agm-map>
+    </ng-container>
+  </ion-list>
 </ion-content>
