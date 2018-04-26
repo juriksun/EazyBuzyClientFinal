@@ -1,5 +1,7 @@
 import { Component, NgZone, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
+
 import { HomePage } from '../home/home';
 import { MapsAPILoader } from '@agm/core';
 import { RouteServiseModule } from '../../modules/route_mdl.component';
@@ -9,15 +11,24 @@ import { RouteServiseModule } from '../../modules/route_mdl.component';
   selector: 'page-route-details',
   templateUrl: 'route-details.html',
 })
-export class RouteDetailsPage {
-  // @ViewChild('map') mapElement;
-  // mapService;
 
-  // lat: number = 51.678418;
-  // lng: number = 7.809007;
+export class RouteDetailsPage {
+  mapCenter = {
+    lat: 32,
+    lng: 34
+  };
+
+  currPosition = {
+    lat: 32,
+    lng: 34
+  };
+
+  mapZoom = 14;
 
   segments: any = null;
   tasks: any = null;
+  duration: any = null;
+  distance: any = null;
 
   mapHeight: number;
   platformHeight: number;
@@ -27,16 +38,22 @@ export class RouteDetailsPage {
   headetHeight: number = 60;
   routeDetailsHeight: number = 102;
 
+  private watch: any;
+  currPositionAvalible:boolean;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private zone: NgZone,
     private mapsAPILoader: MapsAPILoader,
     public routeServiseModule: RouteServiseModule,
-    private platform: Platform
+    private platform: Platform,
+    private geolocation: Geolocation
   ) {
     this.tasks = this.routeServiseModule.route.tasks;
     this.segments = this.routeServiseModule.route.segments;
+
+    this.duration = ~~(this.routeServiseModule.route.sum_of_durations/60);
+    this.distance = (this.routeServiseModule.route.sum_of_distance/1000).toFixed(1);
 
     this.platformHeight = this.platform.height();
     this.maxMapHeight = this.platformHeight - this.headetHeight - this.routeDetailsHeight;
@@ -48,10 +65,22 @@ export class RouteDetailsPage {
   }
 
   ionViewDidEnter(){
-
+    // this.geolocation.getCurrentPosition()
+    // .then((resp) => {
+    //   this.currPosition.lat = resp.coords.latitude;
+    //   this.currPosition.lng = resp.coords.longitude;
+    //  }).catch((error) => {
+    //    console.log('Error getting location', error);
+    //  });
+    this.currPositionAvalible = false;
     setTimeout(() => {
       this.mapHeight = (this.platformHeight - this.headetHeight - this.routeDetailsHeight)/2;
-      this.scrollContentMarginTop = this.mapHeight + this.routeDetailsHeight;
+      this.scrollContentMarginTop = this.headetHeight + this.routeDetailsHeight + this.mapHeight;
+
+      this.mapZoom = 14;
+      this.mapCenter.lat = this.tasks[0].place.location.lat - 0.01;
+      this.mapCenter.lng = this.tasks[0].place.location.lng;
+      this.getPosition();
     },500);
     
   }
@@ -97,12 +126,12 @@ export class RouteDetailsPage {
     switch(this.mapHeight){
       case ((this.platformHeight - this.headetHeight - this.routeDetailsHeight)/2):{
           this.mapHeight = 0;
-          this.scrollContentMarginTop = this.routeDetailsHeight - this.mapHeight;
+          this.scrollContentMarginTop = this.headetHeight + this.routeDetailsHeight;
         break;
       }
       case (this.platformHeight - this.headetHeight - this.routeDetailsHeight):{
         this.mapHeight = (this.platformHeight - this.headetHeight - this.routeDetailsHeight)/2;
-        this.scrollContentMarginTop = this.routeDetailsHeight - this.mapHeight;
+        this.scrollContentMarginTop = this.headetHeight + this.routeDetailsHeight + this.mapHeight;
         break;
       }
       default:{
@@ -113,9 +142,48 @@ export class RouteDetailsPage {
 
   onOpenMap(){
 
-    this.mapHeight = this.platformHeight - 170;
+    switch(this.mapHeight){
+      case 0:{
+          this.mapHeight = (this.platformHeight - this.headetHeight - this.routeDetailsHeight)/2;
+          this.scrollContentMarginTop = this.headetHeight + this.routeDetailsHeight + this.mapHeight;
+        break;
+      }
+      case ((this.platformHeight - this.headetHeight - this.routeDetailsHeight)/2):{
+        this.mapHeight = this.platformHeight - this.headetHeight - this.routeDetailsHeight;
+        this.scrollContentMarginTop = this.headetHeight + this.routeDetailsHeight + this.mapHeight;
+        break;
+      }
+      default:{
+        break;
+      }
+    }    
+  }
 
-    console.log("open map");
-    console.log("close map");
+  setMapCenter(lat, lng){
+    this.mapZoom = 18;
+    this.mapCenter.lat = lat - 0.0005;
+    this.mapCenter.lng = lng;
+  }
+
+  onZoomChange(event){
+    if(this.mapZoom !== event){
+      this.mapZoom = event;
+    }
+  }
+
+  getPosition(){
+    // setInterval(()=>{
+    //   console.log("hh");
+    // }, 10000);
+    this.watch = this.geolocation.watchPosition({
+      enableHighAccuracy:true
+    });
+    this.watch.subscribe((data) => {
+      this.currPositionAvalible = true;
+      this.currPosition.lat = data.coords.latitude;
+      this.currPosition.lng = data.coords.longitude;
+      console.log(data.coords.latitude);
+      console.log(data.coords.longitude);
+    });
   }
 }

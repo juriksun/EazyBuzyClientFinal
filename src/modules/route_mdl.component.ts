@@ -17,7 +17,1549 @@ export class RouteServiseModule{
   // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
   // private url: string = Url().getUrl();
   public route: any;
-  public staticRes: any = {"status":"true","data":{"_id":"5ade4c1faa633041246b3f6a","recommended_route":{"segments":[{"startPoint":{"address":"Anne Frank St 12, Ramat Gan, Израиль","place_id":"ChIJnfFzOcRLHRURM9hDEucFhfs","geometry":{"location":{"lat":32.0900601,"lng":34.803569100000004}},"task_identifier":{"name":"Start"}},"endPoint":{"geometry":{"location":{"lat":32.082628,"lng":34.802189},"viewport":{"northeast":{"lat":32.08397782989272,"lng":34.80353882989272},"southwest":{"lat":32.08127817010727,"lng":34.80083917010728}}},"icon":"https://maps.gstatic.com/mapfiles/place_api/icons/gas_station-71.png","id":"bd0cf769190cf35ecad083acc2e140f73bce8e96","name":"Delek","opening_hours":{"open_now":true,"weekday_text":[]},"photos":[{"height":2592,"html_attributions":["<a href=\"https://maps.google.com/maps/contrib/104597251625825490445/photos\">Ilay Stepanenko</a>"],"photo_reference":"CmRaAAAAfKh1_TFj5IctH8o7s7lYgjF3dSDjkp0-iQJjxmYsE6SIjkLbiZE9TYo0pc1txNi2tk3wKab7RSdOYN_oUEOhxpMsr3C3fw9ESydlXM1Ifu2vfnJmKbutnmju5LiwLwXUEhAv9aHewtqJkzHfGc9wgHm6GhQtG96UT-UWF5h7A9e_ug4FJyuMGQ","width":4608}],"place_id":"ChIJwSfU0bhLHRUR7lnDkXluJWQ","rating":3.5,"reference":"CmRbAAAAy4hrhjoB16s_Zm8eqJTaJsGy-Ao0OzStsLezOxM1-Sn9YWqHjw8jfXchlUTHHofQIdA0mVEfbpKHqHkWWoZ1MvmTMNeltNRv7LRdQsABUkqiS6-Ve76bdTI9ZTVbx3wGEhB-g5UyGNUyO7Q4hqp-5JNSGhRU2Q14Li_vDSLqE9DOCfqdiilabA","scope":"GOOGLE","types":["gas_station","point_of_interest","establishment"],"vicinity":"זאב זבוטינסקי 4, רמת גן","task_identifier":{"id":"5adcb2d48c71eb0ac054640c","name":"fuil"}},"duration":858,"polylines":[{"start":{"lat":32.09006,"lng":34.80371},"end":{"lat":32.08943,"lng":34.80365}},{"start":{"lat":32.08943,"lng":34.80365},"end":{"lat":32.0891,"lng":34.80399}},{"start":{"lat":32.0891,"lng":34.80399},"end":{"lat":32.08909,"lng":34.80398}},{"start":{"lat":32.08909,"lng":34.80398},"end":{"lat":32.08908,"lng":34.80397}},{"start":{"lat":32.08908,"lng":34.80397},"end":{"lat":32.08908,"lng":34.80396}},{"start":{"lat":32.08908,"lng":34.80396},"end":{"lat":32.08906,"lng":34.80396}},{"start":{"lat":32.08906,"lng":34.80396},"end":{"lat":32.08904,"lng":34.80395}},{"start":{"lat":32.08904,"lng":34.80395},"end":{"lat":32.08901,"lng":34.80395}},{"start":{"lat":32.08901,"lng":34.80395},"end":{"lat":32.08898,"lng":34.80397}},{"start":{"lat":32.08898,"lng":34.80397},"end":{"lat":32.08894,"lng":34.80403}},{"start":{"lat":32.08894,"lng":34.80403},"end":{"lat":32.08893,"lng":34.80405}},{"start":{"lat":32.08893,"lng":34.80405},"end":{"lat":32.08893,"lng":34.80406}},{"start":{"lat":32.08893,"lng":34.80406},"end":{"lat":32.0885,"lng":34.80409}},{"start":{"lat":32.0885,"lng":34.80409},"end":{"lat":32.08803,"lng":34.8041}},{"start":{"lat":32.08803,"lng":34.8041},"end":{"lat":32.08787,"lng":34.80404}},{"start":{"lat":32.08787,"lng":34.80404},"end":{"lat":32.08736,"lng":34.80368}},{"start":{"lat":32.08736,"lng":34.80368},"end":{"lat":32.08724,"lng":34.80359}},{"start":{"lat":32.08724,"lng":34.80359},"end":{"lat":32.08687,"lng":34.80336}},{"start":{"lat":32.08687,"lng":34.80336},"end":{"lat":32.08582,"lng":34.8027}},{"start":{"lat":32.08582,"lng":34.8027},"end":{"lat":32.08559,"lng":34.80256}},{"start":{"lat":32.08559,"lng":34.80256},"end":{"lat":32.08533,"lng":34.80245}},{"start":{"lat":32.08533,"lng":34.80245},"end":{"lat":32.08532,"lng":34.80247}},{"start":{"lat":32.08532,"lng":34.80247},"end":{"lat":32.08532,"lng":34.80248}},{"start":{"lat":32.08532,"lng":34.80248},"end":{"lat":32.0853,"lng":34.8025}},{"start":{"lat":32.0853,"lng":34.8025},"end":{"lat":32.08527,"lng":34.80253}},{"start":{"lat":32.08527,"lng":34.80253},"end":{"lat":32.08523,"lng":34.80254}},{"start":{"lat":32.08523,"lng":34.80254},"end":{"lat":32.0852,"lng":34.80253}},{"start":{"lat":32.0852,"lng":34.80253},"end":{"lat":32.08519,"lng":34.80253}},{"start":{"lat":32.08519,"lng":34.80253},"end":{"lat":32.08468,"lng":34.80338}},{"start":{"lat":32.08468,"lng":34.80338},"end":{"lat":32.08452,"lng":34.80367}},{"start":{"lat":32.08452,"lng":34.80367},"end":{"lat":32.08424,"lng":34.80352}},{"start":{"lat":32.08424,"lng":34.80352},"end":{"lat":32.08404,"lng":34.80343}},{"start":{"lat":32.08404,"lng":34.80343},"end":{"lat":32.08347,"lng":34.80339}},{"start":{"lat":32.08347,"lng":34.80339},"end":{"lat":32.08311,"lng":34.8034}},{"start":{"lat":32.08311,"lng":34.8034},"end":{"lat":32.0828,"lng":34.80346}},{"start":{"lat":32.0828,"lng":34.80346},"end":{"lat":32.0828,"lng":34.80337}},{"start":{"lat":32.0828,"lng":34.80337},"end":{"lat":32.08277,"lng":34.8029}},{"start":{"lat":32.08277,"lng":34.8029},"end":{"lat":32.08279,"lng":34.80251}},{"start":{"lat":32.08279,"lng":34.80251},"end":{"lat":32.08265,"lng":34.80229}},{"start":{"lat":32.08265,"lng":34.80229},"end":{"lat":32.08264,"lng":34.80219}}]},{"startPoint":{"geometry":{"location":{"lat":32.082628,"lng":34.802189},"viewport":{"northeast":{"lat":32.08397782989272,"lng":34.80353882989272},"southwest":{"lat":32.08127817010727,"lng":34.80083917010728}}},"icon":"https://maps.gstatic.com/mapfiles/place_api/icons/gas_station-71.png","id":"bd0cf769190cf35ecad083acc2e140f73bce8e96","name":"Delek","opening_hours":{"open_now":true,"weekday_text":[]},"photos":[{"height":2592,"html_attributions":["<a href=\"https://maps.google.com/maps/contrib/104597251625825490445/photos\">Ilay Stepanenko</a>"],"photo_reference":"CmRaAAAAfKh1_TFj5IctH8o7s7lYgjF3dSDjkp0-iQJjxmYsE6SIjkLbiZE9TYo0pc1txNi2tk3wKab7RSdOYN_oUEOhxpMsr3C3fw9ESydlXM1Ifu2vfnJmKbutnmju5LiwLwXUEhAv9aHewtqJkzHfGc9wgHm6GhQtG96UT-UWF5h7A9e_ug4FJyuMGQ","width":4608}],"place_id":"ChIJwSfU0bhLHRUR7lnDkXluJWQ","rating":3.5,"reference":"CmRbAAAAy4hrhjoB16s_Zm8eqJTaJsGy-Ao0OzStsLezOxM1-Sn9YWqHjw8jfXchlUTHHofQIdA0mVEfbpKHqHkWWoZ1MvmTMNeltNRv7LRdQsABUkqiS6-Ve76bdTI9ZTVbx3wGEhB-g5UyGNUyO7Q4hqp-5JNSGhRU2Q14Li_vDSLqE9DOCfqdiilabA","scope":"GOOGLE","types":["gas_station","point_of_interest","establishment"],"vicinity":"זאב זבוטינסקי 4, רמת גן","task_identifier":{"id":"5adcb2d48c71eb0ac054640c","name":"fuil"}},"endPoint":{"geometry":{"location":{"lat":32.0756032,"lng":34.8089201},"viewport":{"northeast":{"lat":32.07686547989272,"lng":34.81032337989271},"southwest":{"lat":32.07416582010728,"lng":34.80762372010727}}},"icon":"https://maps.gstatic.com/mapfiles/place_api/icons/bank_dollar-71.png","id":"a2ca0a2d8704bcbe7ae02781bea94dc6b4dbe187","name":"בנק לאומי","opening_hours":{"open_now":false,"weekday_text":[]},"photos":[{"height":2917,"html_attributions":["<a href=\"https://maps.google.com/maps/contrib/110383030743898569206/photos\">Eyal Barlev</a>"],"photo_reference":"CmRaAAAAKB3ph-GZAIqxSRtl1U6tJzneJEzBaPoiUmnKhwdC-Eb4_FhHeTeP0sFubPHrulHHkotl7FFUpjFIaV0KhtlXt6RFhsPlhQD4JLT-hM7vAm_zlz82jqNNvXMYU2_9DlclEhAk03rxE6W_iFLpVvMYHrcLGhT0JIkY_PxCUpJoGNbPnca878Epwg","width":4092}],"place_id":"ChIJ557S87BLHRUROEsdf2-DYVs","rating":3.5,"reference":"CmRbAAAA5MR7-yuY_M7f6SIeuCLWMkNa3ZuGIY-hRfB4R5QFQyy4DLo152O9Z3pnOzxknU0uCB2LSP1-Gc_o1DtbmgqKJOYHTXP9dRoaCkTtAKbEs5a9IY-ucLb_cnqXvJPpcsofEhB19PpdDqT-31E0s1NRv6NpGhQt3Qh7Yt45xFrqolEtM32TyhOK1w","scope":"GOOGLE","types":["bank","finance","point_of_interest","establishment"],"vicinity":"67, כצנלסון, גבעתיים","task_identifier":{"id":"5adca4ddc8965c4734dd3d86","name":"leumi"}},"duration":1079,"polylines":[{"start":{"lat":32.08264,"lng":34.80219},"end":{"lat":32.08269,"lng":34.80237}},{"start":{"lat":32.08269,"lng":34.80237},"end":{"lat":32.08279,"lng":34.80251}},{"start":{"lat":32.08279,"lng":34.80251},"end":{"lat":32.08277,"lng":34.8029}},{"start":{"lat":32.08277,"lng":34.8029},"end":{"lat":32.08268,"lng":34.80329}},{"start":{"lat":32.08268,"lng":34.80329},"end":{"lat":32.0826,"lng":34.80353}},{"start":{"lat":32.0826,"lng":34.80353},"end":{"lat":32.0821,"lng":34.80472}},{"start":{"lat":32.0821,"lng":34.80472},"end":{"lat":32.08193,"lng":34.8047}},{"start":{"lat":32.08193,"lng":34.8047},"end":{"lat":32.0818,"lng":34.8047}},{"start":{"lat":32.0818,"lng":34.8047},"end":{"lat":32.08052,"lng":34.80483}},{"start":{"lat":32.08052,"lng":34.80483},"end":{"lat":32.07954,"lng":34.80496}},{"start":{"lat":32.07954,"lng":34.80496},"end":{"lat":32.07958,"lng":34.80561}},{"start":{"lat":32.07958,"lng":34.80561},"end":{"lat":32.07952,"lng":34.80567}},{"start":{"lat":32.07952,"lng":34.80567},"end":{"lat":32.07947,"lng":34.80569}},{"start":{"lat":32.07947,"lng":34.80569},"end":{"lat":32.07885,"lng":34.80581}},{"start":{"lat":32.07885,"lng":34.80581},"end":{"lat":32.07863,"lng":34.80586}},{"start":{"lat":32.07863,"lng":34.80586},"end":{"lat":32.07861,"lng":34.80581}},{"start":{"lat":32.07861,"lng":34.80581},"end":{"lat":32.07857,"lng":34.80575}},{"start":{"lat":32.07857,"lng":34.80575},"end":{"lat":32.07853,"lng":34.80571}},{"start":{"lat":32.07853,"lng":34.80571},"end":{"lat":32.07843,"lng":34.80566}},{"start":{"lat":32.07843,"lng":34.80566},"end":{"lat":32.07832,"lng":34.80567}},{"start":{"lat":32.07832,"lng":34.80567},"end":{"lat":32.07823,"lng":34.80573}},{"start":{"lat":32.07823,"lng":34.80573},"end":{"lat":32.07817,"lng":34.80584}},{"start":{"lat":32.07817,"lng":34.80584},"end":{"lat":32.07815,"lng":34.8059}},{"start":{"lat":32.07815,"lng":34.8059},"end":{"lat":32.07815,"lng":34.80599}},{"start":{"lat":32.07815,"lng":34.80599},"end":{"lat":32.07779,"lng":34.80607}},{"start":{"lat":32.07779,"lng":34.80607},"end":{"lat":32.07745,"lng":34.80614}},{"start":{"lat":32.07745,"lng":34.80614},"end":{"lat":32.07635,"lng":34.80637}},{"start":{"lat":32.07635,"lng":34.80637},"end":{"lat":32.07583,"lng":34.80642}},{"start":{"lat":32.07583,"lng":34.80642},"end":{"lat":32.07521,"lng":34.80644}},{"start":{"lat":32.07521,"lng":34.80644},"end":{"lat":32.07524,"lng":34.80684}},{"start":{"lat":32.07524,"lng":34.80684},"end":{"lat":32.07529,"lng":34.80766}},{"start":{"lat":32.07529,"lng":34.80766},"end":{"lat":32.07531,"lng":34.80846}},{"start":{"lat":32.07531,"lng":34.80846},"end":{"lat":32.07533,"lng":34.80876}},{"start":{"lat":32.07533,"lng":34.80876},"end":{"lat":32.07543,"lng":34.80903}}]},{"startPoint":{"geometry":{"location":{"lat":32.0756032,"lng":34.8089201},"viewport":{"northeast":{"lat":32.07686547989272,"lng":34.81032337989271},"southwest":{"lat":32.07416582010728,"lng":34.80762372010727}}},"icon":"https://maps.gstatic.com/mapfiles/place_api/icons/bank_dollar-71.png","id":"a2ca0a2d8704bcbe7ae02781bea94dc6b4dbe187","name":"בנק לאומי","opening_hours":{"open_now":false,"weekday_text":[]},"photos":[{"height":2917,"html_attributions":["<a href=\"https://maps.google.com/maps/contrib/110383030743898569206/photos\">Eyal Barlev</a>"],"photo_reference":"CmRaAAAAKB3ph-GZAIqxSRtl1U6tJzneJEzBaPoiUmnKhwdC-Eb4_FhHeTeP0sFubPHrulHHkotl7FFUpjFIaV0KhtlXt6RFhsPlhQD4JLT-hM7vAm_zlz82jqNNvXMYU2_9DlclEhAk03rxE6W_iFLpVvMYHrcLGhT0JIkY_PxCUpJoGNbPnca878Epwg","width":4092}],"place_id":"ChIJ557S87BLHRUROEsdf2-DYVs","rating":3.5,"reference":"CmRbAAAA5MR7-yuY_M7f6SIeuCLWMkNa3ZuGIY-hRfB4R5QFQyy4DLo152O9Z3pnOzxknU0uCB2LSP1-Gc_o1DtbmgqKJOYHTXP9dRoaCkTtAKbEs5a9IY-ucLb_cnqXvJPpcsofEhB19PpdDqT-31E0s1NRv6NpGhQt3Qh7Yt45xFrqolEtM32TyhOK1w","scope":"GOOGLE","types":["bank","finance","point_of_interest","establishment"],"vicinity":"67, כצנלסון, גבעתיים","task_identifier":{"id":"5adca4ddc8965c4734dd3d86","name":"leumi"}},"endPoint":{"geometry":{"location":{"lat":32.07941450000001,"lng":34.815057},"viewport":{"northeast":{"lat":32.08076477989272,"lng":34.81631727989272},"southwest":{"lat":32.07806512010728,"lng":34.81361762010727}}},"icon":"https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png","id":"536d0704689edaeac72dcd3a5df8ef4c0d9ccf86","name":"סופר-פארם כופר היישוב","opening_hours":{"open_now":false,"weekday_text":[]},"photos":[{"height":3024,"html_attributions":["<a href=\"https://maps.google.com/maps/contrib/116761068565218428792/photos\">Avihai Nizri</a>"],"photo_reference":"CmRaAAAAauOSqs90GrFmumMzGQteLXMNzfA7LA-pCNlR3yX8qmoxjD8ohb5U9FyGCVhPMP9xUxj0eKrXkoztF6rPvKsT2cEMwniXQi4I71zZYnX-zGIOqWJ28YO4M6H8MusG_RmBEhBMD41V7R_wIiN2rKcEDIwsGhTwqL57WlffdDJWf3xeI0lettbaVA","width":4032}],"place_id":"ChIJoTVzmLVLHRURQVg7qxZ17nk","rating":4,"reference":"CmRbAAAAghZKu_slhwDkFkaSuYJTRPA0_pZOxtxnRIRBrVgVf1xTeNHgLILyPsJ7WzH8cCdaaajWzm8Z5h11oGh_jS6ld5ABdYvnCKruzPtToN2DfcPrPbD4L599J44T65jZ-RGtEhDZ-Im4_4Jmlu79kSgkORqhGhSu1if1hBoJibNwydM3jGMkvj62Kw","scope":"GOOGLE","types":["pharmacy","store","health","point_of_interest","establishment"],"vicinity":"ביאליק 10, רמת גן","task_identifier":{"id":"5adca4eec8965c4734dd3d89","name":"acamol"}},"duration":683,"polylines":[{"start":{"lat":32.07543,"lng":34.80903},"end":{"lat":32.07548,"lng":34.80916}},{"start":{"lat":32.07548,"lng":34.80916},"end":{"lat":32.07568,"lng":34.80972}},{"start":{"lat":32.07568,"lng":34.80972},"end":{"lat":32.07574,"lng":34.80999}},{"start":{"lat":32.07574,"lng":34.80999},"end":{"lat":32.07574,"lng":34.81044}},{"start":{"lat":32.07574,"lng":34.81044},"end":{"lat":32.0757,"lng":34.81159}},{"start":{"lat":32.0757,"lng":34.81159},"end":{"lat":32.07571,"lng":34.81192}},{"start":{"lat":32.07571,"lng":34.81192},"end":{"lat":32.07573,"lng":34.81212}},{"start":{"lat":32.07573,"lng":34.81212},"end":{"lat":32.0759,"lng":34.81248}},{"start":{"lat":32.0759,"lng":34.81248},"end":{"lat":32.07612,"lng":34.81278}},{"start":{"lat":32.07612,"lng":34.81278},"end":{"lat":32.07701,"lng":34.81378}},{"start":{"lat":32.07701,"lng":34.81378},"end":{"lat":32.07714,"lng":34.81393}},{"start":{"lat":32.07714,"lng":34.81393},"end":{"lat":32.0772,"lng":34.81403}},{"start":{"lat":32.0772,"lng":34.81403},"end":{"lat":32.07734,"lng":34.81425}},{"start":{"lat":32.07734,"lng":34.81425},"end":{"lat":32.07751,"lng":34.81441}},{"start":{"lat":32.07751,"lng":34.81441},"end":{"lat":32.07786,"lng":34.8147}},{"start":{"lat":32.07786,"lng":34.8147},"end":{"lat":32.0782,"lng":34.81501}},{"start":{"lat":32.0782,"lng":34.81501},"end":{"lat":32.07837,"lng":34.8151}},{"start":{"lat":32.07837,"lng":34.8151},"end":{"lat":32.07891,"lng":34.81491}},{"start":{"lat":32.07891,"lng":34.81491},"end":{"lat":32.07904,"lng":34.81488}},{"start":{"lat":32.07904,"lng":34.81488},"end":{"lat":32.07918,"lng":34.81488}},{"start":{"lat":32.07918,"lng":34.81488},"end":{"lat":32.07942,"lng":34.81488}}]},{"startPoint":{"geometry":{"location":{"lat":32.07941450000001,"lng":34.815057},"viewport":{"northeast":{"lat":32.08076477989272,"lng":34.81631727989272},"southwest":{"lat":32.07806512010728,"lng":34.81361762010727}}},"icon":"https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png","id":"536d0704689edaeac72dcd3a5df8ef4c0d9ccf86","name":"סופר-פארם כופר היישוב","opening_hours":{"open_now":false,"weekday_text":[]},"photos":[{"height":3024,"html_attributions":["<a href=\"https://maps.google.com/maps/contrib/116761068565218428792/photos\">Avihai Nizri</a>"],"photo_reference":"CmRaAAAAauOSqs90GrFmumMzGQteLXMNzfA7LA-pCNlR3yX8qmoxjD8ohb5U9FyGCVhPMP9xUxj0eKrXkoztF6rPvKsT2cEMwniXQi4I71zZYnX-zGIOqWJ28YO4M6H8MusG_RmBEhBMD41V7R_wIiN2rKcEDIwsGhTwqL57WlffdDJWf3xeI0lettbaVA","width":4032}],"place_id":"ChIJoTVzmLVLHRURQVg7qxZ17nk","rating":4,"reference":"CmRbAAAAghZKu_slhwDkFkaSuYJTRPA0_pZOxtxnRIRBrVgVf1xTeNHgLILyPsJ7WzH8cCdaaajWzm8Z5h11oGh_jS6ld5ABdYvnCKruzPtToN2DfcPrPbD4L599J44T65jZ-RGtEhDZ-Im4_4Jmlu79kSgkORqhGhSu1if1hBoJibNwydM3jGMkvj62Kw","scope":"GOOGLE","types":["pharmacy","store","health","point_of_interest","establishment"],"vicinity":"ביאליק 10, רמת גן","task_identifier":{"id":"5adca4eec8965c4734dd3d89","name":"acamol"}},"endPoint":{"address":"Hertsel St 1, Ramat Gan, Израиль","place_id":"ChIJLXgkPjVKHRURN1jg_EdA7I4","geometry":{"location":{"lat":32.0804805,"lng":34.819580900000005}},"task_identifier":{"name":"End"}},"duration":419,"polylines":[{"start":{"lat":32.07942,"lng":34.81488},"end":{"lat":32.07918,"lng":34.81488}},{"start":{"lat":32.07918,"lng":34.81488},"end":{"lat":32.07918,"lng":34.81494}},{"start":{"lat":32.07918,"lng":34.81494},"end":{"lat":32.07923,"lng":34.81528}},{"start":{"lat":32.07923,"lng":34.81528},"end":{"lat":32.07927,"lng":34.81544}},{"start":{"lat":32.07927,"lng":34.81544},"end":{"lat":32.07946,"lng":34.81601}},{"start":{"lat":32.07946,"lng":34.81601},"end":{"lat":32.07971,"lng":34.81667}},{"start":{"lat":32.07971,"lng":34.81667},"end":{"lat":32.0799,"lng":34.81701}},{"start":{"lat":32.0799,"lng":34.81701},"end":{"lat":32.08037,"lng":34.81782}},{"start":{"lat":32.08037,"lng":34.81782},"end":{"lat":32.08053,"lng":34.81807}},{"start":{"lat":32.08053,"lng":34.81807},"end":{"lat":32.0809,"lng":34.8185}},{"start":{"lat":32.0809,"lng":34.8185},"end":{"lat":32.081,"lng":34.81859}},{"start":{"lat":32.081,"lng":34.81859},"end":{"lat":32.08055,"lng":34.81962}}]}],"num_of_segments":4,"sum_of_durations":3039,"tasks":[{"name":"Start","duration":8.245888996530919,"place":{"location":{"lat":32.0900601,"lng":34.803569100000004},"id":"ChIJnfFzOcRLHRURM9hDEucFhfs","address":"Anne Frank St 12, Ramat Gan, Израиль"}},{"name":"fuil","duration":1.969848774648404,"place":{"location":{"lat":32.082628,"lng":34.802189},"name":"Delek","id":"ChIJwSfU0bhLHRUR7lnDkXluJWQ","address":"זאב זבוטינסקי 4, רמת גן"}},{"name":"leumi","duration":2.2713006800069424,"place":{"location":{"lat":32.0756032,"lng":34.8089201},"name":"בנק לאומי","id":"ChIJ557S87BLHRUROEsdf2-DYVs","address":"67, כצנלסון, גבעתיים"}},{"name":"acamol","duration":6.640608099374283,"place":{"location":{"lat":32.07941450000001,"lng":34.815057},"name":"סופר-פארם כופר היישוב","id":"ChIJoTVzmLVLHRURQVg7qxZ17nk","address":"ביאליק 10, רמת גן"}},{"name":"End","duration":5.9686683875374325,"place":{"location":{"lat":32.0804805,"lng":34.819580900000005},"id":"ChIJLXgkPjVKHRURN1jg_EdA7I4","address":"Hertsel St 1, Ramat Gan, Израиль"}}]},"all_tasks":[{"_id":"5adca4ddc8965c4734dd3d86","user_token_id":"5ad63c8f869a7648bc6a2d6b","name":"leumi","type":"bank","task_place":{"_id":"5adca4ddc8965c4734dd3d87","place_type":"bank","place_key_word":"leumi"},"__v":0},{"_id":"5adca4eec8965c4734dd3d89","user_token_id":"5ad63c8f869a7648bc6a2d6b","name":"acamol","type":"pharmacy","task_place":{"_id":"5adca4eec8965c4734dd3d8a","place_type":"pharmacy","place_key_word":"acamol"},"__v":0},{"_id":"5adcb2d48c71eb0ac054640c","user_token_id":"5ad63c8f869a7648bc6a2d6b","name":"fuil","type":"gas_station","task_place":{"_id":"5adcb2d48c71eb0ac054640d","place_type":"gas_station","place_key_word":"fuil"},"__v":0}],"__v":0}};
+  public staticRes: any = {"status":"true","data":{"_id":"5ade4c1faa633041246b3f6a","recommended_route": {
+    "segments": [
+        {
+            "startPoint": {
+                "address": "Ha-Gilgal St 59, Ramat Gan, Израиль",
+                "place_id": "ChIJh_a-fjZKHRURbfWQ2nG9XpA",
+                "geometry": {
+                    "location": {
+                        "lat": 32.0799162,
+                        "lng": 34.824053700000036
+                    }
+                },
+                "task_identifier": {
+                    "name": "Start"
+                }
+            },
+            "endPoint": {
+                "geometry": {
+                    "location": {
+                        "lat": 32.07941450000001,
+                        "lng": 34.815057
+                    },
+                    "viewport": {
+                        "northeast": {
+                            "lat": 32.08076477989272,
+                            "lng": 34.81631727989272
+                        },
+                        "southwest": {
+                            "lat": 32.07806512010728,
+                            "lng": 34.81361762010727
+                        }
+                    }
+                },
+                "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+                "id": "536d0704689edaeac72dcd3a5df8ef4c0d9ccf86",
+                "name": "סופר-פארם כופר היישוב",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "photos": [
+                    {
+                        "height": 3024,
+                        "html_attributions": [
+                            "<a href=\"https://maps.google.com/maps/contrib/116761068565218428792/photos\">Avihai Nizri<\/a>"
+                        ],
+                        "photo_reference": "CmRaAAAAJ1UOcdbdackY61AbqKPwkFSFwX7C3ENfcdf15y4IV5sbrk0UGuD_JP2XazA5EnFiN2yZbb9ebIlv43gUzZK5SZZH0VEbHzXm7Q3rcfu67wPaHrhKWt2NZ3Jkix7F1E1WEhAisbUd25Y5dultueLft_2AGhTBEhgNhRzLaEEPYyNq0cBIuc1gdQ",
+                        "width": 4032
+                    }
+                ],
+                "place_id": "ChIJoTVzmLVLHRURQVg7qxZ17nk",
+                "rating": 4,
+                "reference": "CmRbAAAAsJfweqHf-VX1YQt9gTeRrMEy7EjtKucxfRsIMMkDaKN41-F4U3xmfawcNO2AA4V3JOk2pk2XMJObAXcEutiyDyPbeABaQi3uK_MLo9R89A8-oDVY_vv1eRf6oqLOSpt3EhCdY6-JsK6wrxFcuh_9v7kVGhTGuEC1JDUXeTdGAgZ1d11yzvqPyA",
+                "scope": "GOOGLE",
+                "types": [
+                    "pharmacy",
+                    "store",
+                    "health",
+                    "point_of_interest",
+                    "establishment"
+                ],
+                "vicinity": "ביאליק 10, רמת גן",
+                "task_identifier": {
+                    "id": "5adf610f6016683c583043f4",
+                    "name": "acamol"
+                }
+            },
+            "duration": 404,
+            "distance": 1586,
+            "polylines": [
+                {
+                    "start": {
+                        "lat": 32.08006,
+                        "lng": 34.82399
+                    },
+                    "end": {
+                        "lat": 32.08,
+                        "lng": 34.82375
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08,
+                        "lng": 34.82375
+                    },
+                    "end": {
+                        "lat": 32.07998,
+                        "lng": 34.82353
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07998,
+                        "lng": 34.82353
+                    },
+                    "end": {
+                        "lat": 32.07998,
+                        "lng": 34.82322
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07998,
+                        "lng": 34.82322
+                    },
+                    "end": {
+                        "lat": 32.08025,
+                        "lng": 34.82203
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08025,
+                        "lng": 34.82203
+                    },
+                    "end": {
+                        "lat": 32.07995,
+                        "lng": 34.82192
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07995,
+                        "lng": 34.82192
+                    },
+                    "end": {
+                        "lat": 32.07971,
+                        "lng": 34.82184
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07971,
+                        "lng": 34.82184
+                    },
+                    "end": {
+                        "lat": 32.0793,
+                        "lng": 34.82181
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.0793,
+                        "lng": 34.82181
+                    },
+                    "end": {
+                        "lat": 32.07932,
+                        "lng": 34.82136
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07932,
+                        "lng": 34.82136
+                    },
+                    "end": {
+                        "lat": 32.07937,
+                        "lng": 34.82003
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07937,
+                        "lng": 34.82003
+                    },
+                    "end": {
+                        "lat": 32.07941,
+                        "lng": 34.81977
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07941,
+                        "lng": 34.81977
+                    },
+                    "end": {
+                        "lat": 32.08037,
+                        "lng": 34.82006
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08037,
+                        "lng": 34.82006
+                    },
+                    "end": {
+                        "lat": 32.081,
+                        "lng": 34.81859
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.081,
+                        "lng": 34.81859
+                    },
+                    "end": {
+                        "lat": 32.08131,
+                        "lng": 34.81792
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08131,
+                        "lng": 34.81792
+                    },
+                    "end": {
+                        "lat": 32.08162,
+                        "lng": 34.81728
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08162,
+                        "lng": 34.81728
+                    },
+                    "end": {
+                        "lat": 32.08184,
+                        "lng": 34.81687
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08184,
+                        "lng": 34.81687
+                    },
+                    "end": {
+                        "lat": 32.08211,
+                        "lng": 34.81651
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08211,
+                        "lng": 34.81651
+                    },
+                    "end": {
+                        "lat": 32.08226,
+                        "lng": 34.81637
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08226,
+                        "lng": 34.81637
+                    },
+                    "end": {
+                        "lat": 32.08246,
+                        "lng": 34.81621
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08246,
+                        "lng": 34.81621
+                    },
+                    "end": {
+                        "lat": 32.08257,
+                        "lng": 34.81613
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08257,
+                        "lng": 34.81613
+                    },
+                    "end": {
+                        "lat": 32.083,
+                        "lng": 34.81581
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.083,
+                        "lng": 34.81581
+                    },
+                    "end": {
+                        "lat": 32.08288,
+                        "lng": 34.8154
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08288,
+                        "lng": 34.8154
+                    },
+                    "end": {
+                        "lat": 32.08281,
+                        "lng": 34.81511
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08281,
+                        "lng": 34.81511
+                    },
+                    "end": {
+                        "lat": 32.0827,
+                        "lng": 34.81468
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.0827,
+                        "lng": 34.81468
+                    },
+                    "end": {
+                        "lat": 32.08214,
+                        "lng": 34.81483
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08214,
+                        "lng": 34.81483
+                    },
+                    "end": {
+                        "lat": 32.0816,
+                        "lng": 34.81489
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.0816,
+                        "lng": 34.81489
+                    },
+                    "end": {
+                        "lat": 32.08094,
+                        "lng": 34.81489
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08094,
+                        "lng": 34.81489
+                    },
+                    "end": {
+                        "lat": 32.07942,
+                        "lng": 34.81488
+                    }
+                }
+            ]
+        },
+        {
+            "startPoint": {
+                "geometry": {
+                    "location": {
+                        "lat": 32.07941450000001,
+                        "lng": 34.815057
+                    },
+                    "viewport": {
+                        "northeast": {
+                            "lat": 32.08076477989272,
+                            "lng": 34.81631727989272
+                        },
+                        "southwest": {
+                            "lat": 32.07806512010728,
+                            "lng": 34.81361762010727
+                        }
+                    }
+                },
+                "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+                "id": "536d0704689edaeac72dcd3a5df8ef4c0d9ccf86",
+                "name": "סופר-פארם כופר היישוב",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "photos": [
+                    {
+                        "height": 3024,
+                        "html_attributions": [
+                            "<a href=\"https://maps.google.com/maps/contrib/116761068565218428792/photos\">Avihai Nizri<\/a>"
+                        ],
+                        "photo_reference": "CmRaAAAAJ1UOcdbdackY61AbqKPwkFSFwX7C3ENfcdf15y4IV5sbrk0UGuD_JP2XazA5EnFiN2yZbb9ebIlv43gUzZK5SZZH0VEbHzXm7Q3rcfu67wPaHrhKWt2NZ3Jkix7F1E1WEhAisbUd25Y5dultueLft_2AGhTBEhgNhRzLaEEPYyNq0cBIuc1gdQ",
+                        "width": 4032
+                    }
+                ],
+                "place_id": "ChIJoTVzmLVLHRURQVg7qxZ17nk",
+                "rating": 4,
+                "reference": "CmRbAAAAsJfweqHf-VX1YQt9gTeRrMEy7EjtKucxfRsIMMkDaKN41-F4U3xmfawcNO2AA4V3JOk2pk2XMJObAXcEutiyDyPbeABaQi3uK_MLo9R89A8-oDVY_vv1eRf6oqLOSpt3EhCdY6-JsK6wrxFcuh_9v7kVGhTGuEC1JDUXeTdGAgZ1d11yzvqPyA",
+                "scope": "GOOGLE",
+                "types": [
+                    "pharmacy",
+                    "store",
+                    "health",
+                    "point_of_interest",
+                    "establishment"
+                ],
+                "vicinity": "ביאליק 10, רמת גן",
+                "task_identifier": {
+                    "id": "5adf610f6016683c583043f4",
+                    "name": "acamol"
+                }
+            },
+            "endPoint": {
+                "geometry": {
+                    "location": {
+                        "lat": 32.0840641,
+                        "lng": 34.8073313
+                    },
+                    "viewport": {
+                        "northeast": {
+                            "lat": 32.08541392989272,
+                            "lng": 34.80868112989273
+                        },
+                        "southwest": {
+                            "lat": 32.08271427010728,
+                            "lng": 34.80598147010728
+                        }
+                    }
+                },
+                "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/gas_station-71.png",
+                "id": "68d8e5409d33390c48d1b3cfb7f7a113ccf2697e",
+                "name": "פז",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "photos": [
+                    {
+                        "height": 4176,
+                        "html_attributions": [
+                            "<a href=\"https://maps.google.com/maps/contrib/109424846836028108615/photos\">Леон Филиш<\/a>"
+                        ],
+                        "photo_reference": "CmRaAAAAuTGVyMHFmIPIb-SWxyKMaNUwJTw21nLCqLdk04PE1ItyAUkQ7Q99EsIjVZUd81mbyNGQwX2oeN2B90x-rjQlXqD8dx7iPDaOi-NLqPbB_TMsI9VLNscoA_zaSITUufReEhB7DnTy2nIrKq9EdWwLTNMxGhQZBeDNYvBUt284qnrM_oXmCpT-cw",
+                        "width": 2366
+                    }
+                ],
+                "place_id": "ChIJ47Jj48dLHRURQLNCgkpBSKw",
+                "rating": 3.6,
+                "reference": "CmRbAAAAffdDGdFtm1voqsklNwTGeK2rdVD-tkI9hVI-BBiFON6m_iv4AlCUzP_EEeW43dCli__q3Lc9WSFNw2uGIYno1gP8POxrx953Jy_pLsWxHj2wcil98gK24RCYmxF7ecnTEhCvjGi3uNkm2SUeH49w5iwZGhRkgn1IQRnsbf8TceT5sblXERheVw",
+                "scope": "GOOGLE",
+                "types": [
+                    "gas_station",
+                    "point_of_interest",
+                    "establishment"
+                ],
+                "vicinity": "דרך זאב ז'בוטינסקי 37, רמת גן",
+                "task_identifier": {
+                    "id": "5adf62aecd48234780363a87",
+                    "name": "fuel"
+                }
+            },
+            "duration": 403,
+            "distance": 1761,
+            "polylines": [
+                {
+                    "start": {
+                        "lat": 32.07942,
+                        "lng": 34.81488
+                    },
+                    "end": {
+                        "lat": 32.07918,
+                        "lng": 34.81488
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07918,
+                        "lng": 34.81488
+                    },
+                    "end": {
+                        "lat": 32.07925,
+                        "lng": 34.81427
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07925,
+                        "lng": 34.81427
+                    },
+                    "end": {
+                        "lat": 32.07941,
+                        "lng": 34.81364
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07941,
+                        "lng": 34.81364
+                    },
+                    "end": {
+                        "lat": 32.07975,
+                        "lng": 34.81317
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07975,
+                        "lng": 34.81317
+                    },
+                    "end": {
+                        "lat": 32.07991,
+                        "lng": 34.81299
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.07991,
+                        "lng": 34.81299
+                    },
+                    "end": {
+                        "lat": 32.08045,
+                        "lng": 34.81246
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08045,
+                        "lng": 34.81246
+                    },
+                    "end": {
+                        "lat": 32.0809,
+                        "lng": 34.81195
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.0809,
+                        "lng": 34.81195
+                    },
+                    "end": {
+                        "lat": 32.08098,
+                        "lng": 34.81184
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08098,
+                        "lng": 34.81184
+                    },
+                    "end": {
+                        "lat": 32.081,
+                        "lng": 34.81172
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.081,
+                        "lng": 34.81172
+                    },
+                    "end": {
+                        "lat": 32.08102,
+                        "lng": 34.81157
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08102,
+                        "lng": 34.81157
+                    },
+                    "end": {
+                        "lat": 32.08095,
+                        "lng": 34.81081
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08095,
+                        "lng": 34.81081
+                    },
+                    "end": {
+                        "lat": 32.08095,
+                        "lng": 34.81051
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08095,
+                        "lng": 34.81051
+                    },
+                    "end": {
+                        "lat": 32.08099,
+                        "lng": 34.8104
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08099,
+                        "lng": 34.8104
+                    },
+                    "end": {
+                        "lat": 32.08106,
+                        "lng": 34.81023
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08106,
+                        "lng": 34.81023
+                    },
+                    "end": {
+                        "lat": 32.08118,
+                        "lng": 34.81004
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08118,
+                        "lng": 34.81004
+                    },
+                    "end": {
+                        "lat": 32.08161,
+                        "lng": 34.80966
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08161,
+                        "lng": 34.80966
+                    },
+                    "end": {
+                        "lat": 32.08163,
+                        "lng": 34.80967
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08163,
+                        "lng": 34.80967
+                    },
+                    "end": {
+                        "lat": 32.08165,
+                        "lng": 34.80966
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08165,
+                        "lng": 34.80966
+                    },
+                    "end": {
+                        "lat": 32.08166,
+                        "lng": 34.80962
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08166,
+                        "lng": 34.80962
+                    },
+                    "end": {
+                        "lat": 32.08164,
+                        "lng": 34.80958
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08164,
+                        "lng": 34.80958
+                    },
+                    "end": {
+                        "lat": 32.08163,
+                        "lng": 34.80958
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08163,
+                        "lng": 34.80958
+                    },
+                    "end": {
+                        "lat": 32.0816,
+                        "lng": 34.80948
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.0816,
+                        "lng": 34.80948
+                    },
+                    "end": {
+                        "lat": 32.08154,
+                        "lng": 34.80932
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08154,
+                        "lng": 34.80932
+                    },
+                    "end": {
+                        "lat": 32.08147,
+                        "lng": 34.80923
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08147,
+                        "lng": 34.80923
+                    },
+                    "end": {
+                        "lat": 32.08128,
+                        "lng": 34.80909
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08128,
+                        "lng": 34.80909
+                    },
+                    "end": {
+                        "lat": 32.0812,
+                        "lng": 34.809
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.0812,
+                        "lng": 34.809
+                    },
+                    "end": {
+                        "lat": 32.081,
+                        "lng": 34.80874
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.081,
+                        "lng": 34.80874
+                    },
+                    "end": {
+                        "lat": 32.08095,
+                        "lng": 34.80862
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08095,
+                        "lng": 34.80862
+                    },
+                    "end": {
+                        "lat": 32.08094,
+                        "lng": 34.80843
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08094,
+                        "lng": 34.80843
+                    },
+                    "end": {
+                        "lat": 32.08097,
+                        "lng": 34.80831
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08097,
+                        "lng": 34.80831
+                    },
+                    "end": {
+                        "lat": 32.081,
+                        "lng": 34.80825
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.081,
+                        "lng": 34.80825
+                    },
+                    "end": {
+                        "lat": 32.08116,
+                        "lng": 34.80807
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08116,
+                        "lng": 34.80807
+                    },
+                    "end": {
+                        "lat": 32.08125,
+                        "lng": 34.80799
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08125,
+                        "lng": 34.80799
+                    },
+                    "end": {
+                        "lat": 32.08141,
+                        "lng": 34.8076
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08141,
+                        "lng": 34.8076
+                    },
+                    "end": {
+                        "lat": 32.08153,
+                        "lng": 34.80717
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08153,
+                        "lng": 34.80717
+                    },
+                    "end": {
+                        "lat": 32.08177,
+                        "lng": 34.80605
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08177,
+                        "lng": 34.80605
+                    },
+                    "end": {
+                        "lat": 32.08199,
+                        "lng": 34.80502
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08199,
+                        "lng": 34.80502
+                    },
+                    "end": {
+                        "lat": 32.0821,
+                        "lng": 34.80472
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.0821,
+                        "lng": 34.80472
+                    },
+                    "end": {
+                        "lat": 32.08248,
+                        "lng": 34.8038
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08248,
+                        "lng": 34.8038
+                    },
+                    "end": {
+                        "lat": 32.08257,
+                        "lng": 34.80362
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08257,
+                        "lng": 34.80362
+                    },
+                    "end": {
+                        "lat": 32.08268,
+                        "lng": 34.80361
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08268,
+                        "lng": 34.80361
+                    },
+                    "end": {
+                        "lat": 32.08277,
+                        "lng": 34.80363
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08277,
+                        "lng": 34.80363
+                    },
+                    "end": {
+                        "lat": 32.08284,
+                        "lng": 34.80369
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08284,
+                        "lng": 34.80369
+                    },
+                    "end": {
+                        "lat": 32.08331,
+                        "lng": 34.80565
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08331,
+                        "lng": 34.80565
+                    },
+                    "end": {
+                        "lat": 32.08386,
+                        "lng": 34.80778
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08386,
+                        "lng": 34.80778
+                    },
+                    "end": {
+                        "lat": 32.08398,
+                        "lng": 34.80774
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08398,
+                        "lng": 34.80774
+                    },
+                    "end": {
+                        "lat": 32.08395,
+                        "lng": 34.80763
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08395,
+                        "lng": 34.80763
+                    },
+                    "end": {
+                        "lat": 32.08398,
+                        "lng": 34.8076
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08398,
+                        "lng": 34.8076
+                    },
+                    "end": {
+                        "lat": 32.084,
+                        "lng": 34.80755
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.084,
+                        "lng": 34.80755
+                    },
+                    "end": {
+                        "lat": 32.08399,
+                        "lng": 34.80738
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08399,
+                        "lng": 34.80738
+                    },
+                    "end": {
+                        "lat": 32.08399,
+                        "lng": 34.80737
+                    }
+                }
+            ]
+        },
+        {
+            "startPoint": {
+                "geometry": {
+                    "location": {
+                        "lat": 32.0840641,
+                        "lng": 34.8073313
+                    },
+                    "viewport": {
+                        "northeast": {
+                            "lat": 32.08541392989272,
+                            "lng": 34.80868112989273
+                        },
+                        "southwest": {
+                            "lat": 32.08271427010728,
+                            "lng": 34.80598147010728
+                        }
+                    }
+                },
+                "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/gas_station-71.png",
+                "id": "68d8e5409d33390c48d1b3cfb7f7a113ccf2697e",
+                "name": "פז",
+                "opening_hours": {
+                    "open_now": true,
+                    "weekday_text": []
+                },
+                "photos": [
+                    {
+                        "height": 4176,
+                        "html_attributions": [
+                            "<a href=\"https://maps.google.com/maps/contrib/109424846836028108615/photos\">Леон Филиш<\/a>"
+                        ],
+                        "photo_reference": "CmRaAAAAuTGVyMHFmIPIb-SWxyKMaNUwJTw21nLCqLdk04PE1ItyAUkQ7Q99EsIjVZUd81mbyNGQwX2oeN2B90x-rjQlXqD8dx7iPDaOi-NLqPbB_TMsI9VLNscoA_zaSITUufReEhB7DnTy2nIrKq9EdWwLTNMxGhQZBeDNYvBUt284qnrM_oXmCpT-cw",
+                        "width": 2366
+                    }
+                ],
+                "place_id": "ChIJ47Jj48dLHRURQLNCgkpBSKw",
+                "rating": 3.6,
+                "reference": "CmRbAAAAffdDGdFtm1voqsklNwTGeK2rdVD-tkI9hVI-BBiFON6m_iv4AlCUzP_EEeW43dCli__q3Lc9WSFNw2uGIYno1gP8POxrx953Jy_pLsWxHj2wcil98gK24RCYmxF7ecnTEhCvjGi3uNkm2SUeH49w5iwZGhRkgn1IQRnsbf8TceT5sblXERheVw",
+                "scope": "GOOGLE",
+                "types": [
+                    "gas_station",
+                    "point_of_interest",
+                    "establishment"
+                ],
+                "vicinity": "דרך זאב ז'בוטינסקי 37, רמת גן",
+                "task_identifier": {
+                    "id": "5adf62aecd48234780363a87",
+                    "name": "fuel"
+                }
+            },
+            "endPoint": {
+                "address": "Anne Frank St 12, Ramat Gan, Израиль",
+                "place_id": "ChIJnfFzOcRLHRURM9hDEucFhfs",
+                "geometry": {
+                    "location": {
+                        "lat": 32.0900601,
+                        "lng": 34.803569100000004
+                    }
+                },
+                "task_identifier": {
+                    "name": "End"
+                }
+            },
+            "duration": 409,
+            "distance": 1246,
+            "polylines": [
+                {
+                    "start": {
+                        "lat": 32.08399,
+                        "lng": 34.80737
+                    },
+                    "end": {
+                        "lat": 32.08396,
+                        "lng": 34.80731
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08396,
+                        "lng": 34.80731
+                    },
+                    "end": {
+                        "lat": 32.08392,
+                        "lng": 34.80729
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08392,
+                        "lng": 34.80729
+                    },
+                    "end": {
+                        "lat": 32.08386,
+                        "lng": 34.80728
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08386,
+                        "lng": 34.80728
+                    },
+                    "end": {
+                        "lat": 32.08382,
+                        "lng": 34.80711
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08382,
+                        "lng": 34.80711
+                    },
+                    "end": {
+                        "lat": 32.08369,
+                        "lng": 34.80667
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08369,
+                        "lng": 34.80667
+                    },
+                    "end": {
+                        "lat": 32.08346,
+                        "lng": 34.80577
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08346,
+                        "lng": 34.80577
+                    },
+                    "end": {
+                        "lat": 32.08341,
+                        "lng": 34.80562
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08341,
+                        "lng": 34.80562
+                    },
+                    "end": {
+                        "lat": 32.08365,
+                        "lng": 34.80553
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08365,
+                        "lng": 34.80553
+                    },
+                    "end": {
+                        "lat": 32.08397,
+                        "lng": 34.80538
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08397,
+                        "lng": 34.80538
+                    },
+                    "end": {
+                        "lat": 32.08397,
+                        "lng": 34.80539
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08397,
+                        "lng": 34.80539
+                    },
+                    "end": {
+                        "lat": 32.08399,
+                        "lng": 34.80541
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08399,
+                        "lng": 34.80541
+                    },
+                    "end": {
+                        "lat": 32.084,
+                        "lng": 34.80541
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.084,
+                        "lng": 34.80541
+                    },
+                    "end": {
+                        "lat": 32.08403,
+                        "lng": 34.80542
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08403,
+                        "lng": 34.80542
+                    },
+                    "end": {
+                        "lat": 32.08409,
+                        "lng": 34.8054
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08409,
+                        "lng": 34.8054
+                    },
+                    "end": {
+                        "lat": 32.08413,
+                        "lng": 34.80534
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08413,
+                        "lng": 34.80534
+                    },
+                    "end": {
+                        "lat": 32.08464,
+                        "lng": 34.80517
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08464,
+                        "lng": 34.80517
+                    },
+                    "end": {
+                        "lat": 32.08512,
+                        "lng": 34.80498
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08512,
+                        "lng": 34.80498
+                    },
+                    "end": {
+                        "lat": 32.08533,
+                        "lng": 34.80488
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08533,
+                        "lng": 34.80488
+                    },
+                    "end": {
+                        "lat": 32.08544,
+                        "lng": 34.80477
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08544,
+                        "lng": 34.80477
+                    },
+                    "end": {
+                        "lat": 32.08562,
+                        "lng": 34.80454
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08562,
+                        "lng": 34.80454
+                    },
+                    "end": {
+                        "lat": 32.08574,
+                        "lng": 34.80465
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08574,
+                        "lng": 34.80465
+                    },
+                    "end": {
+                        "lat": 32.08603,
+                        "lng": 34.80489
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08603,
+                        "lng": 34.80489
+                    },
+                    "end": {
+                        "lat": 32.08627,
+                        "lng": 34.8051
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08627,
+                        "lng": 34.8051
+                    },
+                    "end": {
+                        "lat": 32.0867,
+                        "lng": 34.80549
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.0867,
+                        "lng": 34.80549
+                    },
+                    "end": {
+                        "lat": 32.08725,
+                        "lng": 34.80598
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08725,
+                        "lng": 34.80598
+                    },
+                    "end": {
+                        "lat": 32.08745,
+                        "lng": 34.80617
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08745,
+                        "lng": 34.80617
+                    },
+                    "end": {
+                        "lat": 32.08753,
+                        "lng": 34.80624
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08753,
+                        "lng": 34.80624
+                    },
+                    "end": {
+                        "lat": 32.08766,
+                        "lng": 34.8061
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08766,
+                        "lng": 34.8061
+                    },
+                    "end": {
+                        "lat": 32.0878,
+                        "lng": 34.80593
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.0878,
+                        "lng": 34.80593
+                    },
+                    "end": {
+                        "lat": 32.08809,
+                        "lng": 34.80543
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08809,
+                        "lng": 34.80543
+                    },
+                    "end": {
+                        "lat": 32.08834,
+                        "lng": 34.8049
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08834,
+                        "lng": 34.8049
+                    },
+                    "end": {
+                        "lat": 32.08841,
+                        "lng": 34.80471
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08841,
+                        "lng": 34.80471
+                    },
+                    "end": {
+                        "lat": 32.08845,
+                        "lng": 34.80449
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08845,
+                        "lng": 34.80449
+                    },
+                    "end": {
+                        "lat": 32.0885,
+                        "lng": 34.80409
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.0885,
+                        "lng": 34.80409
+                    },
+                    "end": {
+                        "lat": 32.08893,
+                        "lng": 34.80408
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08893,
+                        "lng": 34.80408
+                    },
+                    "end": {
+                        "lat": 32.08894,
+                        "lng": 34.8041
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08894,
+                        "lng": 34.8041
+                    },
+                    "end": {
+                        "lat": 32.08895,
+                        "lng": 34.80414
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08895,
+                        "lng": 34.80414
+                    },
+                    "end": {
+                        "lat": 32.08901,
+                        "lng": 34.80418
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08901,
+                        "lng": 34.80418
+                    },
+                    "end": {
+                        "lat": 32.08908,
+                        "lng": 34.80417
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08908,
+                        "lng": 34.80417
+                    },
+                    "end": {
+                        "lat": 32.08909,
+                        "lng": 34.80415
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08909,
+                        "lng": 34.80415
+                    },
+                    "end": {
+                        "lat": 32.08928,
+                        "lng": 34.80426
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08928,
+                        "lng": 34.80426
+                    },
+                    "end": {
+                        "lat": 32.08976,
+                        "lng": 34.80448
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08976,
+                        "lng": 34.80448
+                    },
+                    "end": {
+                        "lat": 32.08986,
+                        "lng": 34.80452
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.08986,
+                        "lng": 34.80452
+                    },
+                    "end": {
+                        "lat": 32.09015,
+                        "lng": 34.80452
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.09015,
+                        "lng": 34.80452
+                    },
+                    "end": {
+                        "lat": 32.09016,
+                        "lng": 34.80371
+                    }
+                },
+                {
+                    "start": {
+                        "lat": 32.09016,
+                        "lng": 34.80371
+                    },
+                    "end": {
+                        "lat": 32.09006,
+                        "lng": 34.80371
+                    }
+                }
+            ]
+        }
+    ],
+    "num_of_segments": 3,
+    "sum_of_durations": 1216,
+    "sum_of_distance": 4593,
+    "tasks": [
+        {
+            "name": "Start",
+            "duration": 4.949574464444629,
+            "place": {
+                "location": {
+                    "lat": 32.0799162,
+                    "lng": 34.824053700000036
+                },
+                "id": "ChIJh_a-fjZKHRURbfWQ2nG9XpA",
+                "address": "Ha-Gilgal St 59, Ramat Gan, Израиль"
+            }
+        },
+        {
+            "name": "acamol",
+            "duration": 7.1882463565451316,
+            "place": {
+                "location": {
+                    "lat": 32.07941450000001,
+                    "lng": 34.815057
+                },
+                "name": "סופר-פארם כופר היישוב",
+                "id": "ChIJoTVzmLVLHRURQVg7qxZ17nk",
+                "address": "ביאליק 10, רמת גן"
+            }
+        },
+        {
+            "name": "fuel",
+            "duration": 9.775442818159583,
+            "place": {
+                "location": {
+                    "lat": 32.0840641,
+                    "lng": 34.8073313
+                },
+                "name": "פז",
+                "id": "ChIJ47Jj48dLHRURQLNCgkpBSKw",
+                "address": "דרך זאב ז'בוטינסקי 37, רמת גן"
+            }
+        },
+        {
+            "name": "End",
+            "duration": 2.7198481772900474,
+            "place": {
+                "location": {
+                    "lat": 32.0900601,
+                    "lng": 34.803569100000004
+                },
+                "id": "ChIJnfFzOcRLHRURM9hDEucFhfs",
+                "address": "Anne Frank St 12, Ramat Gan, Израиль"
+            }
+        }
+    ]
+},"all_tasks":[{"_id":"5adca4ddc8965c4734dd3d86","user_token_id":"5ad63c8f869a7648bc6a2d6b","name":"leumi","type":"bank","task_place":{"_id":"5adca4ddc8965c4734dd3d87","place_type":"bank","place_key_word":"leumi"},"__v":0},{"_id":"5adca4eec8965c4734dd3d89","user_token_id":"5ad63c8f869a7648bc6a2d6b","name":"acamol","type":"pharmacy","task_place":{"_id":"5adca4eec8965c4734dd3d8a","place_type":"pharmacy","place_key_word":"acamol"},"__v":0},{"_id":"5adcb2d48c71eb0ac054640c","user_token_id":"5ad63c8f869a7648bc6a2d6b","name":"fuil","type":"gas_station","task_place":{"_id":"5adcb2d48c71eb0ac054640d","place_type":"gas_station","place_key_word":"fuil"},"__v":0}],"__v":0}};
   constructor(
     private http: Http,
     private userServiseModule: UserServiseModule

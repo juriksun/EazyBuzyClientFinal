@@ -10,7 +10,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AgmCoreModule } from '@agm/core';
-
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -81,6 +81,7 @@ import { RouteDetailsPage } from '../pages/route-details/route-details';
     RouteDetailsPage
   ],
   providers: [
+    Geolocation,
     StatusBar,
     SplashScreen,
     {

@@ -20,20 +20,30 @@
   </ion-navbar>
   <agm-map 
       [style.height]="mapHeight + 'px'"
-      [latitude]="tasks[0].place.location.lat"
-      [longitude]="tasks[0].place.location.lng" 
-      [zoom]="14"
+      [latitude]="mapCenter.lat"
+      [longitude]="mapCenter.lng"
+      [zoom]="mapZoom"
+      (zoomChange)="onZoomChange($event)"
     >
+    <agm-marker *ngIf="currPositionAvalible"
+        [iconUrl]="'assets/markers/persone.png'"
+        [latitude]="currPosition.lat"
+        [longitude]="currPosition.lng"
+        [opacity]="0.8"
+    ></agm-marker>
     <ng-container *ngIf="tasks">
       <agm-marker *ngFor="let task of tasks; let i = index"
+        [iconUrl]="(i == 0)?'assets/markers/start.png':((i == tasks.length - 1)?'assets/markers/end.png':'assets/markers/place' + i + '.png')"
         [latitude]="task.place.location.lat"
         [longitude]="task.place.location.lng"
+        [opacity]="0.8"
       ></agm-marker>
 
       <ng-container *ngFor="let segment of segments; let i = index">
         <agm-polyline *ngFor="let polyline of segment.polylines; let k = index"
-          [strokeColor]="'red'"
+          [strokeColor]="'#9900cc'"
           [strokeWeight]=7
+          [strokeOpacity]="0.8"
         >
             <agm-polyline-point 
               [latitude]="polyline.start.lat" 
@@ -49,8 +59,9 @@
     </ng-container>
       </agm-map>
       <ion-item no-lines>
-          <h2>Bla</h2>
-          <p>bla</p>
+          <h2><span>{{duration}} min</span> ({{distance}} km)</h2>
+          <p><span [style.color]="'#67d870'">from: </span>{{tasks[0].place.address}}</p>
+          <p><span [style.color]="'red'">to: </span> {{tasks[tasks.length - 1].place.address}}</p>
           <ion-note item-end>
             <button (click)="onCloseMap()"
               ion-button 
@@ -74,18 +85,23 @@
 
   <ion-list no-lines [style.margin-top]="scrollContentMarginTop + 'px'">
     <ng-container *ngFor="let task of tasks; let i = index">
-      <ion-item
+      <button ion-item
+        (click)="setMapCenter(task.place.location.lat,task.place.location.lng)"
       >
         <ion-avatar item-start>
           <ion-icon item-start name="logo-usd" class="taskIcon"></ion-icon>
         </ion-avatar>
         <h2>{{task.name}}</h2>
         <p>{{task.place.address}}.</p>
-      </ion-item>
+        <h1 item-end>{{i}}</h1>
+      </button>
       <hr>
       <ng-container *ngIf="segments[i]">
         <ion-item>
-          <h2>{{segments[i].duration}}</h2>
+          <p> Go ahead
+            <span [style.font-weight]="'bold'">{{(segments[i].duration/60).toFixed(0)}} min</span>
+            ({{(segments[i].distance/1000).toFixed(1)}} km)
+          </p>
         </ion-item>
         <hr>
       </ng-container>

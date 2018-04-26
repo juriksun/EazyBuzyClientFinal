@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { PlaceSearchAutocomplitePage } from '../place-search-autocomplite/place-search-autocomplite';
@@ -18,7 +18,7 @@ import { RouteDetailsPage } from '../route-details/route-details';
 
 export class CreateRoutePage {
   // @ViewChild("startPlace") startPlace;
-
+  modalWait;
   createRouteForm: FormGroup;
 
   location = {
@@ -32,11 +32,12 @@ export class CreateRoutePage {
     public viewCtrl: ViewController,
     private fb: FormBuilder,
     private modalCtrl: ModalController,
-    private routeServiseModule: RouteServiseModule
+    private routeServiseModule: RouteServiseModule,
+    public loadingCtrl: LoadingController
   ) {}
 
   ionViewDidLoad() {
-    // this.createAucomplite();
+    
   }
   ngOnInit() {
     
@@ -51,6 +52,7 @@ export class CreateRoutePage {
   }
 
   onSubmit({ value }){
+    this.presentLoadingDefault();
     this.createNewRoute(value);
   }
 
@@ -87,6 +89,7 @@ export class CreateRoutePage {
     .subscribe(
       response => {
         if (response) {
+          this.modalWait.dismiss();
           // console.log(JSON.stringify(response));
           // if(response.status === true){
             this.routeServiseModule.route = response.data.recommended_route;
@@ -104,5 +107,16 @@ export class CreateRoutePage {
 
   discard(){
     this.navCtrl.pop();
+  }
+
+  presentLoadingDefault() {
+
+    this.modalWait = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+  
+    this.modalWait.present();
+
+    
   }
 }

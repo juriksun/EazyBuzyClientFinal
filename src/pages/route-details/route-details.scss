@@ -1,9 +1,11 @@
 page-route-details {
     .scroll-content{
-        overflow-y: auto!important;
         margin-top: 0!important;
     }
-
+    h2 span{
+        // color: #67d870;
+        font-weight: bold;
+    }
     agm-map {
         height: 1000px;
     }
