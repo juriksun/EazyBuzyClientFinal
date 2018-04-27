@@ -37,7 +37,8 @@ export class AddNewTaskPage {
       time_end: [''],
       priorety: [''],
       place: ['', [Validators.minLength(4)]],
-      shered_to: ['', [Validators.minLength(4)]]
+      shered_to: ['', [Validators.minLength(4)]],
+      company: ['']
     });
   }
   onSubmit({ value }){

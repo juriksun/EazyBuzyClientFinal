@@ -30,6 +30,7 @@ import { PlaceSearchAutocomplitePage } from '../pages/place-search-autocomplite/
 import { RouteServiseModule } from '../modules/route_mdl.component';
 import { RouteListPage } from '../pages/route-list/route-list';
 import { RouteDetailsPage } from '../pages/route-details/route-details';
+import { SearchFilterPage } from '../pages/serch-filter/serch-filter';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { RouteDetailsPage } from '../pages/route-details/route-details';
     AutocompletePage,
     PlaceSearchAutocomplitePage,
     RouteListPage,
-    RouteDetailsPage
+    RouteDetailsPage,
+    SearchFilterPage
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -78,7 +80,8 @@ import { RouteDetailsPage } from '../pages/route-details/route-details';
     MapTastPage,
     PlaceSearchAutocomplitePage,
     RouteListPage,
-    RouteDetailsPage
+    RouteDetailsPage,
+    SearchFilterPage
   ],
   providers: [
     Geolocation,

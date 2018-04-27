@@ -14,6 +14,7 @@ import { CreateRoutePage } from '../pages/create-route/create-route';
 import { AddNewTaskPage } from '../pages/add-new-task/add-new-task';
 import { RouteListPage } from '../pages/route-list/route-list';
 import { RouteDetailsPage } from '../pages/route-details/route-details';
+import { SearchFilterPage } from '../pages/serch-filter/serch-filter';
 @Component({
   templateUrl: 'app.html'
 })
@@ -133,6 +134,7 @@ export class MyApp {
   }
 
   onListRoute(){
-    this.nav.setRoot(RouteDetailsPage);
+    // this.nav.setRoot(RouteDetailsPage);
+    this.nav.setRoot(SearchFilterPage);
   }
 }
