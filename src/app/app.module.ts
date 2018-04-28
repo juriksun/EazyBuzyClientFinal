@@ -31,6 +31,7 @@ import { RouteServiseModule } from '../modules/route_mdl.component';
 import { RouteListPage } from '../pages/route-list/route-list';
 import { RouteDetailsPage } from '../pages/route-details/route-details';
 import { SearchFilterPage } from '../pages/serch-filter/serch-filter';
+import { TaskPage } from '../pages/task/task';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { SearchFilterPage } from '../pages/serch-filter/serch-filter';
     PlaceSearchAutocomplitePage,
     RouteListPage,
     RouteDetailsPage,
-    SearchFilterPage
+    SearchFilterPage,
+    TaskPage
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -81,7 +83,8 @@ import { SearchFilterPage } from '../pages/serch-filter/serch-filter';
     PlaceSearchAutocomplitePage,
     RouteListPage,
     RouteDetailsPage,
-    SearchFilterPage
+    SearchFilterPage,
+    TaskPage
   ],
   providers: [
     Geolocation,
