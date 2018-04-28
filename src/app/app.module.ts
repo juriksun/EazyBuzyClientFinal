@@ -15,10 +15,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AlexPage } from '../pages/alex/alex';
-import { AddNewTaskPage } from '../pages/add-new-task/add-new-task';
 import { FormsModule } from '@angular/forms';
 import { TasksServiseModule } from '../modules/tasks_mdl.component';
-import { EditTaskPage } from '../pages/edit-task/edit-task';
 import { CreateRoutePage } from '../pages/create-route/create-route';
 import { MoreOptionsPage } from '../pages/more-options/more-options';
 import { LoginPage } from '../pages/login/login';
@@ -40,8 +38,6 @@ import { TaskPage } from '../pages/task/task';
     HomePage,
     ListPage,
     AlexPage,
-    AddNewTaskPage,
-    EditTaskPage,
     CreateRoutePage,
     MoreOptionsPage,
     LoginPage,
@@ -72,8 +68,6 @@ import { TaskPage } from '../pages/task/task';
     HomePage,
     ListPage,
     AlexPage,
-    AddNewTaskPage,
-    EditTaskPage,
     CreateRoutePage,
     MoreOptionsPage,
     LoginPage,
