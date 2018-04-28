@@ -1,56 +1,92 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{ pageName }}</ion-title>
-    <ion-buttons end>
-        <form *ngIf="newTask || !newTask && taskForm.enabled"
-          item-start ion-button (ngSubmit)="onSubmit(taskForm)" [formGroup]="taskForm">
-          <button
-            [formGroup]="taskForm" 
-            ion-button color="dark" 
-            clear type="submit"
-            [disabled]="taskForm.invalid || !formChanged"
-          >
-            Save
-          </button>
-        </form>
+  <ion-navbar [hideBackButton]="newTask || !newTask &&taskForm.enabled">
+    <ion-toolbar>
+      <ion-buttons item-start>
+        <button ion-button
+          (click)="onDiscard()"
+          *ngIf="taskForm.enabled && !newTask || newTask"
+          icon-only
+        >
+          <ion-icon name="md-close"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-buttons end>
+        <button *ngIf="newTask || !newTask && taskForm.enabled"
+          ion-button
+          (click)="onSave(taskForm)"
+          [disabled]="taskForm.invalid || !formChanged"
+        >
+          Save
+        </button>
         <button *ngIf="!newTask && taskForm.disabled"
-          item-end ion-button icon-only color="royal" 
+          ion-button icon-only
+          item-end
           (click)="onMoreOption($event)"
         >
           <ion-icon name="md-more"></ion-icon>
         </button>
-        <button 
-          item-end ion-button icon-only color="royal" 
-          (click)="onDiscard()"
-          *ngIf="taskForm.enabled && !newTask || newTask"
-        >
-          Discard
-        </button>
       </ion-buttons>
+    </ion-toolbar>
   </ion-navbar>
+  <form  [formGroup]="taskForm">
+    <ion-input [disabled]="taskForm.disabled" class="toolbar-background-md" type="text" placeholder="Task name"  formControlName="name"></ion-input>
+  </form>
 </ion-header>
 
 <ion-content padding>
     <ion-list no-lines>
-      <form (ngSubmit)="onSubmit(taskForm)" [formGroup]="taskForm">
+      <form [formGroup]="taskForm">
       <ion-item>
         <ion-icon item-start name="md-clipboard"></ion-icon>
-        <ion-input  type="text" placeholder="Task name" formControlName="name"></ion-input>
+        <ion-input
+          (ionFocus)="showSearchFilterModal($event)"
+          type="text" placeholder="Task type" formControlName="type"></ion-input>
       </ion-item>
       <hr>
       <ion-item>
         <ion-icon item-start name="md-briefcase"></ion-icon>
         <ion-input 
           (ionFocus)="showSearchFilterModal($event)"
-          type="text" placeholder="Task type" formControlName="type"></ion-input>
+          type="text" placeholder="Task brand/name/company" formControlName="company"></ion-input>
       </ion-item>
       <hr>
       <ion-item>
-        <ion-icon item-start name="md-time"></ion-icon>
+        <ion-icon item-start name="md-pin"></ion-icon>
+          <ion-input 
+            (ionFocus)="showAddressModal('place')" 
+            formControlName="place"
+            type="text"
+            placeholder="Choose place"
+          ></ion-input>
+        <ion-icon name="md-map" item-end></ion-icon>
+      </ion-item>
+      <hr>
+      <!-- <ion-item>
+        <ion-icon item-start name="md-time" color="light"></ion-icon>
         <ion-input type="time" formControlName="time_start"></ion-input>
         <ion-input type="time" formControlName="time_end"></ion-input>
       </ion-item>
-      <hr>
+      <hr> -->
+      <ion-item>
+          <ion-icon item-start name="md-time"></ion-icon>
+      </ion-item>
+      <ion-item>
+          <ion-label item-start>Start</ion-label>
+          <ion-datetime item-start placeholder="add time" displayFormat="HH:mm" formControlName="time_start"></ion-datetime>
+      </ion-item>
+      <ion-item>
+            <ion-label item-start></ion-label>
+            <ion-datetime item-start placeholder="add date" displayFormat="DD-MM-YYYY" formControlName="time_start"></ion-datetime>
+        </ion-item>
+      <ion-item>
+          <ion-label item-start>Duration</ion-label>
+          <ion-datetime item-start 
+          hourValues="0,1,2,3,4,5,6,7,8,9,10"
+          displayFormat="HH:mm"
+          placeholder="add duration"
+          formControlName="time_end"></ion-datetime>
+        </ion-item>
+        <hr>
       <ion-item>
         <ion-icon item-start name="md-stats"></ion-icon>
          <ion-label fixed>Priority</ion-label>
@@ -68,18 +104,6 @@
               </ion-segment-button>
             </ion-segment>
       </ion-item>
-      <hr>
-      <ion-item>
-        <ion-icon item-start name="md-pin"></ion-icon>
-        <ion-input 
-          (ionFocus)="showAddressModal('place')" 
-          formControlName="place"
-          type="text"
-          placeholder="Choose place"
-        ></ion-input>
-        <ion-icon name="md-map" item-end></ion-icon>
-      </ion-item>
-      <hr>
       <hr>
       <ion-item>
           <ion-icon item-start name="person-add"></ion-icon>

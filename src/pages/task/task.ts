@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, PopoverController, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TasksServiseModule } from '../../modules/tasks_mdl.component';
@@ -12,6 +12,7 @@ import { MoreOptionsPage } from '../more-options/more-options';
   selector: 'page-task',
   templateUrl: 'task.html',
 })
+
 export class TaskPage {
 
   public taskForm: FormGroup;
@@ -20,7 +21,7 @@ export class TaskPage {
 
   newTask: boolean;
   formChanged: boolean;
-  pageName: string = 'New Task';
+  taskName: string;
 
   private value: any;
 
@@ -43,26 +44,29 @@ export class TaskPage {
     if(this.navParams.get('task') === undefined){
       this.newTask = true;
     } else {
-      this.pageName = this.task.name;
+      this.taskName = this.task.name;
       this.taskForm.disable();
     }
 
     this.taskForm.valueChanges.subscribe(newValues => {
+      console.log('form changed');
       this.formChanged = true;
     });
   }
+
 
   private setEditFormDefaulParams(){
     this.taskForm = this.fb.group({
       name: [this.task.name || '', [Validators.required, Validators.minLength(4)]],
       type: [this.task.type || '', [Validators.required, Validators.minLength(4)]],
+      company: [(this.task.task_place)?(this.task.task_place.palce_key_word || ''):''],
       time_start: [(this.task.time)?(this.task.time.start_time || ''):''],
       time_end: [(this.task.time)?(this.task.time.end_time || ''):''],
-      priorety: [''],
-      place: ['', [Validators.minLength(4)]],
-      shered_to: ['', [Validators.minLength(4)]],
-      company: ['']
+      priorety: [this.task.priority || ''],
+      place: [(this.task.location)?(this.task.location.address || ''):''],
+      shered_to: [(this.task.share)?(this.task.share.user_name || ''):'']
     });
+    this.location = this.task.location;
     this.formChanged = false;
   }
 
@@ -90,7 +94,6 @@ export class TaskPage {
         console.log(error);
       }
     );
-    
     this.navCtrl.pop();
   }
 
@@ -114,8 +117,6 @@ export class TaskPage {
         )
       }
     });
-
-
     setTimeout(() => {
       modal.present();
     }, 150);
@@ -186,8 +187,19 @@ export class TaskPage {
   onDiscard(){
     if(this.newTask && !this.formChanged){
       this.navCtrl.pop();
+    } else if(this.newTask && this.formChanged){
+      this.showPrompt(
+        {title:'Discard', message:'Discard changes?'},
+        this.setEditFormDefaulParams.bind(this)
+      );
+    } else if(this.formChanged){
+      this.showPrompt(
+        {title:'Discard', message:'Discard changes?'},
+        this.editFormReset.bind(this)
+      );
+    } else {
+      this.editFormReset();
     }
-    this.editFormReset();
   }
 
 
@@ -217,6 +229,7 @@ export class TaskPage {
 
 
   private updateTask(){
+    
     this.tasksServiseModule.updateTask(
       this.task._id,
       this.value
@@ -234,19 +247,29 @@ export class TaskPage {
     this.navCtrl.pop();
   }
 
+  onSave({ value }){
+    this.value = value;
+    this.newTask? 
+      this.addNewTask() : 
+      this.showPrompt(
+        {title:'Update', message:'Accept changes?'},
+        this.updateTask.bind(this)
+      );
+  }
+
   showPrompt(promt, acceptMethod) {
     let prompt = this.alertCtrl.create({
       title: promt.title,
       message: promt.message,
       buttons: [
         {
-          text: 'accept',
+          text: 'yes',
           handler: () => {
             acceptMethod();
           }
         },
         {
-          text: 'dicline',
+          text: 'no',
           handler: () => {}
         }
       ]

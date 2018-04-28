@@ -27,7 +27,7 @@ import {ViewController, Searchbar, NavParams} from 'ionic-angular';
             (click)="chooseItem('')"
         >
             empty
-            <ion-icon name="md-close" item-end class="clockItem"></ion-icon>
+            <ion-icon name="md-paw" item-end class="clockItem"></ion-icon>
         </ion-item>
         <ion-item *ngFor="let autocompleteItem of autocompleteItems"
             tappable   

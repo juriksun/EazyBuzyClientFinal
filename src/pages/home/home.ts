@@ -28,7 +28,7 @@ export class HomePage {
   }
 
   onTask(task){
-    this.navCtrl.push(TaskPage, task);
+    this.navCtrl.push(TaskPage, {task: task});
   }
 
   

@@ -17,7 +17,7 @@ export class Task{
             end_time: string,
             date: string
         },
-        public priority: number,
+        public priority: string,
         public task_place: {
             place_type: string,
             palce_key_word: string

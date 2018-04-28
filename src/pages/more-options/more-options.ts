@@ -30,6 +30,7 @@ export class MoreOptionsPage {
     this.editTaskForm = this.navParams.get('newTaskForm');
     this.taskId = this.navParams.get('taskId');
   }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad MoreOptionsPage');
   }

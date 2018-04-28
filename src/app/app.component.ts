@@ -11,10 +11,10 @@ import { UserServiseModule } from '../modules/user_mdl.component';
 import { AlexPage } from '../pages/alex/alex';
 import { MapTastPage } from '../pages/map-tast/map-tast';
 import { CreateRoutePage } from '../pages/create-route/create-route';
-import { AddNewTaskPage } from '../pages/add-new-task/add-new-task';
 import { RouteListPage } from '../pages/route-list/route-list';
 import { RouteDetailsPage } from '../pages/route-details/route-details';
 import { SearchFilterPage } from '../pages/serch-filter/serch-filter';
+import { TaskPage } from '../pages/task/task';
 @Component({
   templateUrl: 'app.html'
 })
@@ -130,7 +130,7 @@ export class MyApp {
   }
 
   onAddTask(){
-    this.nav.push(AddNewTaskPage);
+    this.nav.push(TaskPage);
   }
 
   onListRoute(){
