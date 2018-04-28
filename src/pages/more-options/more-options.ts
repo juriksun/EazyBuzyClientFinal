@@ -35,18 +35,6 @@ export class MoreOptionsPage {
   }
 
   onDelete(){
-    this.tasksServiseModule.deleteTask(
-      this.taskId
-    ).subscribe(
-      response => {
-        if(response){
-          console.log(JSON.stringify(response));
-        }
-      },
-      error =>{
-        console.log(error);
-      }
-    );
     this.viewCtrl.dismiss('delete');
   }
 

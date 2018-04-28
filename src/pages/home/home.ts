@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
 import { AlexPage } from '../alex/alex';
-import { AddNewTaskPage } from '../add-new-task/add-new-task';
 import { TasksServiseModule } from '../../modules/tasks_mdl.component';
 import { Task } from '../../models/task.model';
-import { EditTaskPage } from '../edit-task/edit-task';
 import { CreateRoutePage } from '../create-route/create-route';
 import { LoginPage } from '../login/login';
 import { UserServiseModule } from '../../modules/user_mdl.component';

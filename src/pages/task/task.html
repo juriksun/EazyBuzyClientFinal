@@ -1,35 +1,38 @@
-<!--
-  Generated template for the AddNewTaskPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
-    <ion-title>New Task</ion-title>
+    <ion-title>{{ pageName }}</ion-title>
     <ion-buttons end>
-        <form item-start ion-button (ngSubmit)="onSubmit(newTaskForm)" [formGroup]="newTaskForm">
-          <button 
-            [formGroup]="newTaskForm" 
+        <form *ngIf="newTask || !newTask && taskForm.enabled"
+          item-start ion-button (ngSubmit)="onSubmit(taskForm)" [formGroup]="taskForm">
+          <button
+            [formGroup]="taskForm" 
             ion-button color="dark" 
             clear type="submit"
-            [disabled]="newTaskForm.invalid"
+            [disabled]="taskForm.invalid || !formChanged"
           >
             Save
           </button>
         </form>
-        <button item-end ion-button icon-only color="royal">
+        <button *ngIf="!newTask && taskForm.disabled"
+          item-end ion-button icon-only color="royal" 
+          (click)="onMoreOption($event)"
+        >
           <ion-icon name="md-more"></ion-icon>
+        </button>
+        <button 
+          item-end ion-button icon-only color="royal" 
+          (click)="onDiscard()"
+          *ngIf="taskForm.enabled && !newTask || newTask"
+        >
+          Discard
         </button>
       </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  
     <ion-list no-lines>
-      <form (ngSubmit)="onSubmit(newTaskForm)" [formGroup]="newTaskForm">
+      <form (ngSubmit)="onSubmit(taskForm)" [formGroup]="taskForm">
       <ion-item>
         <ion-icon item-start name="md-clipboard"></ion-icon>
         <ion-input  type="text" placeholder="Task name" formControlName="name"></ion-input>
@@ -37,16 +40,9 @@
       <hr>
       <ion-item>
         <ion-icon item-start name="md-briefcase"></ion-icon>
-        <ion-input type="text" placeholder="Task type" formControlName="type"></ion-input>
-      </ion-item>
-      <hr>
-      <ion-item>
-        <ion-icon item-start name="md-clipboard"></ion-icon>
-
-        <ion-select formControlName="company">
-          <ion-option value="f">Female</ion-option>
-          <ion-option value="m">Male</ion-option>
-        </ion-select>
+        <ion-input 
+          (ionFocus)="showSearchFilterModal($event)"
+          type="text" placeholder="Task type" formControlName="type"></ion-input>
       </ion-item>
       <hr>
       <ion-item>
@@ -75,15 +71,20 @@
       <hr>
       <ion-item>
         <ion-icon item-start name="md-pin"></ion-icon>
-        <ion-input type="text" placeholder="Choose place" formControlName="place"></ion-input>
+        <ion-input 
+          (ionFocus)="showAddressModal('place')" 
+          formControlName="place"
+          type="text"
+          placeholder="Choose place"
+        ></ion-input>
         <ion-icon name="md-map" item-end></ion-icon>
       </ion-item>
+      <hr>
       <hr>
       <ion-item>
           <ion-icon item-start name="person-add"></ion-icon>
           <ion-input type="text" placeholder="Share task" formControlName="shered_to"></ion-input>
       </ion-item>
     </form>
-    </ion-list>
-  
+  </ion-list>
 </ion-content>

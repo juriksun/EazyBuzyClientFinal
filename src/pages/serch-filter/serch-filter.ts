@@ -22,10 +22,12 @@ import {ViewController, Searchbar, NavParams} from 'ionic-angular';
 <ion-content>
     <ion-list>
         <ion-item
+            color="light"
             tappable
             (click)="chooseItem('')"
         >
             empty
+            <ion-icon name="md-close" item-end class="clockItem"></ion-icon>
         </ion-item>
         <ion-item *ngFor="let autocompleteItem of autocompleteItems"
             tappable   
@@ -44,21 +46,21 @@ export class SearchFilterPage {
 
     public autocompleteQuery: string;
 
-
     private autocompleteItems: string[];
-    private pointName: string;
+    private feildName: string;
     private currItem: string;
 
     constructor (
         private viewCtrl: ViewController,
         private navParams: NavParams
     ){
+        this.feildName = this.navParams.get('feildName');
+        this.currItem = this.navParams.get('currItem');
+        this.autocompleteQuery = this.currItem;
         this.initializeItems();
     }
 
-
     ionViewDidEnter() {
-
         //focus must be with timeout for correct working
         setTimeout(() => {
             this.searchBar.setFocus();
@@ -67,8 +69,8 @@ export class SearchFilterPage {
 
     //initialize item list from navigation passed parameter
     initializeItems() {
-        this.autocompleteItems = this.navParams.get('listOfItems');
-        this.autocompleteQuery = this.navParams.get('currItem');
+        this.autocompleteItems = this.navParams.get('itemsList');
+       
     }
 
     //filter the list when the user do some changes in search input
@@ -86,18 +88,18 @@ export class SearchFilterPage {
         }
     }
 
-    
-
+    //cancel changes and return previous value
     dismiss() {
         this.viewCtrl.dismiss({
-            pointName: this.navParams.get('pointName'),
+            feildName: this.feildName,
             item: this.currItem
         });
     }
 
+    //choosing new item and pass this to input
     chooseItem(item: string){
         this.viewCtrl.dismiss({
-            pointName: this.navParams.get('pointName'),
+            feildName: this.feildName,
             item: item
         });
     }

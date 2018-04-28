@@ -13,8 +13,8 @@ import { Url } from "../models/url.model";
 @Injectable()
 export class RouteServiseModule{
 
-  private url: string = 'http://localhost:3000/';
-  // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+//   private url: string = 'http://localhost:3000/';
+  private url: string = 'https://eazy-buzy-server.herokuapp.com/';
   // private url: string = Url().getUrl();
   public route: any;
   public staticRes: any = {"status":"true","data":{"_id":"5ade4c1faa633041246b3f6a","recommended_route": {

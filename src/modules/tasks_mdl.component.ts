@@ -13,8 +13,8 @@ import { Url } from "../models/url.model";
 @Injectable()
 export class TasksServiseModule{
 
-  private url: string = 'http://localhost:3000/';
-  // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+  // private url: string = 'http://localhost:3000/';
+  private url: string = 'https://eazy-buzy-server.herokuapp.com/';
   // private url: string = Url.getUrl();
 
   constructor(
