@@ -1,6 +1,8 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {ViewController, Searchbar, NavParams} from 'ionic-angular';
-
+/*
+    
+*/
 @Component({
   template:
 `
@@ -19,14 +21,12 @@ import {ViewController, Searchbar, NavParams} from 'ionic-angular';
 
 <ion-content>
     <ion-list>
-        <ion-item *ngFor="let item of items"
-            tappable   
-            (click)="chooseItem(item)"
+        <ion-item
+            tappable
+            (click)="chooseItem('')"
         >
-            {{ item }}
+            empty
         </ion-item>
-    </ion-list>
-    <ion-list>
         <ion-item *ngFor="let autocompleteItem of autocompleteItems"
             tappable   
             (click)="chooseItem(autocompleteItem)"
@@ -36,89 +36,69 @@ import {ViewController, Searchbar, NavParams} from 'ionic-angular';
     </ion-list>
 </ion-content>
 `
-
 })
 
 export class SearchFilterPage {
 
 @ViewChild("searchBar") searchBar: Searchbar;
 
-    autocompleteItems: string[];
-    autocompleteQuery:string;
-    
+    public autocompleteQuery: string;
+
+
+    private autocompleteItems: string[];
     private pointName: string;
+    private currItem: string;
 
     constructor (
-        public viewCtrl: ViewController,
-        public navParams: NavParams
+        private viewCtrl: ViewController,
+        private navParams: NavParams
     ){
         this.initializeItems();
     }
 
-    initializeItems() {
-        this.pointName = this.navParams.get('pointName');
-
-        this.autocompleteItems = this.navParams.get('listOfItems');
-        this.autocompleteItems = [
-          'Amsterdam',
-          'Bogota',
-          'Buenos Aires',
-          'Cairo',
-          'Dhaka',
-          'Edinburgh',
-          'Geneva',
-          'Genoa',
-          'Glasglow',
-          'Hanoi',
-          'Hong Kong',
-          'Islamabad',
-          'Istanbul',
-          'Jakarta',
-          'Kiel',
-          'Kyoto',
-          'Le Havre',
-          'Lebanon',
-          'Lhasa',
-          'Lima',
-          'London',
-          'Los Angeles',
-          'Madrid',
-          'Manila',
-          'New York',
-          'Olympia',
-          'Oslo',
-          'Panama City',
-          'Peking',
-          'Philadelphia',
-          'San Francisco',
-          'Seoul',
-          'Taipeh',
-          'Tel Aviv',
-          'Tokio',
-          'Uelzen',
-          'Washington',
-          'bank leumi'
-        ];
-    }
-
-    updateSearch() {
-
-        this.initializeItems();
-
-        if (this.autocompleteQuery && this.autocompleteQuery.trim() != '') {
-          this.autocompleteItems = this.autocompleteItems.filter((item) => {
-            return (item.toLowerCase().indexOf(this.autocompleteQuery.toLowerCase()) > -1);
-            })
-        }
-    }
 
     ionViewDidEnter() {
+
+        //focus must be with timeout for correct working
         setTimeout(() => {
             this.searchBar.setFocus();
         }, 150);
     }
 
+    //initialize item list from navigation passed parameter
+    initializeItems() {
+        this.autocompleteItems = this.navParams.get('listOfItems');
+        this.autocompleteQuery = this.navParams.get('currItem');
+    }
+
+    //filter the list when the user do some changes in search input
+    updateSearch() {
+
+        //initilize list befor filtering
+        this.initializeItems();
+
+        if (this.autocompleteQuery && this.autocompleteQuery.trim() != '') {//check if input is not empty
+            //filtering
+            this.autocompleteItems = this.autocompleteItems.filter((item) => {
+                //compairing list containt and user input (formated to lower case)
+                return (item.toLowerCase().indexOf(this.autocompleteQuery.toLowerCase()) > -1);
+            });
+        }
+    }
+
+    
+
     dismiss() {
-        this.viewCtrl.dismiss();
+        this.viewCtrl.dismiss({
+            pointName: this.navParams.get('pointName'),
+            item: this.currItem
+        });
+    }
+
+    chooseItem(item: string){
+        this.viewCtrl.dismiss({
+            pointName: this.navParams.get('pointName'),
+            item: item
+        });
     }
 }
