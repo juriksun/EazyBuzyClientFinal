@@ -185,23 +185,34 @@ export class TaskPage {
 
 
   onDiscard(){
+    // if(this.newTask && !this.formChanged){
+    //   this.navCtrl.pop();
+    // } else if(this.newTask && this.formChanged){
+    //   this.showPrompt(
+    //     {title:'Discard', message:'Discard changes?'},
+    //     this.setEditFormDefaulParams.bind(this)
+    //   );
+
+    // } else if(this.formChanged){
+    //   this.showPrompt(
+    //     {title:'Discard', message:'Discard changes?'},
+    //     this.editFormReset.bind(this)
+    //   );
+    // } else {
+    //   this.editFormReset();
+    // }
     if(this.newTask && !this.formChanged){
       this.navCtrl.pop();
-    } else if(this.newTask && this.formChanged){
-      this.showPrompt(
-        {title:'Discard', message:'Discard changes?'},
-        this.setEditFormDefaulParams.bind(this)
-      );
-    } else if(this.formChanged){
-      this.showPrompt(
-        {title:'Discard', message:'Discard changes?'},
-        this.editFormReset.bind(this)
-      );
     } else {
-      this.editFormReset();
+      this.showPrompt(
+        {title:'Discard', message:'Discard changes?'},
+        () => {
+          this.navCtrl.pop();
+        }
+        // this.navCtrl.pop.bind(this)
+      );
     }
   }
-
 
   editFormReset(){
     this.setEditFormDefaulParams();

@@ -1,12 +1,27 @@
 page-task {
     ion-header{
+        ion-icon{
+            color: white;
+        }
         ion-input{
             font-size: 18px;
             padding-left: 20px;
+            ::placeholder {
+                color: white!important;
+                opacity: 0.8;
+            }
+            color: white;
+        }
+        button{
+            color: white!important;
         }
     }
     .toolbar-background-md{
         background: #1ea3ff;
     }
-    
+    ion-content{
+        ion-icon{
+            color: #555555;
+        }
+    }
 }
