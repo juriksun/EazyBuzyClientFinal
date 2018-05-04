@@ -31,9 +31,9 @@ import {ViewController, Searchbar, NavParams} from 'ionic-angular';
         </ion-item>
         <ion-item *ngFor="let autocompleteItem of autocompleteItems"
             tappable   
-            (click)="chooseItem(autocompleteItem)"
+            (click)="chooseItem(autocompleteItem.formated_name)"
         >
-            {{ autocompleteItem }}
+            {{ autocompleteItem.formated_name }}
         </ion-item>
     </ion-list>
 </ion-content>
@@ -47,14 +47,14 @@ export class SearchFilterPage {
     public autocompleteQuery: string;
 
     private autocompleteItems: string[];
-    private feildName: string;
+    private fieldName: string;
     private currItem: string;
 
     constructor (
         private viewCtrl: ViewController,
         private navParams: NavParams
     ){
-        this.feildName = this.navParams.get('feildName');
+        this.fieldName = this.navParams.get('fieldName');
         this.currItem = this.navParams.get('currItem');
         this.autocompleteQuery = this.currItem;
         this.initializeItems();
@@ -70,7 +70,6 @@ export class SearchFilterPage {
     //initialize item list from navigation passed parameter
     initializeItems() {
         this.autocompleteItems = this.navParams.get('itemsList');
-       
     }
 
     //filter the list when the user do some changes in search input
@@ -91,7 +90,7 @@ export class SearchFilterPage {
     //cancel changes and return previous value
     dismiss() {
         this.viewCtrl.dismiss({
-            feildName: this.feildName,
+            fieldName: this.fieldName,
             item: this.currItem
         });
     }
@@ -99,7 +98,7 @@ export class SearchFilterPage {
     //choosing new item and pass this to input
     chooseItem(item: string){
         this.viewCtrl.dismiss({
-            feildName: this.feildName,
+            fieldName: this.fieldName,
             item: item
         });
     }

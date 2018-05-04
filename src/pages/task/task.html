@@ -43,13 +43,15 @@
           type="text" placeholder="Task type" formControlName="type"></ion-input>
       </ion-item>
       <hr>
-      <ion-item>
+      <ng-container *ngIf="companies">
+      <ion-item >
         <ion-icon item-start name="md-briefcase"></ion-icon>
         <ion-input 
           (ionFocus)="showSearchFilterModal($event)"
           type="text" placeholder="Task brand/name/company" formControlName="company"></ion-input>
       </ion-item>
       <hr>
+    </ng-container>
       <ion-item>
         <ion-icon item-start name="md-pin"></ion-icon>
           <ion-input 
@@ -70,7 +72,7 @@
       </ion-item>
       <ion-item>
             <ion-label item-start></ion-label>
-            <ion-datetime item-start placeholder="add date" displayFormat="DD-MM-YYYY" formControlName="time_start"></ion-datetime>
+            <ion-datetime item-start placeholder="add date" displayFormat="DD-MM-YYYY" formControlName="time_date"></ion-datetime>
         </ion-item>
       <ion-item>
           <ion-label item-start>Duration</ion-label>
@@ -78,7 +80,7 @@
           hourValues="0,1,2,3,4,5,6,7,8,9,10"
           displayFormat="HH:mm"
           placeholder="add duration"
-          formControlName="time_end"></ion-datetime>
+          formControlName="time_dutation"></ion-datetime>
         </ion-item>
         <hr>
       <ion-item>

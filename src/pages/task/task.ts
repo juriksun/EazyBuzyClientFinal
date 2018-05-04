@@ -23,6 +23,10 @@ export class TaskPage {
   formChanged: boolean;
   taskName: string;
 
+  types: any;
+
+  companies: any;
+
   private value: any;
 
   constructor(
@@ -37,19 +41,53 @@ export class TaskPage {
     this.initializeTaskForm();
   }
 
+  private getTypes(){
+      this.tasksServiseModule.getTypes()
+      .subscribe(
+        response => {
+          if(response){
+            if(response.status = true){
+              console.log(response.types);
+              this.types = response.types;
+            }
+            console.log(JSON.stringify(response));
+          }
+        },
+        error =>{
+          console.log(error);
+        }
+      );
+  }
+
+  private getCompanies(type: string){
+    this.tasksServiseModule.getCompanies(type)
+    .subscribe(
+      response => {
+        if(response){
+          if(response.status = true && response.data.companies.length > 0){
+            this.companies = response.data.companies;
+          }
+        }
+      },
+      error =>{
+        console.log(error);
+      }
+    );
+  }
+
   private initializeTaskForm(){
     this.task = this.navParams.get('task') || {};
-
+    this.getTypes();
     this.setEditFormDefaulParams();
     if(this.navParams.get('task') === undefined){
       this.newTask = true;
     } else {
+      this.getCompanies(this.task.type);
       this.taskName = this.task.name;
       this.taskForm.disable();
     }
 
     this.taskForm.valueChanges.subscribe(newValues => {
-      console.log('form changed');
       this.formChanged = true;
     });
   }
@@ -58,10 +96,11 @@ export class TaskPage {
   private setEditFormDefaulParams(){
     this.taskForm = this.fb.group({
       name: [this.task.name || '', [Validators.required, Validators.minLength(4)]],
-      type: [this.task.type || '', [Validators.required, Validators.minLength(4)]],
+      type: [this.task.type || '', [Validators.required]],
       company: [(this.task.task_place)?(this.task.task_place.palce_key_word || ''):''],
       time_start: [(this.task.time)?(this.task.time.start_time || ''):''],
-      time_end: [(this.task.time)?(this.task.time.end_time || ''):''],
+      time_date: [(this.task.time)?(this.task.time.date || ''):''],
+      time_dutation: [(this.task.time)?(this.task.time.duration || ''):''],
       priorety: [this.task.priority || ''],
       place: [(this.task.location)?(this.task.location.address || ''):''],
       shered_to: [(this.task.share)?(this.task.share.user_name || ''):'']
@@ -79,6 +118,26 @@ export class TaskPage {
         {title:'Update', message:'Accept changes?'},
         this.updateTask.bind(this)
       );
+  }
+
+  private addOrUpdateTask(){
+    this.tasksServiseModule.addOrUpdateTask(
+      this.task._id,
+      this.value,
+      this.location
+    )
+    .subscribe(
+      response => {
+        if (response) {
+          console.log(JSON.stringify(response));
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    this.navCtrl.pop();
+
   }
 
 
@@ -100,11 +159,10 @@ export class TaskPage {
 
   //creating modal seach filter window and pass list of items 
   showSearchFilterModal(event) {
-    
     let modal = this.modalCtrl.create(
       SearchFilterPage,
       {
-        feildName: event.ngControl.name,
+        fieldName: event.ngControl.name,
         currItem: event.ngControl.value,
         itemsList: this.getItemsListForSerchFilter(event.ngControl.name)
       }
@@ -113,8 +171,12 @@ export class TaskPage {
     modal.onDidDismiss(data => {
       if(data !== undefined){
         this.taskForm.patchValue(
-          JSON.parse(`{\"${data.feildName}\":\"${data.item}\"}`)
+          JSON.parse(`{\"${data.fieldName}\":\"${data.item}\"}`)
         )
+        if(data.fieldName === 'type'){
+
+          this.getCompanies(data.item);
+        }
       }
     });
     setTimeout(() => {
@@ -123,12 +185,18 @@ export class TaskPage {
   }
 
   //prepare the apropriate list for 
-  private getItemsListForSerchFilter(feildName: string){
-    return [
-      'Orange', 'Banana', 'Pear', 'Tomato',
-      'Grape', 'Apple', 'Cherries', 'Cranberries',
-      'Raspberries', 'Strawberries', 'Watermelon'
-    ];
+  private getItemsListForSerchFilter(fieldName: string){
+    switch(fieldName){
+      case 'type':{
+        return this.types;
+      }
+      case 'company': {
+        return this.companies;
+      }
+      default: {
+        return [];
+      }
+    }
   }
 
 
@@ -185,31 +253,12 @@ export class TaskPage {
 
 
   onDiscard(){
-    // if(this.newTask && !this.formChanged){
-    //   this.navCtrl.pop();
-    // } else if(this.newTask && this.formChanged){
-    //   this.showPrompt(
-    //     {title:'Discard', message:'Discard changes?'},
-    //     this.setEditFormDefaulParams.bind(this)
-    //   );
-
-    // } else if(this.formChanged){
-    //   this.showPrompt(
-    //     {title:'Discard', message:'Discard changes?'},
-    //     this.editFormReset.bind(this)
-    //   );
-    // } else {
-    //   this.editFormReset();
-    // }
     if(this.newTask && !this.formChanged){
       this.navCtrl.pop();
     } else {
       this.showPrompt(
         {title:'Discard', message:'Discard changes?'},
-        () => {
-          this.navCtrl.pop();
-        }
-        // this.navCtrl.pop.bind(this)
+        () => this.navCtrl.pop()
       );
     }
   }
@@ -238,9 +287,8 @@ export class TaskPage {
     this.navCtrl.pop();
   }
 
-
+  //
   private updateTask(){
-    
     this.tasksServiseModule.updateTask(
       this.task._id,
       this.value
@@ -258,16 +306,16 @@ export class TaskPage {
     this.navCtrl.pop();
   }
 
+  //on click save button
   onSave({ value }){
     this.value = value;
-    this.newTask? 
-      this.addNewTask() : 
-      this.showPrompt(
-        {title:'Update', message:'Accept changes?'},
-        this.updateTask.bind(this)
-      );
+    this.newTask? this.addNewTask() : this.showPrompt(
+      {title:'Update', message:'Accept changes?'},
+      this.updateTask.bind(this)
+    );
   }
 
+  //show alert modal window with user title and message
   showPrompt(promt, acceptMethod) {
     let prompt = this.alertCtrl.create({
       title: promt.title,

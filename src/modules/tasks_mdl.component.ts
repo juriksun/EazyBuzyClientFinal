@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response} from '@angular/http'
+import {Http, Response, URLSearchParams} from '@angular/http'
 import {Observable} from 'rxjs/Observable';
 import {Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/catch';
@@ -13,14 +13,15 @@ import { Url } from "../models/url.model";
 @Injectable()
 export class TasksServiseModule{
 
-  // private url: string = 'http://localhost:3000/';
-  private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+  private url: string = 'http://localhost:3000/';
+  // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
   // private url: string = Url.getUrl();
 
   constructor(
     private http: Http,
     private userServiseModule: UserServiseModule
   ) {}
+
 
   getAllTasks():Observable<TaskResponse> {
     let headers = new Headers({'Content-Type': 'application/json'});
@@ -34,6 +35,24 @@ export class TasksServiseModule{
     ).map(this.extractData).catch(this.handleError);
   }
 
+
+  getTypes():Observable<any> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    return this.http.get(`${this.url}get_types`).map(this.extractData).catch(this.handleError);
+  }
+
+
+  getCompanies(type: string):Observable<any> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    return this.http.get(
+      `${this.url}get_companies/${type}`,
+      options
+    ).map(this.extractData).catch(this.handleError);
+  }
+
+
   addNewTask(task):Observable<TaskResponse> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
@@ -46,6 +65,7 @@ export class TasksServiseModule{
         options
     ).map(this.extractData).catch(this.handleError);
   }
+
 
   private extractData(res: Response) {
     console.log(res.json());
@@ -89,6 +109,25 @@ export class TasksServiseModule{
           user: JSON.stringify(this.userServiseModule.getUserFromLocalStorege()),
           task_id: taskId,
           task_update_data: JSON.stringify(taskUpdateData)
+        },
+        options
+    ).map(this.extractData).catch(this.handleError);
+  }
+
+
+  addOrUpdateTask(taskId, taskUpdateData, locationData):Observable<TaskResponse> {
+    console.log(taskId);
+    console.log(taskUpdateData);
+    console.log(locationData);
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    return this.http.post(
+        `${this.url}add_or_update_task`,
+        {
+          user: JSON.stringify(this.userServiseModule.getUserFromLocalStorege()),
+          task_id: taskId,
+          task_update_data: JSON.stringify(taskUpdateData),
+          task_location_data: JSON.stringify(locationData)
         },
         options
     ).map(this.extractData).catch(this.handleError);
