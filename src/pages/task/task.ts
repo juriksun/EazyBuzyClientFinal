@@ -89,7 +89,8 @@ export class TaskPage {
     if(this.navParams.get('task') === undefined){
       this.newTask = true;
     } else {
-      this.getCompanies(this.taskPlace.place_type.name);
+     
+      this.getCompanies(this.taskPlace.place_type.formated_name);
       
       this.taskForm.disable();
     }
@@ -211,7 +212,7 @@ export class TaskPage {
 
         if(data.fieldName === 'place_type'){
 
-          this.getCompanies(data.item.formated_name);
+          this.getCompanies(data.item.name);
         }
       }
     });
