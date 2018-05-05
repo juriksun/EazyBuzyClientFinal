@@ -89,7 +89,7 @@ export class TaskPage {
     if(this.navParams.get('task') === undefined){
       this.newTask = true;
     } else {
-      this.getCompanies(this.taskPlace.place_type.formated_name);
+      this.getCompanies(this.taskPlace.place_type.name);
       
       this.taskForm.disable();
     }

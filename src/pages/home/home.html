@@ -14,7 +14,7 @@
       *ngFor="let task of tasks"
       (click)="onTask(task);"
     >
-      <ion-icon item-start name="logo-usd" class="taskIcon"></ion-icon>
+      <ion-icon item-start [name]="task.task_place.place_type.icon" class="taskIcon"></ion-icon>
       <h2>{{task.name}}</h2>
       <ion-icon name="md-time" item-end class="clockItem" *ngIf="task.time.start_time != '' || task.time.duration || task.time.date"></ion-icon>
       <ion-note item-end *ngIf="task.time">
