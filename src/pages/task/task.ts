@@ -16,7 +16,11 @@ import { MoreOptionsPage } from '../more-options/more-options';
 export class TaskPage {
 
   public taskForm: FormGroup;
-  public location = {};
+
+  public location;
+  
+  taskPlace; 
+
   task: Task;
 
   newTask: boolean;
@@ -64,7 +68,8 @@ export class TaskPage {
     .subscribe(
       response => {
         if(response){
-          if(response.status = true && response.data.companies.length > 0){
+          console.log(response);
+          if(response.status = true && response.data &&response.data.companies.length > 0){
             this.companies = response.data.companies;
           }
         }
@@ -78,34 +83,61 @@ export class TaskPage {
   private initializeTaskForm(){
     this.task = this.navParams.get('task') || {};
     this.getTypes();
+
     this.setEditFormDefaulParams();
+
     if(this.navParams.get('task') === undefined){
       this.newTask = true;
     } else {
-      this.getCompanies(this.task.type);
-      this.taskName = this.task.name;
+      this.getCompanies(this.taskPlace.place_type.formated_name);
+      
       this.taskForm.disable();
     }
-
+    
     this.taskForm.valueChanges.subscribe(newValues => {
       this.formChanged = true;
     });
   }
 
-
   private setEditFormDefaulParams(){
+
+    if(this.navParams.get('task') !== undefined){
+      this.taskPlace = this.task.task_place;
+      this.location = this.task.location;
+    } else {
+
+      this.location = {
+        address: '',
+        place_id: '',
+      };
+      
+      this.taskPlace = {
+        place_type: {
+          formated_name: '',
+          name: '',
+          icon: ''
+        },
+        place_company: {
+          formated_name: '',
+          name: '',
+          icon: ''
+        }
+      };
+    }
+
     this.taskForm = this.fb.group({
       name: [this.task.name || '', [Validators.required, Validators.minLength(4)]],
-      type: [this.task.type || '', [Validators.required]],
-      company: [(this.task.task_place)?(this.task.task_place.palce_key_word || ''):''],
+      place_type: [this.taskPlace.place_type.formated_name],
+      place_company: [this.taskPlace.place_company.formated_name],
       time_start: [(this.task.time)?(this.task.time.start_time || ''):''],
       time_date: [(this.task.time)?(this.task.time.date || ''):''],
-      time_dutation: [(this.task.time)?(this.task.time.duration || ''):''],
-      priorety: [this.task.priority || ''],
+      time_duration: [(this.task.time)?(this.task.time.duration || ''):''],
+      priority: [this.task.priority || ''],
       place: [(this.task.location)?(this.task.location.address || ''):''],
       shered_to: [(this.task.share)?(this.task.share.user_name || ''):'']
     });
-    this.location = this.task.location;
+
+    
     this.formChanged = false;
   }
 
@@ -113,14 +145,15 @@ export class TaskPage {
   onSubmit({ value }){
     this.value = value;
     this.newTask? 
-      this.addNewTask() : 
+      this.addOrUpdateTask() : 
       this.showPrompt(
         {title:'Update', message:'Accept changes?'},
-        this.updateTask.bind(this)
+        this.addOrUpdateTask.bind(this)
       );
   }
 
   private addOrUpdateTask(){
+    console.log(this.location);
     this.tasksServiseModule.addOrUpdateTask(
       this.task._id,
       this.value,
@@ -163,7 +196,7 @@ export class TaskPage {
       SearchFilterPage,
       {
         fieldName: event.ngControl.name,
-        currItem: event.ngControl.value,
+        currItem: this.taskPlace[event.ngControl.name],
         itemsList: this.getItemsListForSerchFilter(event.ngControl.name)
       }
     );
@@ -171,11 +204,14 @@ export class TaskPage {
     modal.onDidDismiss(data => {
       if(data !== undefined){
         this.taskForm.patchValue(
-          JSON.parse(`{\"${data.fieldName}\":\"${data.item}\"}`)
+          JSON.parse(`{\"${data.fieldName}\":\"${data.item.formated_name}\"}`)
         )
-        if(data.fieldName === 'type'){
+        
+        this.taskPlace[data.fieldName] = data.item;
 
-          this.getCompanies(data.item);
+        if(data.fieldName === 'place_type'){
+
+          this.getCompanies(data.item.formated_name);
         }
       }
     });
@@ -187,10 +223,10 @@ export class TaskPage {
   //prepare the apropriate list for 
   private getItemsListForSerchFilter(fieldName: string){
     switch(fieldName){
-      case 'type':{
+      case 'place_type':{
         return this.types;
       }
-      case 'company': {
+      case 'place_company': {
         return this.companies;
       }
       default: {
@@ -309,10 +345,13 @@ export class TaskPage {
   //on click save button
   onSave({ value }){
     this.value = value;
-    this.newTask? this.addNewTask() : this.showPrompt(
-      {title:'Update', message:'Accept changes?'},
-      this.updateTask.bind(this)
-    );
+    this.value.task_place = this.taskPlace;
+    this.newTask? 
+      this.addOrUpdateTask() : 
+      this.showPrompt(
+        {title:'Update', message:'Accept changes?'},
+        this.addOrUpdateTask.bind(this)
+      );
   }
 
   //show alert modal window with user title and message

@@ -31,7 +31,7 @@ import {ViewController, Searchbar, NavParams} from 'ionic-angular';
         </ion-item>
         <ion-item *ngFor="let autocompleteItem of autocompleteItems"
             tappable   
-            (click)="chooseItem(autocompleteItem.formated_name)"
+            (click)="chooseItem(autocompleteItem)"
         >
             {{ autocompleteItem.formated_name }}
         </ion-item>
@@ -46,9 +46,9 @@ export class SearchFilterPage {
 
     public autocompleteQuery: string;
 
-    private autocompleteItems: string[];
+    private autocompleteItems: any;
     private fieldName: string;
-    private currItem: string;
+    private currItem;
 
     constructor (
         private viewCtrl: ViewController,
@@ -56,7 +56,7 @@ export class SearchFilterPage {
     ){
         this.fieldName = this.navParams.get('fieldName');
         this.currItem = this.navParams.get('currItem');
-        this.autocompleteQuery = this.currItem;
+        this.autocompleteQuery = this.currItem.formated_name;
         this.initializeItems();
     }
 
@@ -82,7 +82,7 @@ export class SearchFilterPage {
             //filtering
             this.autocompleteItems = this.autocompleteItems.filter((item) => {
                 //compairing list containt and user input (formated to lower case)
-                return (item.toLowerCase().indexOf(this.autocompleteQuery.toLowerCase()) > -1);
+                return (item.formated_name.toLowerCase().indexOf(this.autocompleteQuery.toLowerCase()) > -1);
             });
         }
     }
@@ -96,7 +96,7 @@ export class SearchFilterPage {
     }
 
     //choosing new item and pass this to input
-    chooseItem(item: string){
+    chooseItem(item){
         this.viewCtrl.dismiss({
             fieldName: this.fieldName,
             item: item

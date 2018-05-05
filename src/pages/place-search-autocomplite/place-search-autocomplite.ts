@@ -7,7 +7,12 @@ import { MapsAPILoader } from '@agm/core';
   <ion-header>
   <ion-toolbar>
     <ion-title>Enter address</ion-title>
-    <ion-searchbar #searchBar [(ngModel)]="autocomplete.query" [showCancelButton]="true"   (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
+    <ion-searchbar #searchBar 
+        [(ngModel)]="autocomplete.query"  
+        [showCancelButton]="true"
+        (ionInput)="updateSearch()" 
+        (ionCancel)="dismiss()"
+    ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -29,7 +34,6 @@ export class PlaceSearchAutocomplitePage {
     autocomplete;
 
     geo: any
-
     service;
 
     private pointName: string;
@@ -101,6 +105,7 @@ export class PlaceSearchAutocomplitePage {
     geoCode(address:any, item) {
         let geocoder = new google.maps.Geocoder();
         geocoder.geocode({ 'address': address }, (results, status) => {
+            console.log(results);
             this.viewCtrl.dismiss({
                 point_name: this.pointName,
                 field_adress: item,

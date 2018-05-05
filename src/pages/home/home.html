@@ -16,13 +16,14 @@
     >
       <ion-icon item-start name="logo-usd" class="taskIcon"></ion-icon>
       <h2>{{task.name}}</h2>
-      <ion-icon name="md-time" item-end class="clockItem" *ngIf="task.time"></ion-icon>
+      <ion-icon name="md-time" item-end class="clockItem" *ngIf="task.time.start_time != '' || task.time.duration || task.time.date"></ion-icon>
       <ion-note item-end *ngIf="task.time">
         <p>{{task.time.start_time}}</p>
         <p *ngIf="task.time.duration">{{task.time.duration}}</p>
+        <p *ngIf="task.time.date">{{task.time.date}}</p>
       </ion-note>
       <div class="placeForPin" item-end>
-        <ion-icon name="md-pin" style="zoom: 1.5;" *ngIf="task.location"></ion-icon>
+        <ion-icon name="md-pin" style="zoom: 1.5;" *ngIf="task.location.address"></ion-icon>
       </div>
     </ion-item>
   </ion-list>

@@ -19,8 +19,16 @@ export class Task{
         },
         public priority: string,
         public task_place: {
-            place_type: string,
-            palce_key_word: string
+            place_type: {
+                formated_name: string,
+                name: string,
+                icon: string
+            },
+            place_company: {
+                formated_name: string,
+                name: string,
+                icon: string
+            }
         },
         public location: {
             address: string,

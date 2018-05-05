@@ -40,7 +40,7 @@
         <ion-icon item-start name="md-clipboard"></ion-icon>
         <ion-input
           (ionFocus)="showSearchFilterModal($event)"
-          type="text" placeholder="Task type" formControlName="type"></ion-input>
+          type="text" placeholder="Task type" formControlName="place_type"></ion-input>
       </ion-item>
       <hr>
       <ng-container *ngIf="companies">
@@ -48,7 +48,7 @@
         <ion-icon item-start name="md-briefcase"></ion-icon>
         <ion-input 
           (ionFocus)="showSearchFilterModal($event)"
-          type="text" placeholder="Task brand/name/company" formControlName="company"></ion-input>
+          type="text" placeholder="Task brand/name/company" formControlName="place_company"></ion-input>
       </ion-item>
       <hr>
     </ng-container>
@@ -80,7 +80,7 @@
           hourValues="0,1,2,3,4,5,6,7,8,9,10"
           displayFormat="HH:mm"
           placeholder="add duration"
-          formControlName="time_dutation"></ion-datetime>
+          formControlName="time_duration"></ion-datetime>
         </ion-item>
         <hr>
       <ion-item>
@@ -88,7 +88,7 @@
          <ion-label fixed>Priority</ion-label>
       </ion-item>
       <ion-item>
-          <ion-segment formControlName="priorety">
+          <ion-segment formControlName="priority">
               <ion-segment-button value="low">
                 Low
               </ion-segment-button>
