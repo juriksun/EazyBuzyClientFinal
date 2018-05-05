@@ -33,7 +33,11 @@ import {ViewController, Searchbar, NavParams} from 'ionic-angular';
             tappable   
             (click)="chooseItem(autocompleteItem)"
         >
-            {{ autocompleteItem.formated_name }}
+            <ion-icon item-start 
+                [name]="autocompleteItem.icon"
+                class="taskIcon"
+            ></ion-icon>
+            <p>{{ autocompleteItem.formated_name }}</p>
         </ion-item>
     </ion-list>
 </ion-content>
