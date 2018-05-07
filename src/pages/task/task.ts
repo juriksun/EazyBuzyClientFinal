@@ -69,7 +69,7 @@ export class TaskPage {
       response => {
         if(response){
           console.log(response);
-          if(response.status = true && response.data &&response.data.companies.length > 0){
+          if(response.status = true && response.data){
             this.companies = response.data.companies;
           }
         }
@@ -211,7 +211,14 @@ export class TaskPage {
         this.taskPlace[data.fieldName] = data.item;
 
         if(data.fieldName === 'place_type'){
-
+          this.taskForm.patchValue({
+            place_company: ''
+          })
+          this.taskPlace.place_company = {
+            formated_name: '',
+            name: '',
+            icon: ''
+          }
           this.getCompanies(data.item.name);
         }
       }

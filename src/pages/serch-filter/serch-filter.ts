@@ -24,16 +24,16 @@ import {ViewController, Searchbar, NavParams} from 'ionic-angular';
         <ion-item
             color="light"
             tappable
-            (click)="chooseItem('')"
+            (click)="chooseItem({formated_name: '', name: ''})"
         >
             empty
-            <ion-icon name="md-paw" item-end class="clockItem"></ion-icon>
         </ion-item>
         <ion-item *ngFor="let autocompleteItem of autocompleteItems"
             tappable   
             (click)="chooseItem(autocompleteItem)"
         >
-            <ion-icon item-start 
+            <ion-icon *ngIf="autocompleteItem.icon !== ''"
+                item-start 
                 [name]="autocompleteItem.icon"
                 class="taskIcon"
             ></ion-icon>

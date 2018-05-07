@@ -43,7 +43,7 @@
           type="text" placeholder="Task type" formControlName="place_type"></ion-input>
       </ion-item>
       <hr>
-      <ng-container *ngIf="companies">
+      <ng-container *ngIf="taskPlace.place_company.name !== '' || companies">
       <ion-item >
         <ion-icon item-start name="md-briefcase"></ion-icon>
         <ion-input 
