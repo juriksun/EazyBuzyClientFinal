@@ -53,7 +53,8 @@ import { TaskPage } from '../pages/task/task';
   imports: [
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyAkz6xddABYhnT-iPqJePo3MIsiy1kxE9Q",
-      libraries: ["places"]
+      libraries: ["places"],
+      language: "en"
     }),
     BrowserModule,
     FormsModule,
