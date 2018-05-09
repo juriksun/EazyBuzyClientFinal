@@ -90,13 +90,8 @@ export class CreateRoutePage {
       response => {
         if (response) {
           this.modalWait.dismiss();
-          // console.log(JSON.stringify(response));
-          // if(response.status === true){
             this.routeServiseModule.route = response.data.recommended_route;
             this.navCtrl.setRoot(RouteDetailsPage);
-          // } else {
-          //   console.log(response);
-          // }
         }
       },
       error => {
@@ -105,7 +100,7 @@ export class CreateRoutePage {
     );
   }
 
-  discard(){
+  onDiscard(){
     this.navCtrl.pop();
   }
 
