@@ -5,6 +5,9 @@ import { UserServiseModule } from '../../modules/user_mdl.component';
 import { User } from '../../models/user.model';
 import { HomePage } from '../home/home';
 import { SignInPage } from '../sign-in/sign-in';
+import { EventServiceModule}  from '../../modules/event_mdl.component';
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -29,7 +32,10 @@ export class LoginPage {
     private fb: FormBuilder,
     public userServiseModule: UserServiseModule,
     // public viewCtrl: ViewController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    public eventServiceModule: EventServiceModule,
+    public toastCtrl: ToastController
+
   ) {}
 
   ngOnInit() {
@@ -56,10 +62,14 @@ export class LoginPage {
             // console.log(JSON.stringify(response));
             this.navCtrl.setRoot(HomePage);
           }
+          this.eventServiceModule.createEventMessage({message : response.message, status : response.status});
+        }else{
+          this.eventServiceModule.createEventMessage({message : "Error - response is undifined", status : false});
         }
       },
       error => {
         console.log(error);
+        this.eventServiceModule.createEventMessage({message : "Error - problem with server", status : false});
       }
     );
   }

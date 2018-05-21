@@ -10,6 +10,9 @@ import { UserServiseModule } from '../../modules/user_mdl.component';
 import { RouteListPage } from '../route-list/route-list';
 import { RouteDetailsPage } from '../route-details/route-details';
 import { TaskPage } from '../task/task';
+// import { StatusMessagePage } from '../status-message/status-message';
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+import { EventServiceModule}  from '../../modules/event_mdl.component';
 
 @Component({
   selector: 'page-home',
@@ -22,7 +25,10 @@ export class HomePage {
       public navCtrl: NavController,
       public tasksServiseModule: TasksServiseModule,
       public modalCtrl: ModalController,
-      public userServiseModule: UserServiseModule
+      public userServiseModule: UserServiseModule,
+      public eventServiceModule: EventServiceModule,
+      public toastCtrl: ToastController
+
   ) {
     
   }
@@ -46,17 +52,20 @@ export class HomePage {
   }
 
   private getAllTasks(){
-    
     this.tasksServiseModule.getAllTasks()
       .subscribe(
         response  =>{
           if(response){
             this.tasks = response.tasks;
-            //console.log(JSON.stringify(response));
+            this.eventServiceModule.createEventMessage({message : response.message, status : response.status});
+            // console.log(JSON.stringify(response));
+          }else {
+            this.eventServiceModule.createEventMessage({message : "Error - response is undifined", status : false});
           }
         },
         error =>{
           console.log(error);
+          this.eventServiceModule.createEventMessage({message : "Error - problem with server", status : false});
         }
       )
   }
@@ -74,4 +83,13 @@ export class HomePage {
   onListRoute(){
     this.navCtrl.setRoot(RouteDetailsPage);
   }
+
+  // ionViewDidEnter(msg){
+  //   let toast = this.toastCtrl.create({
+  //     message: 'User was added successfully 11',
+  //     duration: 2000,
+  //     cssClass : 'toast-sucess'
+  //   });
+  //   toast.present();
+  // }
 }
