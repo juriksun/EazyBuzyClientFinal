@@ -179,11 +179,11 @@ export class RouteDetailsPage {
       enableHighAccuracy:true
     });
     this.watch.subscribe((data) => {
-      this.currPositionAvalible = true;
-      this.currPosition.lat = data.coords.latitude;
-      this.currPosition.lng = data.coords.longitude;
-      console.log(data.coords.latitude);
-      console.log(data.coords.longitude);
+      if(data && data.coords){
+        this.currPositionAvalible = true;
+        this.currPosition.lat = data.coords.latitude;
+        this.currPosition.lng = data.coords.longitude;
+      }
     });
   }
 }

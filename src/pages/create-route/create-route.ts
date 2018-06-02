@@ -91,7 +91,8 @@ export class CreateRoutePage {
         if (response) {
           this.modalWait.dismiss();
             this.routeServiseModule.route = response.data.recommended_route;
-            this.navCtrl.setRoot(RouteDetailsPage);
+            console.log(response.data.recommended_route);
+            // this.navCtrl.setRoot(RouteDetailsPage);
         }
       },
       error => {
