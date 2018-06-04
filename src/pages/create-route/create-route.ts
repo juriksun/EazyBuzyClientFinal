@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { PlaceSearchAutocomplitePage } from '../place-search-autocomplite/place-search-autocomplite';
@@ -33,7 +33,8 @@ export class CreateRoutePage {
     private fb: FormBuilder,
     private modalCtrl: ModalController,
     private routeServiseModule: RouteServiseModule,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private alertCtrl: AlertController
   ) {}
 
   ionViewDidLoad() {
@@ -90,9 +91,13 @@ export class CreateRoutePage {
       response => {
         if (response) {
           this.modalWait.dismiss();
+          if(response.data.recommended_route === undefined){
+            this.presentAlert();
+          } else {
             this.routeServiseModule.route = response.data.recommended_route;
-            console.log(response.data.recommended_route);
-            // this.navCtrl.setRoot(RouteDetailsPage);
+            console.log(response.data);
+            this.navCtrl.setRoot(RouteDetailsPage);
+          }
         }
       },
       error => {
@@ -111,8 +116,15 @@ export class CreateRoutePage {
       content: 'Please wait...'
     });
   
-    this.modalWait.present();
+    this.modalWait.present();    
+  }
 
-    
+  private presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'No Routes',
+      subTitle: 'No routes for this entry. Please chenge time setings and retry.',
+      buttons: ['Continue']
+    });
+    alert.present();
   }
 }

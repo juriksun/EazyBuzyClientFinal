@@ -52,8 +52,10 @@ export class RouteDetailsPage {
     this.tasks = this.routeServiseModule.route.tasks;
     this.segments = this.routeServiseModule.route.segments;
 
-    this.duration = ~~(this.routeServiseModule.route.sum_of_durations/60);
-    this.distance = (this.routeServiseModule.route.sum_of_distance/1000).toFixed(1);
+    // this.duration = ~~(this.routeServiseModule.route.route_duration/60);
+    this.duration = this.routeServiseModule.route.route_duration;
+
+    this.distance = (this.routeServiseModule.route.route_distance/1000).toFixed(1);
 
     this.platformHeight = this.platform.height();
     this.maxMapHeight = this.platformHeight - this.headetHeight - this.routeDetailsHeight;

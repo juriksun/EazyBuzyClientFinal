@@ -99,7 +99,7 @@
       <ng-container *ngIf="segments[i]">
         <ion-item>
           <p> Go ahead
-            <span [style.font-weight]="'bold'">{{(segments[i].duration/60).toFixed(0)}} min</span>
+            <span [style.font-weight]="'bold'">{{segments[i].duration_in_road}} min</span>
             ({{(segments[i].distance/1000).toFixed(1)}} km)
           </p>
         </ion-item>
