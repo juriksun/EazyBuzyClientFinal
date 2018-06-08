@@ -14,6 +14,7 @@
       *ngFor="let task of tasks"
       (click)="onTask(task);"
     >
+    <!-- <ion-checkbox color="dark" checked="true"></ion-checkbox> -->
       <ion-icon item-start [name]="task.task_place.place_type.icon" class="taskIcon"></ion-icon>
       <h2>{{task.name}}</h2>
       <ion-icon name="md-time" item-end class="clockItem" *ngIf="task.time.start_time != '' || task.time.duration || task.time.date"></ion-icon>
@@ -25,6 +26,7 @@
       <div class="placeForPin" item-end>
         <ion-icon name="md-pin" style="zoom: 1.5;" *ngIf="task.location.address"></ion-icon>
       </div>
+      
     </ion-item>
   </ion-list>
   <ion-fab right bottom>

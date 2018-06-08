@@ -85,6 +85,42 @@
           >
           </ion-datetime>
         </ion-item>
+        <hr>
+        <ion-item>
+          <ion-icon item-start name="md-clipboard"></ion-icon>
+          <ion-label>Tasks</ion-label>
+        </ion-item>
+        
+        <ion-item>
+            <ion-checkbox color="dark"
+              [checked]="checkedAll"
+              (ionChange)="onChangeAllTasks($event.checked)"
+            ></ion-checkbox>
+            <ion-label>select all</ion-label>
+          </ion-item>
+          <ion-item class="task"
+            *ngFor="let task of tasks; let i = index"
+          >
+          <ion-checkbox color="dark"
+            [checked]="chekedTasks[i].checked"
+            (ionChange)="onChangeTasks(task._id, i, $event.checked)"
+          ></ion-checkbox>
+            <ion-icon item-start [name]="task.task_place.place_type.icon" class="taskIcon"></ion-icon>
+            <ion-label>{{task.name}}</ion-label>
+            <ion-icon name="md-time" item-end class="clockItem" *ngIf="task.time.start_time != '' || task.time.duration || task.time.date"></ion-icon>
+            <ion-note item-end *ngIf="task.time">
+              <p>{{task.time.start_time}}</p>
+              <p *ngIf="task.time.duration">{{task.time.duration}}</p>
+              <p *ngIf="task.time.date">{{task.time.date}}</p>
+            </ion-note>
+            <div class="placeForPin" item-end>
+              <ion-icon name="md-pin" style="zoom: 1.5;" *ngIf="task.location.address"></ion-icon>
+            </div>
+            
+          </ion-item>
       </form>
     </ion-list>
+    <ion-list no-lines #listOfTasks>
+        
+      </ion-list>
 </ion-content>

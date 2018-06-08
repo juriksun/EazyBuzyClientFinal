@@ -9,10 +9,11 @@ import { TaskResponse } from "../models/tasks-response.model";
 import { User } from "../models/user.model";
 import { UserServiseModule } from "./user_mdl.component";
 import { Url } from "../models/url.model";
+import { Task } from "../models/task.model";
 
 @Injectable()
 export class TasksServiseModule{
-
+  tasks:Task[] = [];
   private url: string = 'http://localhost:3000/';
   // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
   // private url: string = Url.getUrl();

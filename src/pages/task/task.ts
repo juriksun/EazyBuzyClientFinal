@@ -323,12 +323,14 @@ export class TaskPage {
         if(response){
           console.log(JSON.stringify(response));
         }
+        this.navCtrl.pop();
       },
       error =>{
         console.log(error);
       }
+      
     );
-    this.navCtrl.pop();
+    
   }
 
   //

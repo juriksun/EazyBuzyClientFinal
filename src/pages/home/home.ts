@@ -52,10 +52,12 @@ export class HomePage {
   }
 
   private getAllTasks(){
+    // setTimeout(()=> 
     this.tasksServiseModule.getAllTasks()
       .subscribe(
         response  =>{
           if(response){
+            this.tasksServiseModule.tasks = response.tasks;
             this.tasks = response.tasks;
             this.eventServiceModule.createEventMessage({message : response.message, status : response.status});
             // console.log(JSON.stringify(response));
@@ -68,6 +70,8 @@ export class HomePage {
           this.eventServiceModule.createEventMessage({message : "Error - problem with server", status : false});
         }
       )
+    // ,1000)
+    
   }
 
   onCreateRoute() {

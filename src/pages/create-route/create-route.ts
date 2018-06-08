@@ -2,9 +2,12 @@ import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
+
 import { PlaceSearchAutocomplitePage } from '../place-search-autocomplite/place-search-autocomplite';
 import { RouteServiseModule } from '../../modules/route_mdl.component';
 import { RouteDetailsPage } from '../route-details/route-details';
+import { TasksServiseModule } from '../../modules/tasks_mdl.component';
+import { Task } from '../../models/task.model';
 
 
 
@@ -17,7 +20,13 @@ import { RouteDetailsPage } from '../route-details/route-details';
 
 
 export class CreateRoutePage {
-  // @ViewChild("startPlace") startPlace;
+  @ViewChild("listOfTasks") listOfTasks;
+  checkedAll: boolean = true;
+  chekedTasks = [];
+  selectTasksMode: boolean = false;
+  tasks: Task[] = [];
+
+
   modalWait;
   createRouteForm: FormGroup;
 
@@ -34,12 +43,15 @@ export class CreateRoutePage {
     private modalCtrl: ModalController,
     private routeServiseModule: RouteServiseModule,
     public loadingCtrl: LoadingController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private tasksServiseModule: TasksServiseModule
   ) {}
 
   ionViewDidLoad() {
-    
+    this.tasks = this.tasksServiseModule.tasks;
+    this.initChekedTasks();
   }
+
   ngOnInit() {
     
     this.createRouteForm = this.fb.group({
@@ -48,9 +60,41 @@ export class CreateRoutePage {
       end_point:    ['', [Validators.required]],
       start_time:   ['', [Validators.required]],
       end_time:     ['', [Validators.required]],
-      date:         ['', [Validators.required]]
+      date:         ['', [Validators.required]],
+      tasksMode:    ['allTasks'],
+      tasks:        ['']
     });
+    
   }
+
+  onChangeAllTasks(checked){
+    this.checkedAll = checked;
+
+    if(checked || this.allTaskCheked()){
+      this.checkTasks(checked);
+    }
+  }
+
+  checkTasks(checked){
+    for(let i = 0; i < this.chekedTasks.length; i++){
+      this.chekedTasks[i].checked = checked;
+    }
+  }
+
+
+  initChekedTasks(){
+    for(let i =0; i < this.tasks.length; i++){
+      this.chekedTasks.push({
+        id: this.tasks[i]._id,
+        checked: true
+      })
+    }
+  }
+
+  isCheked(taskId){
+    return true;
+  }
+
 
   onSubmit({ value }){
     this.presentLoadingDefault();
@@ -84,7 +128,8 @@ export class CreateRoutePage {
           end_time: value.end_time,
           date: value.date
         },
-        location: this.location
+        location: this.location,
+        tasks: this.getAllCheckedTasks()
       }
     )
     .subscribe(
@@ -104,6 +149,16 @@ export class CreateRoutePage {
         console.log(error);
       }
     );
+  }
+
+  getAllCheckedTasks(){
+    let checkedTasks = [];
+    for(let i = 0; i < this.chekedTasks.length; i++){
+      if(this.chekedTasks[i].checked){
+        checkedTasks.push(this.chekedTasks[i].id);
+      }
+    }
+    return checkedTasks;
   }
 
   onDiscard(){
@@ -126,5 +181,24 @@ export class CreateRoutePage {
       buttons: ['Continue']
     });
     alert.present();
+  }
+
+  onChangeTasks(taskId, i, isChecked){
+    this.chekedTasks[i].checked = isChecked;
+    if(!isChecked){
+      this.checkedAll = false;
+    }else 
+    if(this.allTaskCheked()){
+      this.checkedAll = true;
+    }
+  }
+
+  allTaskCheked(){
+    for(let i = 0; i < this.chekedTasks.length; i++){
+      if(!this.chekedTasks[i].checked){
+        return false;
+      }
+    }
+    return true;
   }
 }
