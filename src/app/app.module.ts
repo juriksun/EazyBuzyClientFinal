@@ -34,6 +34,7 @@ import { TasksServiseModule } from '../modules/tasks_mdl.component';
 import { UserServiseModule } from '../modules/user_mdl.component';
 import { RouteServiseModule } from '../modules/route_mdl.component';
 import { EventServiceModule } from '../modules/event_mdl.component';
+import { RoutePreviewPage } from '../pages/route-preview/route-preview';
 @NgModule({
   declarations: [
     MyApp,
@@ -47,6 +48,7 @@ import { EventServiceModule } from '../modules/event_mdl.component';
     MapTastPage,
     AutocompletePage,
     PlaceSearchAutocomplitePage,
+    RoutePreviewPage,
     RouteListPage,
     RouteDetailsPage,
     SearchFilterPage,
@@ -81,7 +83,8 @@ import { EventServiceModule } from '../modules/event_mdl.component';
     RouteListPage,
     RouteDetailsPage,
     SearchFilterPage,
-    TaskPage
+    TaskPage,
+    RoutePreviewPage
  ],
   providers: [
     Geolocation,

@@ -8,6 +8,8 @@ import { RouteServiseModule } from '../../modules/route_mdl.component';
 import { RouteDetailsPage } from '../route-details/route-details';
 import { TasksServiseModule } from '../../modules/tasks_mdl.component';
 import { Task } from '../../models/task.model';
+import { RoutePreviewPage } from '../route-preview/route-preview';
+
 
 
 
@@ -50,8 +52,13 @@ export class CreateRoutePage {
   ionViewDidLoad() {
     this.tasks = this.tasksServiseModule.tasks;
     this.initChekedTasks();
+
   }
 
+  presentRoutePreview(route){
+    const routePreviewModal = this.modalCtrl.create(RoutePreviewPage, {route: route});
+    routePreviewModal.present();
+  }
   ngOnInit() {
     
     this.createRouteForm = this.fb.group({
@@ -140,8 +147,9 @@ export class CreateRoutePage {
             this.presentAlert();
           } else {
             this.routeServiseModule.route = response.data.recommended_route;
+            this.presentRoutePreview(response.data);
             console.log(response.data);
-            this.navCtrl.setRoot(RouteDetailsPage);
+            //this.navCtrl.setRoot(RouteDetailsPage);
           }
         }
       },
