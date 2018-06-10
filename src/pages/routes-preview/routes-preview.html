@@ -1,0 +1,141 @@
+<!--
+  Generated template for the RoutesPreviewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Routes Preview</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="discard()">
+        back
+      </button>
+      <button ion-button *ngIf="route" (click)="saveRoute()">
+        save
+      </button>
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-item no-lines *ngIf="route">
+    <h2>
+        <span>Avilable Hours: </span>{{convertMinutesToTime(route.route_start_time)}} - {{convertMinutesToTime(route.route_current_time)}}
+    </h2>
+    <h2>
+      <span>Waiting time: </span> {{convertMinutesToTime(route.route_wait_time)}} min
+    </h2>
+    <h2>
+        <span>Duration: </span>{{convertMinutesToTime(route.route_duration)}} min
+    </h2>
+    <h2>
+      <span>Distance: </span> {{convertMetrToKiloMetr(route.route_distance)}} km
+    </h2>
+    <br>
+
+    <h2>
+      <span>Start Point: </span>{{route.tasks[0].place.address}}
+    </h2>
+    <h2>
+        <span>End Point: </span>{{route.tasks[tasks.length - 1].place.address}}
+    </h2>
+    <br>
+  </ion-item>
+  <ion-item no-lines *ngIf="!route">
+      <h2>No routes</h2>
+      <p>No possible routes</p>
+      <p>Try to change avilable hours</p>
+      <p>Or try select different tasks</p>
+  </ion-item>
+  <hr>
+  <ion-list no-lines>
+    <ng-container *ngIf="tasksRouteTrue">
+      <ion-item  class="tasksRouteTrue">
+        <!-- <ion-icon item-start name="md-clipboard">
+        </ion-icon> -->
+        <ion-label>Included Tasks</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let taskRouteTrue of tasksRouteTrue">
+        <ion-icon item-start [name]="taskRouteTrue.task_place.place_type.icon" class="taskIcon">
+        </ion-icon>
+        <h2>{{taskRouteTrue.name}}</h2>
+        <ion-icon name="md-time" item-end class="clockItem" *ngIf="taskRouteTrue.time.start_time != '' || taskRouteTrue.time.duration || taskRouteTrue.time.date">
+        </ion-icon>
+        <ion-note item-end *ngIf="taskRouteTrue.time">
+          <p>{{taskRouteTrue.time.start_time}}</p>
+          <p *ngIf="taskRouteTrue.time.duration">{{taskRouteTrue.time.duration}}</p>
+          <p *ngIf="taskRouteTrue.time.date">{{taskRouteTrue.time.date}}</p>
+        </ion-note>
+        <div class="placeForPin" item-end>
+          <ion-icon name="md-pin" style="zoom: 1.5;" *ngIf="taskRouteTrue.location.address"></ion-icon>
+        </div>
+      </ion-item>
+      <hr>
+    </ng-container>
+    
+
+    <ng-container *ngIf="tasksOpenPlacesFalse || tasksTimeWindowFalse">
+      <ion-item >
+        <ion-label>Not Included Tasks</ion-label>
+      </ion-item>
+      <ng-container *ngIf="tasksTimeWindowFalse">
+      <ion-item>
+        <ion-label>by time or date</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let taskTimeWindowFalse of tasksTimeWindowFalse">
+          <ion-icon item-start [name]="taskTimeWindowFalse.task_place.place_type.icon" class="taskIcon">
+          </ion-icon>
+          <h2>{{taskTimeWindowFalse.name}}</h2>
+          <ion-icon name="md-time" item-end class="clockItem" *ngIf="taskTimeWindowFalse.time.start_time != '' || taskTimeWindowFalse.time.duration || taskTimeWindowFalse.time.date">
+          </ion-icon>
+          <ion-note item-end *ngIf="taskTimeWindowFalse.time">
+            <p>{{taskTimeWindowFalse.time.start_time}}</p>
+            <p *ngIf="taskTimeWindowFalse.time.duration">{{taskTimeWindowFalse.time.duration}}</p>
+            <p *ngIf="taskTimeWindowFalse.time.date">{{taskTimeWindowFalse.time.date}}</p>
+          </ion-note>
+          <div class="placeForPin" item-end>
+            <ion-icon name="md-pin" style="zoom: 1.5;" *ngIf="taskTimeWindowFalse.location.address"></ion-icon>
+          </div>
+      </ion-item>
+  </ng-container>
+  <ng-container *ngIf="tasksOpenPlacesFalse">
+    <ion-item *ngIf="tasksOpenPlacesFalse">
+      <ion-label>opening hours</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let taskOpenPlacesFalse of tasksOpenPlacesFalse">
+        <ion-icon item-start [name]="taskOpenPlacesFalse.task_place.place_type.icon" class="taskIcon">
+        </ion-icon>
+        <h2>{{taskOpenPlacesFalse.name}}</h2>
+        <ion-icon name="md-time" item-end class="clockItem" *ngIf="taskOpenPlacesFalse.time.start_time != '' || taskOpenPlacesFalse.time.duration || taskOpenPlacesFalse.time.date">
+        </ion-icon>
+        <ion-note item-end *ngIf="taskOpenPlacesFalse.time">
+          <p>{{taskOpenPlacesFalse.time.start_time}}</p>
+          <p *ngIf="taskOpenPlacesFalse.time.duration">{{taskOpenPlacesFalse.time.duration}}</p>
+          <p *ngIf="taskOpenPlacesFalse.time.date">{{taskOpenPlacesFalse.time.date}}</p>
+        </ion-note>
+        <div class="placeForPin" item-end>
+          <ion-icon name="md-pin" style="zoom: 1.5;" *ngIf="taskOpenPlacesFalse.location.address"></ion-icon>
+        </div>
+    </ion-item>
+  </ng-container>
+  </ng-container>
+
+    <!-- <ion-item *ngFor="let task of tasks">
+      <ion-icon item-start [name]="task.task_place.place_type.icon" class="taskIcon">
+      </ion-icon>
+      <h2>{{task.name}}</h2>
+      <ion-icon name="md-time" item-end class="clockItem" *ngIf="task.time.start_time != '' || task.time.duration || task.time.date">
+      </ion-icon>
+      <ion-note item-end *ngIf="task.time">
+        <p>{{task.time.start_time}}</p>
+        <p *ngIf="task.time.duration">{{task.time.duration}}</p>
+        <p *ngIf="task.time.date">{{task.time.date}}</p>
+      </ion-note>
+      <div class="placeForPin" item-end>
+        <ion-icon name="md-pin" style="zoom: 1.5;" *ngIf="task.location.address"></ion-icon>
+      </div>
+    </ion-item> -->
+  </ion-list>
+</ion-content>

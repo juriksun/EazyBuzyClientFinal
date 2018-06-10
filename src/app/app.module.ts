@@ -34,7 +34,8 @@ import { TasksServiseModule } from '../modules/tasks_mdl.component';
 import { UserServiseModule } from '../modules/user_mdl.component';
 import { RouteServiseModule } from '../modules/route_mdl.component';
 import { EventServiceModule } from '../modules/event_mdl.component';
-import { RoutePreviewPage } from '../pages/route-preview/route-preview';
+import { RoutesPreviewPage } from '../pages/routes-preview/routes-preview';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -48,11 +49,11 @@ import { RoutePreviewPage } from '../pages/route-preview/route-preview';
     MapTastPage,
     AutocompletePage,
     PlaceSearchAutocomplitePage,
-    RoutePreviewPage,
     RouteListPage,
     RouteDetailsPage,
     SearchFilterPage,
-    TaskPage
+    TaskPage,
+    RoutesPreviewPage
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -84,7 +85,7 @@ import { RoutePreviewPage } from '../pages/route-preview/route-preview';
     RouteDetailsPage,
     SearchFilterPage,
     TaskPage,
-    RoutePreviewPage
+    RoutesPreviewPage
  ],
   providers: [
     Geolocation,

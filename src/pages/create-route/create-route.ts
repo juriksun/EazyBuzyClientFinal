@@ -8,7 +8,7 @@ import { RouteServiseModule } from '../../modules/route_mdl.component';
 import { RouteDetailsPage } from '../route-details/route-details';
 import { TasksServiseModule } from '../../modules/tasks_mdl.component';
 import { Task } from '../../models/task.model';
-import { RoutePreviewPage } from '../route-preview/route-preview';
+import { RoutesPreviewPage } from '../routes-preview/routes-preview';
 
 
 
@@ -52,11 +52,11 @@ export class CreateRoutePage {
   ionViewDidLoad() {
     this.tasks = this.tasksServiseModule.tasks;
     this.initChekedTasks();
-
+    // this.presentRoutesPreview([])
   }
 
-  presentRoutePreview(route){
-    const routePreviewModal = this.modalCtrl.create(RoutePreviewPage, {route: route});
+  presentRoutesPreview(route){
+    const routePreviewModal = this.modalCtrl.create(RoutesPreviewPage, {route: route});
     routePreviewModal.present();
   }
   ngOnInit() {
@@ -143,14 +143,12 @@ export class CreateRoutePage {
       response => {
         if (response) {
           this.modalWait.dismiss();
-          if(response.data.recommended_route === undefined){
-            this.presentAlert();
-          } else {
+          
             this.routeServiseModule.route = response.data.recommended_route;
-            this.presentRoutePreview(response.data);
+            this.presentRoutesPreview(response.data);
             console.log(response.data);
             //this.navCtrl.setRoot(RouteDetailsPage);
-          }
+          
         }
       },
       error => {
