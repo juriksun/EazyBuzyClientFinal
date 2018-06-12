@@ -80,7 +80,7 @@ export class RouteDetailsPage {
       this.scrollContentMarginTop = this.headetHeight + this.routeDetailsHeight + this.mapHeight;
 
       this.mapZoom = 14;
-      this.mapCenter.lat = this.tasks[0].place.location.lat - 0.01;
+      this.mapCenter.lat = this.tasks[0].place.location.lat - 0.001;
       this.mapCenter.lng = this.tasks[0].place.location.lng;
       this.getPosition();
     },500);
@@ -88,7 +88,7 @@ export class RouteDetailsPage {
   }
 
   discard(){
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.pop();
   }
 
   InitMap() {
@@ -163,7 +163,7 @@ export class RouteDetailsPage {
 
   setMapCenter(lat, lng){
     this.mapZoom = 18;
-    this.mapCenter.lat = lat - 0.0005;
+    this.mapCenter.lat = lat - 0.0002;
     this.mapCenter.lng = lng;
   }
 
@@ -187,5 +187,8 @@ export class RouteDetailsPage {
         this.currPosition.lng = data.coords.longitude;
       }
     });
+  }
+  saveRoute(){
+    this.navCtrl.setRoot(HomePage);
   }
 }

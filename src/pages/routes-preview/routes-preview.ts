@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { RouteDetailsPage } from '../route-details/route-details';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the RoutesPreviewPage page.
@@ -31,7 +32,7 @@ export class RoutesPreviewPage {
       
   }
       
-  ionViewDidEnter(){
+  ionViewDidLoad(){
       let  routeData = this.navParams.get('route');
       this.tasks = routeData.all_tasks;
       this.route = routeData.recommended_route;
@@ -84,9 +85,13 @@ export class RoutesPreviewPage {
     return (meters/1000).toFixed(1)
   }
   saveRoute(){
-    this.navCtrl.setRoot(RouteDetailsPage);
+    this.navCtrl.setRoot(HomePage);
+    
   }
 
+  mapPreview(){
+    this.navCtrl.push(RouteDetailsPage);
+  }
   // setRouteFalse(){
   //   for(let i = 0; i < this.tasks.length; i++){
   //     console.log("task status: ", this.tasks[i].route_status);

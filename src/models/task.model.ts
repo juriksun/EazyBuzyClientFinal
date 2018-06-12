@@ -33,9 +33,11 @@ export class Task{
         public location: {
             address: string,
             place_id: string,
-            coordinate: {
-                lat: number,
-                long: number
+            geometry: {
+                location: {
+                    lat: number,
+                    lng: number
+                }
             }
         }
     ){}

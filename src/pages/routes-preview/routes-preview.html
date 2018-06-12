@@ -11,6 +11,9 @@
       <button ion-button (click)="discard()">
         back
       </button>
+      <button ion-button *ngIf="route" (click)="mapPreview()">
+          map
+      </button>
       <button ion-button *ngIf="route" (click)="saveRoute()">
         save
       </button>

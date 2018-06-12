@@ -85,7 +85,7 @@ export class HomePage {
   }
 
   onListRoute(){
-    this.navCtrl.setRoot(RouteDetailsPage);
+    this.navCtrl.push(RouteDetailsPage);
   }
 
   // ionViewDidEnter(msg){

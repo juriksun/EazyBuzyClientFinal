@@ -110,6 +110,12 @@ export class TaskPage {
       this.location = {
         address: '',
         place_id: '',
+        geometry: {
+          location: {
+            lat: 0,
+            lng: 0
+          }
+        }
       };
       
       this.taskPlace = {

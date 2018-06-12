@@ -9,11 +9,14 @@
     <ion-toolbar>
       <ion-title>Route</ion-title>
         <ion-buttons end>
-              <button ion-button color="dark" [disabled]="true" *ngIf="true">
-                Go
+            <button ion-button (click)="saveRoute()">
+                <span ion-text color="dark" >save</span>
               </button>
+              <!-- <button ion-button color="dark" [disabled]="true" *ngIf="true">
+                Go
+              </button> -->
             <button ion-button (click)="discard()">
-              <span ion-text color="dark">Discard</span>
+              <span ion-text color="dark">back</span>
             </button>
         </ion-buttons>
       </ion-toolbar>
