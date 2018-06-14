@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-
+import {Observable} from 'rxjs/Observable';
 
 import { PlaceSearchAutocomplitePage } from '../place-search-autocomplite/place-search-autocomplite';
 import { RouteServiseModule } from '../../modules/route_mdl.component';
@@ -21,7 +21,7 @@ import { RoutesPreviewPage } from '../routes-preview/routes-preview';
 
 
 
-export class CreateRoutePage {
+export class CreateRoutePage{
   @ViewChild("listOfTasks") listOfTasks;
   checkedAll: boolean = true;
   chekedTasks = [];
@@ -36,6 +36,8 @@ export class CreateRoutePage {
     start_point: {},
     end_point: {}
   };
+
+  private requestCounter = 0;
 
   constructor(
     public navCtrl: NavController, 
@@ -127,6 +129,8 @@ export class CreateRoutePage {
   }
 
   createNewRoute(value){
+
+    this.requestCounter++;
     this.routeServiseModule.createRoute(
       {
         mode:value.mode,
@@ -143,16 +147,27 @@ export class CreateRoutePage {
       response => {
         if (response) {
           this.modalWait.dismiss();
-          
             this.routeServiseModule.route = response.data.recommended_route;
             this.presentRoutesPreview(response.data);
             console.log(response.data);
             //this.navCtrl.setRoot(RouteDetailsPage);
-          
+        } else {
+          this.modalWait.dismiss();
+          this.presentAlert();
         }
       },
       error => {
-        console.log(error);
+        if(this.requestCounter === 3){
+          console.log(error);
+          this.modalWait.dismiss();
+          this.presentAlert();
+          this.requestCounter = 0;
+        } else {
+          setTimeout(() => {
+            this.createNewRoute(value);
+            console.log(this.requestCounter);
+          }, 60000);
+        }
       }
     );
   }
@@ -182,8 +197,8 @@ export class CreateRoutePage {
 
   private presentAlert() {
     let alert = this.alertCtrl.create({
-      title: 'No Routes',
-      subTitle: 'No routes for this entry. Please chenge time setings and retry.',
+      title: 'Server Problem',
+      subTitle: 'Please chenge time setings and retry...',
       buttons: ['Continue']
     });
     alert.present();
