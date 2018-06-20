@@ -12,16 +12,25 @@ page-home {
         height: 28px;
         padding: 0;
     }
-    // .addButton{
-    //     position: fixed;
-    //     bottom: 5%;
-    //     right: 10%;
-    //     zoom: 4.0;
-    //     color: blue;
-    // }
     .clockItem{
         zoom:0.8;
     }
-    
+    ion-header{
+        ion-icon{
+            color: white;
+        }
+        button{
+            color: white!important;
+        }
+        ion-title{
+            color: white!important;
+        }
+    }
+    .toolbar-background-md{
+        background: #1ea3ff;
+    }
+    .toolbar-title-md{
+        color: white!important;
+    }
 }
 

@@ -10,13 +10,13 @@
       <ion-title>Route</ion-title>
         <ion-buttons end>
             <button ion-button (click)="saveRoute()">
-                <span ion-text color="dark" >save</span>
+                <span ion-text>save</span>
               </button>
               <!-- <button ion-button color="dark" [disabled]="true" *ngIf="true">
                 Go
               </button> -->
             <button ion-button (click)="discard()">
-              <span ion-text color="dark">back</span>
+              <span ion-text >back</span>
             </button>
         </ion-buttons>
       </ion-toolbar>
@@ -62,9 +62,9 @@
     </ng-container>
       </agm-map>
       <ion-item no-lines>
-          <h2><span>{{duration}} min</span> ({{distance}} km)</h2>
-          <p><span [style.color]="'#67d870'">from: </span>{{tasks[0].place.address}}</p>
-          <p><span [style.color]="'red'">to: </span> {{tasks[tasks.length - 1].place.address}}</p>
+          <h2><span>{{convertMinutesToTime(duration)}}</span> ({{distance}} km) {{convertMinutesToTime(route.route_start_time)}} - {{convertMinutesToTime(route.route_current_time)}}</h2>
+          <p><span [style.color]="'#67d870'">from: </span>{{route.tasks[0].place.address}}</p>
+          <p><span [style.color]="'red'">to: </span> {{route.tasks[tasks.length - 1].place.address}}</p>
           <ion-note item-end>
             <button (click)="onCloseMap()"
               ion-button 
@@ -73,12 +73,12 @@
               icon-only 
               color="dark"
             >
-              <ion-icon name="md-arrow-dropup"></ion-icon>
+              <ion-icon name="md-arrow-dropup" style="color:gray"></ion-icon>
             </button>
             <button (click)="onOpenMap()"
               ion-button clear full icon-only color="dark"
             >
-              <ion-icon name="md-arrow-dropdown"></ion-icon>
+              <ion-icon name="md-arrow-dropdown" style="color:gray"></ion-icon>
             </button>
           </ion-note>
       </ion-item>

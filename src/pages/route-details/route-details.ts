@@ -39,6 +39,8 @@ export class RouteDetailsPage {
   routeDetailsHeight: number = 102;
 
   private watch: any;
+
+  route: any;
   currPositionAvalible:boolean;
   constructor(
     public navCtrl: NavController,
@@ -49,6 +51,7 @@ export class RouteDetailsPage {
     private platform: Platform,
     private geolocation: Geolocation
   ) {
+    this.route = this.routeServiseModule.route;
     this.tasks = this.routeServiseModule.route.tasks;
     this.segments = this.routeServiseModule.route.segments;
 
@@ -190,5 +193,18 @@ export class RouteDetailsPage {
   }
   saveRoute(){
     this.navCtrl.setRoot(HomePage);
+  }
+
+  convertMinutesToTime(minutes){   
+    let hoursNumber = ~~(minutes / 60),
+        minutesNumber = minutes - hoursNumber * 60;
+    
+    let stringHours = hoursNumber.toString(),
+        stringMinutes = minutesNumber.toString();
+
+    stringHours = (stringHours.length == 1)? ("0" + stringHours) : stringHours;
+    stringMinutes = (stringMinutes.length == 1)? ("0" + stringMinutes) : stringMinutes;
+
+    return stringHours + ":" + stringMinutes;
   }
 }

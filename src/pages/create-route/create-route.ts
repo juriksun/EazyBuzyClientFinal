@@ -73,9 +73,17 @@ export class CreateRoutePage{
       tasksMode:    ['allTasks'],
       tasks:        ['']
     });
-    
   }
 
+  validatorOfEndTime(){
+    this.createRouteForm.valueChanges.subscribe(newValues => {
+      console.log();
+      // this.createRouteForm = true;
+    });
+    // let startTime = this.createRouteForm;
+    // console.log(startTime);
+    return true;
+  }
   onChangeAllTasks(checked){
     this.checkedAll = checked;
 
@@ -157,7 +165,7 @@ export class CreateRoutePage{
         }
       },
       error => {
-        if(this.requestCounter === 3){
+        if(this.requestCounter > 2){
           console.log(error);
           this.modalWait.dismiss();
           this.presentAlert();
@@ -166,7 +174,7 @@ export class CreateRoutePage{
           setTimeout(() => {
             this.createNewRoute(value);
             console.log(this.requestCounter);
-          }, 60000);
+          }, 10000);
         }
       }
     );
@@ -198,7 +206,7 @@ export class CreateRoutePage{
   private presentAlert() {
     let alert = this.alertCtrl.create({
       title: 'Server Problem',
-      subTitle: 'Please chenge time setings and retry...',
+      subTitle: 'Error - Please try again later',
       buttons: ['Continue']
     });
     alert.present();

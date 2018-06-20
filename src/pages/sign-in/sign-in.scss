@@ -2,4 +2,18 @@ page-sign-in {
     ion-item {
         border-bottom: 1px solid rgb(207, 206, 206) !important;
     }
+    ion-header{
+        ion-icon{
+            color: white;
+        }
+        button{
+            color: white!important;
+        }
+        .toolbar-title-md{
+            color: white!important;
+        }
+        .toolbar-background-md{
+            background: #1ea3ff;
+        }
+    }
 }
