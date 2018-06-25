@@ -1,0 +1,35 @@
+page-messages {
+    ion-note {
+        font-size: 12px;
+        align-self: flex-start;
+        margin-top: 14px;
+      }
+    ion-item {
+        border-bottom: 1px solid rgb(207, 206, 206) !important;
+    }
+    .placeForPin{
+        width: 17.5px;
+        height: 28px;
+        padding: 0;
+    }
+    .clockItem{
+        zoom:0.8;
+    }
+    ion-header{
+        ion-icon{
+            color: white;
+        }
+        button{
+            color: white!important;
+        }
+        ion-title{
+            color: white!important;
+        }
+    }
+    .toolbar-background-md{
+        background: #1ea3ff;
+    }
+    .toolbar-title-md{
+        color: white!important;
+    }
+}

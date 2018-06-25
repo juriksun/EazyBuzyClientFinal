@@ -1,0 +1,28 @@
+page-share {
+    ion-header{
+        ion-icon{
+            color: white;
+        }
+        ion-input{
+            font-size: 18px;
+            padding-left: 20px;
+            ::placeholder {
+                color: white!important;
+                opacity: 0.8;
+            }
+            color: white;
+        }
+        button{
+            color: white!important;
+        }
+        ion-title{
+            color: white!important;
+        }
+        .toolbar-title-md{
+            color: white!important;
+        }
+    }
+    .toolbar-background-md{
+        background: #1ea3ff;
+    }
+}

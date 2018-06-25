@@ -15,6 +15,8 @@ import { RouteListPage } from '../pages/route-list/route-list';
 import { RouteDetailsPage } from '../pages/route-details/route-details';
 import { SearchFilterPage } from '../pages/serch-filter/serch-filter';
 import { TaskPage } from '../pages/task/task';
+import { ShareServiseModule } from '../modules/share_mdl.component';
+import { MessagesPage } from '../pages/messages/messages';
 @Component({
   templateUrl: 'app.html'
 })
@@ -31,6 +33,7 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public  app: App,
     private userServiseModule: UserServiseModule,
+    private shareServiseModule: ShareServiseModule
     // public navCtrl: NavController
   ) {
 
@@ -43,6 +46,8 @@ export class MyApp {
       // });
     } else {
       console.log('logged in');
+      this.shareServiseModule.onGetAllShareTasks();
+      this.shareServiseModule.onSubscribeShareTasks();
       this.rootPage = HomePage;
     }
     console.log('ionViewDidLoad AddNewTaskPage');
@@ -119,6 +124,7 @@ export class MyApp {
   logOut(){
     this.userServiseModule.loggOut();
     console.log('log out');
+    this.shareServiseModule.stopSubscribeShareTasks();
     this.nav.setRoot(LoginPage)
     // this.navCtrl.setRoot(LoginPage);
   }
@@ -136,5 +142,8 @@ export class MyApp {
   onListRoute(){
     // this.nav.setRoot(RouteDetailsPage);
     this.nav.setRoot(SearchFilterPage);
+  }
+  onMessages(){
+    this.nav.push(MessagesPage);
   }
 }

@@ -35,6 +35,9 @@ import { UserServiseModule } from '../modules/user_mdl.component';
 import { RouteServiseModule } from '../modules/route_mdl.component';
 import { EventServiceModule } from '../modules/event_mdl.component';
 import { RoutesPreviewPage } from '../pages/routes-preview/routes-preview';
+import { SharePage } from '../pages/share/share';
+import { ShareServiseModule } from '../modules/share_mdl.component';
+import { MessagesPage } from '../pages/messages/messages';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,9 @@ import { RoutesPreviewPage } from '../pages/routes-preview/routes-preview';
     RouteDetailsPage,
     SearchFilterPage,
     TaskPage,
-    RoutesPreviewPage
+    RoutesPreviewPage,
+    SharePage,
+    MessagesPage
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -85,7 +90,9 @@ import { RoutesPreviewPage } from '../pages/routes-preview/routes-preview';
     RouteDetailsPage,
     SearchFilterPage,
     TaskPage,
-    RoutesPreviewPage
+    RoutesPreviewPage,
+    SharePage,
+    MessagesPage
  ],
   providers: [
     Geolocation,
@@ -99,7 +106,8 @@ import { RoutesPreviewPage } from '../pages/routes-preview/routes-preview';
     TasksServiseModule,
     UserServiseModule,
     RouteServiseModule,
-    EventServiceModule
+    EventServiceModule,
+    ShareServiseModule
   ]
 })
 export class AppModule {}

@@ -37,8 +37,6 @@ export class HomePage {
     this.navCtrl.push(TaskPage, {task: task});
   }
 
-  
-
   ionViewWillEnter(){
     this.getUserTasks();
   }
@@ -59,7 +57,6 @@ export class HomePage {
           if(response){
             this.tasksServiseModule.tasks = response.tasks;
             this.tasks = response.tasks;
-            this.eventServiceModule.createEventMessage({message : response.message, status : response.status});
             // console.log(JSON.stringify(response));
           }else {
             this.eventServiceModule.createEventMessage({message : "Error - response is undifined", status : false});

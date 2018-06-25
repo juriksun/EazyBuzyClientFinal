@@ -36,6 +36,7 @@ export class TasksServiseModule{
     ).map(this.extractData).catch(this.handleError);
   }
 
+  
 
   getTypes():Observable<any> {
     let headers = new Headers({'Content-Type': 'application/json'});
@@ -53,7 +54,6 @@ export class TasksServiseModule{
     ).map(this.extractData).catch(this.handleError);
   }
 
-
   addNewTask(task):Observable<TaskResponse> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
@@ -66,7 +66,6 @@ export class TasksServiseModule{
         options
     ).map(this.extractData).catch(this.handleError);
   }
-
 
   private extractData(res: Response) {
     console.log(res.json());

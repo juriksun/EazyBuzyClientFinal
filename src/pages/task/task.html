@@ -101,9 +101,11 @@
             </ion-segment>
       </ion-item>
       <hr>
-      <ion-item>
-          <ion-icon item-start name="person-add"></ion-icon>
-          <ion-input type="text" placeholder="Share task" formControlName="shered_to"></ion-input>
+      <ion-item *ngIf="shareName">
+          <ion-icon item-start name="md-person"></ion-icon>
+          <ion-note>
+            {{shareName}}
+          </ion-note>
       </ion-item>
     </form>
   </ion-list>

@@ -19,6 +19,7 @@ import { HomePage } from '../home/home';
 export class MoreOptionsPage {
   private editTaskForm: FormGroup;
   private taskId: string;
+  public shareStatus: string;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -27,8 +28,10 @@ export class MoreOptionsPage {
   ) {}
 
   ngOnInit(){
+    this.shareStatus = this.navParams.get('share_status');
     this.editTaskForm = this.navParams.get('newTaskForm');
     this.taskId = this.navParams.get('taskId');
+    console.log(this.shareStatus);
   }
   
   ionViewDidLoad() {
@@ -40,11 +43,22 @@ export class MoreOptionsPage {
   }
 
   onShare(){
-
+    this.viewCtrl.dismiss('share');
   }
 
   onEdit(){
-    // this.editTaskForm.enable();
     this.viewCtrl.dismiss('edit');
+  }
+
+  onUnshare(){
+    this.viewCtrl.dismiss('unshare');
+  }
+
+  onApply(){
+    this.viewCtrl.dismiss('apply');
+  }
+
+  onCancel(){
+    this.viewCtrl.dismiss('cancel');
   }
 }

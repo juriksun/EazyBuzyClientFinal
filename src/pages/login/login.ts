@@ -7,6 +7,7 @@ import { HomePage } from '../home/home';
 import { SignInPage } from '../sign-in/sign-in';
 import { EventServiceModule}  from '../../modules/event_mdl.component';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+import { ShareServiseModule } from '../../modules/share_mdl.component';
 
 
 /**
@@ -34,8 +35,8 @@ export class LoginPage {
     // public viewCtrl: ViewController,
     private modalCtrl: ModalController,
     public eventServiceModule: EventServiceModule,
-    public toastCtrl: ToastController
-
+    public toastCtrl: ToastController,
+    private shareServiseModule: ShareServiseModule
   ) {}
 
   ngOnInit() {
@@ -60,6 +61,8 @@ export class LoginPage {
             // console.log(value);
             this.userServiseModule.setUserInLocalStorage(value)
             // console.log(JSON.stringify(response));
+            this.shareServiseModule.onSubscribeShareTasks();
+            this.shareServiseModule.onGetAllShareTasks();
             this.navCtrl.setRoot(HomePage);
           }
           this.eventServiceModule.createEventMessage({message : response.message, status : response.status});

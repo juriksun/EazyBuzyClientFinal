@@ -6,6 +6,9 @@ import { SearchFilterPage } from '../serch-filter/serch-filter';
 import { PlaceSearchAutocomplitePage } from '../place-search-autocomplite/place-search-autocomplite';
 import { Task } from '../../models/task.model';
 import { MoreOptionsPage } from '../more-options/more-options';
+import { SharePage } from '../share/share';
+import { ShareServiseModule } from '../../modules/share_mdl.component';
+import { EventServiceModule } from '../../modules/event_mdl.component';
 
 @IonicPage()
 @Component({
@@ -16,7 +19,8 @@ import { MoreOptionsPage } from '../more-options/more-options';
 export class TaskPage {
 
   public taskForm: FormGroup;
-
+  public shareStatus: string = "no";
+  public shareName: string;
   public location;
   
   taskPlace; 
@@ -40,7 +44,9 @@ export class TaskPage {
     public tasksServiseModule: TasksServiseModule,
     private modalCtrl: ModalController,
     private popoverCtrl: PopoverController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public shareServiseModule: ShareServiseModule,
+    private eventServiceModule: EventServiceModule
   ) {
     this.initializeTaskForm();
   }
@@ -89,7 +95,6 @@ export class TaskPage {
     if(this.navParams.get('task') === undefined){
       this.newTask = true;
     } else {
-     
       this.getCompanies(this.taskPlace.place_type.formated_name);
       
       this.taskForm.disable();
@@ -101,12 +106,19 @@ export class TaskPage {
   }
 
   private setEditFormDefaulParams(){
-
+    if(this.task.share && this.task.share !== ""){
+      if(this.navParams.get('username')){
+        this.shareStatus = "with_me";
+        this.shareName = this.navParams.get('username');
+      } else {
+        this.shareStatus = "shared";
+        this.shareName = this.task.share;
+      }   
+    }
     if(this.navParams.get('task') !== undefined){
       this.taskPlace = this.task.task_place;
       this.location = this.task.location;
     } else {
-
       this.location = {
         address: '',
         place_id: '',
@@ -141,10 +153,7 @@ export class TaskPage {
       time_duration: [(this.task.time)?(this.task.time.duration || ''):''],
       priority: [this.task.priority || ''],
       place: [(this.task.location)?(this.task.location.address || ''):''],
-      shered_to: [(this.task.share)?(this.task.share.user_name || ''):'']
     });
-
-    
     this.formChanged = false;
   }
 
@@ -271,6 +280,7 @@ export class TaskPage {
   onMoreOption(myEvent){
     let popover = this.popoverCtrl.create(
       MoreOptionsPage, {
+        share_status: this.shareStatus,
         newTaskForm: this.taskForm,
         taskId: this.task._id
       }
@@ -293,6 +303,24 @@ export class TaskPage {
             this.taskForm.enable();
             this.formChanged = false;
           }, 150);
+          break;
+        }
+        case 'share': {
+          
+          this.shareTask();
+          break;
+        }
+        case 'unshare': {
+          this.unshareTask();
+          break;
+        }
+        case 'apply': {
+          this.applyShareTask();
+          break;
+        }
+        case 'cancel': {
+          this.cancelShareTask();
+          break;
         }
       }
     });
@@ -301,6 +329,115 @@ export class TaskPage {
     }, 150);
   }
 
+  applyShareTask(){
+    this.shareServiseModule.applyShareRequest(
+      this.task._id
+    ).subscribe(
+      response => {
+        if(response){
+          if(response.status){
+            this.navCtrl.pop();
+            // get all shared request
+            this.eventServiceModule.createEventMessage({message : response.message, status : response.status});
+          } else{
+            this.showPromptOk(
+              response.error,
+              response.message
+            );
+          }
+        } else {
+          this.showPromptOk(
+            'Error',
+            'Server Error. Please try again later...'
+          );
+        }
+      },
+      error =>{
+        console.log(error);
+        this.showPromptOk(
+          'Error',
+          'Server Error. Please try again later...'
+        );
+      }
+    );
+  }
+
+  cancelShareTask(){
+    this.shareServiseModule.cancelShareRequest(
+      this.task._id
+    ).subscribe(
+      response => {
+        if(response){
+          if(response.status){
+            this.eventServiceModule.createEventMessage({message : response.response, status : response.status});
+            this.shareServiseModule.onGetAllShareTasks();
+            this.navCtrl.pop();
+            // get all shared request
+            
+          } else {
+            this.showPromptOk(
+              response.error,
+              response.message
+            );
+          }
+        } else {
+          this.showPromptOk(
+            'Error',
+            'Server Error. Please try again later...'
+          );
+        }
+      },
+      error =>{
+        console.log(error);
+        this.showPromptOk(
+          'Error',
+          'Server Error. Please try again later...'
+        );
+      }
+    );
+  }
+
+  shareTask(){
+    this.navCtrl.push(SharePage, {task_id: this.task._id});
+  }
+
+  unshareTask(){
+    this.shareServiseModule.deleteShareRequest(
+      this.task._id
+    ).subscribe(
+      response => {
+        if(response){
+          if(response.status){
+            this.showPromptOk(
+              'Unshare',
+              response.response
+            );
+            // this.eventServiceModule.createEventMessage({message : response.responsemessage, status : response.status});
+            this.shareStatus = "no";
+          } else {
+            this.showPromptOk(
+              response.error,
+              response.message
+            );
+          }
+        } else {
+          this.showPromptOk(
+            'Error',
+            'Server Error. Please try again later...'
+          );
+        }
+      },
+      error =>{
+        console.log(error);
+      }
+    );
+  }
+
+//   this.viewCtrl.dismiss('apply');
+// }
+
+// onCancel(){
+//   this.viewCtrl.dismiss('cancel');
 
   onDiscard(){
     if(this.newTask && !this.formChanged){
@@ -390,4 +527,20 @@ export class TaskPage {
     });
     prompt.present();
   }
+
+  showPromptOk(title, message){
+    let prompt = this.alertCtrl.create({
+    title: title,
+    message: message,
+    buttons: [
+      {
+        text: 'ok',
+        handler: () => {
+        }
+      }
+    ]
+  });
+  prompt.present();
+  }
+
 }

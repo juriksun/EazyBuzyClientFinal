@@ -4,10 +4,7 @@ export class Task{
         public name: string,
         public type: string,
         public status: string,
-        public share: {
-            user_name: string,
-            share_status: string
-        },
+        public share: string,
         public edit_time: {
             create: number,
             last_edited: number
