@@ -27,7 +27,7 @@ export class MapTastPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MapTastPage');
+    // console.log('ionViewDidLoad MapTastPage');
   }
 
   showAddressModal () {

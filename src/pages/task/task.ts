@@ -17,7 +17,7 @@ import { EventServiceModule } from '../../modules/event_mdl.component';
 })
 
 export class TaskPage {
-
+  @ViewChild("taskNameRef") taskNameRef;
   public taskForm: FormGroup;
   public shareStatus: string = "no";
   public shareName: string;
@@ -51,16 +51,24 @@ export class TaskPage {
     this.initializeTaskForm();
   }
 
+  ionViewDidEnter(){
+    if(this.newTask){
+      setTimeout(() => {
+        this.taskNameRef.setFocus();
+      }, 150);
+    }
+  }
+
   private getTypes(){
       this.tasksServiseModule.getTypes()
       .subscribe(
         response => {
           if(response){
             if(response.status = true){
-              console.log(response.types);
+              // console.log(response.types);
               this.types = response.types;
             }
-            console.log(JSON.stringify(response));
+            // console.log(JSON.stringify(response));
           }
         },
         error =>{
@@ -74,7 +82,7 @@ export class TaskPage {
     .subscribe(
       response => {
         if(response){
-          console.log(response);
+          // console.log(response);
           if(response.status = true && response.data){
             this.companies = response.data.companies;
           }
@@ -169,7 +177,7 @@ export class TaskPage {
   }
 
   private addOrUpdateTask(){
-    console.log(this.location);
+    // console.log(this.location);
     this.tasksServiseModule.addOrUpdateTask(
       this.task._id,
       this.value,
@@ -178,7 +186,7 @@ export class TaskPage {
     .subscribe(
       response => {
         if (response) {
-          console.log(JSON.stringify(response));
+          // console.log(JSON.stringify(response));
         }
       },
       error => {
@@ -195,7 +203,7 @@ export class TaskPage {
     .subscribe(
       response  =>{
         if(response){
-          console.log(JSON.stringify(response));
+          // console.log(JSON.stringify(response));
         }
       },
       error =>{
@@ -336,9 +344,11 @@ export class TaskPage {
       response => {
         if(response){
           if(response.status){
+            this.shareServiseModule.onGetAllShareTasks();
+            this.eventServiceModule.createEventMessage({message : response.response, status : response.status});
             this.navCtrl.pop();
             // get all shared request
-            this.eventServiceModule.createEventMessage({message : response.message, status : response.status});
+
           } else{
             this.showPromptOk(
               response.error,
@@ -368,9 +378,10 @@ export class TaskPage {
     ).subscribe(
       response => {
         if(response){
+          // console.log(response);
           if(response.status){
-            this.eventServiceModule.createEventMessage({message : response.response, status : response.status});
             this.shareServiseModule.onGetAllShareTasks();
+            this.eventServiceModule.createEventMessage({message : response.response, status : response.status});
             this.navCtrl.pop();
             // get all shared request
             
@@ -464,7 +475,7 @@ export class TaskPage {
     ).subscribe(
       response => {
         if(response){
-          console.log(JSON.stringify(response));
+          // console.log(JSON.stringify(response));
         }
         this.navCtrl.pop();
       },
@@ -485,7 +496,7 @@ export class TaskPage {
     .subscribe(
       response => {
         if (response) {
-          console.log(JSON.stringify(response));
+          // console.log(JSON.stringify(response));
         }
       },
       error => {

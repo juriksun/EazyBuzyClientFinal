@@ -9,7 +9,8 @@ import { RouteDetailsPage } from '../route-details/route-details';
 import { TasksServiseModule } from '../../modules/tasks_mdl.component';
 import { Task } from '../../models/task.model';
 import { RoutesPreviewPage } from '../routes-preview/routes-preview';
-
+import { ShareServiseModule } from '../../modules/share_mdl.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 
@@ -48,7 +49,8 @@ export class CreateRoutePage{
     private routeServiseModule: RouteServiseModule,
     public loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private tasksServiseModule: TasksServiseModule
+    private tasksServiseModule: TasksServiseModule,
+    public shareServiseModule: ShareServiseModule
   ) {}
 
   ionViewDidLoad() {
@@ -77,7 +79,7 @@ export class CreateRoutePage{
 
   validatorOfEndTime(){
     this.createRouteForm.valueChanges.subscribe(newValues => {
-      console.log();
+      // console.log();
       // this.createRouteForm = true;
     });
     // let startTime = this.createRouteForm;
@@ -137,7 +139,7 @@ export class CreateRoutePage{
   }
 
   createNewRoute(value){
-
+    this.shareServiseModule.stopSubscribeShareTasks();
     this.requestCounter++;
     this.routeServiseModule.createRoute(
       {
@@ -157,19 +159,22 @@ export class CreateRoutePage{
           this.modalWait.dismiss();
             this.routeServiseModule.route = response.data.recommended_route;
             this.presentRoutesPreview(response.data);
-            console.log(response.data);
+            // console.log(response.data);
             //this.navCtrl.setRoot(RouteDetailsPage);
         } else {
           this.modalWait.dismiss();
           this.presentAlert();
         }
+        this.shareServiseModule.onSubscribeShareTasks();
       },
       error => {
         if(this.requestCounter > 2){
           console.log(error);
+          // console.log();
           this.modalWait.dismiss();
           this.presentAlert();
           this.requestCounter = 0;
+          this.shareServiseModule.onSubscribeShareTasks();
         } else {
           setTimeout(() => {
             this.createNewRoute(value);

@@ -46,14 +46,15 @@ export class HomePage {
   }
 
   getUserTasks(){
-    this.getAllTasks();
+    this.tasksServiseModule.onGetAllTasks();
+    //this.getAllTasks();
   }
 
   private getAllTasks(){
     // setTimeout(()=> 
     this.tasksServiseModule.getAllTasks()
       .subscribe(
-        response  =>{
+        response => {
           if(response){
             this.tasksServiseModule.tasks = response.tasks;
             this.tasks = response.tasks;

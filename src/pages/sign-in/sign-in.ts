@@ -27,7 +27,7 @@ export class SignInPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignInPage');
+    // console.log('ionViewDidLoad SignInPage');
   }
 
   ngOnInit() {

@@ -29,7 +29,8 @@
     </ion-toolbar>
   </ion-navbar>
   <form  [formGroup]="taskForm">
-    <ion-input [disabled]="taskForm.disabled" class="toolbar-background-md" type="text" placeholder="Task name"  formControlName="name"></ion-input>
+    <ion-input #taskNameRef
+    [disabled]="taskForm.disabled" class="toolbar-background-md" type="text" placeholder="Task name"  formControlName="name"></ion-input>
   </form>
 </ion-header>
 

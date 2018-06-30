@@ -106,6 +106,6 @@ export class AutocompletePage {
  }
 
  onFocuse(){
-     console.log('serch focused');
+    //  console.log('serch focused');
  }
 }

@@ -4,6 +4,6 @@ export class UserResponse{
         public status: boolean,
         public message: string,
         public errors: [{name: string, message: string}], 
-        public user: User[]
+        public user: User
     ){}
 }

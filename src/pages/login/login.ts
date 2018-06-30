@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Platform, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Platform, ModalController, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserServiseModule } from '../../modules/user_mdl.component';
 import { User } from '../../models/user.model';
@@ -8,7 +8,6 @@ import { SignInPage } from '../sign-in/sign-in';
 import { EventServiceModule}  from '../../modules/event_mdl.component';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 import { ShareServiseModule } from '../../modules/share_mdl.component';
-
 
 /**
  * Generated class for the LoginPage page.
@@ -36,8 +35,14 @@ export class LoginPage {
     private modalCtrl: ModalController,
     public eventServiceModule: EventServiceModule,
     public toastCtrl: ToastController,
-    private shareServiseModule: ShareServiseModule
-  ) {}
+    private shareServiseModule: ShareServiseModule,
+    private menu: MenuController
+  ) {
+  }
+
+  ionViewWillEnter(){
+    this.menu.enable(false, 'menu1');
+  }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -46,7 +51,6 @@ export class LoginPage {
     });
   }
 
-  //this.editTaskForm.
   onSubmit({ value }){
     this.login(value);
   }
@@ -57,12 +61,18 @@ export class LoginPage {
       response => {
         if (response) {
           if(response.status){
-            // console.log(response);
-            // console.log(value);
-            this.userServiseModule.setUserInLocalStorage(value)
-            // console.log(JSON.stringify(response));
+            this.userServiseModule.setUserInLocalStorage({
+              key_entry: value.key_entry,
+              password: value.password,
+              image_profile: response.user.image_profile,
+              first_name: response.user.first_name,
+              last_name: response.user.last_name,
+              email: response.user.email
+            }
+            );
             this.shareServiseModule.onSubscribeShareTasks();
             this.shareServiseModule.onGetAllShareTasks();
+            this.menu.enable(true, 'menu1');
             this.navCtrl.setRoot(HomePage);
           }
           this.eventServiceModule.createEventMessage({message : response.message, status : response.status});

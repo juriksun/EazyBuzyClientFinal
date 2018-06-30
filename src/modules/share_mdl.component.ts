@@ -11,18 +11,20 @@ import { UserServiseModule } from "./user_mdl.component";
 import { Url } from "../models/url.model";
 import { Task } from "../models/task.model";
 import { EventServiceModule } from "./event_mdl.component";
+import { TasksServiseModule } from "./tasks_mdl.component";
 
 @Injectable()
 export class ShareServiseModule{
     public sharedWithMeTasks: any[] = [];
-    private url: string = 'http://localhost:3000/';
+    // private url: string = 'http://localhost:3000/';
     public subscribeHendel;
-  // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+  private url: string = 'https://eazy-buzy-server.herokuapp.com/';
 
   constructor(
     private http: Http,
     private userServiseModule: UserServiseModule,
-    private eventServiceModule: EventServiceModule
+    private eventServiceModule: EventServiceModule,
+    private tasksServiseModule: TasksServiseModule
   ) {}
 
   onGetAllShareTasks(){
@@ -47,19 +49,22 @@ export class ShareServiseModule{
   stopSubscribeShareTasks(){
     clearInterval(this.subscribeHendel);
   }
+
   onSubscribeShareTasks(){
     this.subscribeHendel = setInterval(() => {
         this.getSubscribeShareTasks().subscribe(
             response => {
               if(response){
-                if(response.response.status_new){
+                if(response.response && response.response.status_new !== 0){
                     if(response.response.status_new > 0){
                         this.eventServiceModule.createEventMessage({message : 'Share - You have new shared task', status : response.status});
                         this.sharedWithMeTasks = response.response.tasks;
                     } else {
                         this.sharedWithMeTasks = response.response.tasks;
+
                     }
                 }
+                this.tasksServiseModule.onGetAllTasks();
               }
             },
             error =>{
@@ -95,11 +100,11 @@ export class ShareServiseModule{
   }
 
   setNewShareRequest(taskId: string, usernameTo: string):Observable<any> {
-    console.log({
-        username_from: this.userServiseModule.getUserFromLocalStorege().key_entry,
-        username_to: usernameTo,
-        task_id: taskId
-    });
+    // console.log({
+    //     username_from: this.userServiseModule.getUserFromLocalStorege().key_entry,
+    //     username_to: usernameTo,
+    //     task_id: taskId
+    // });
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
     return this.http.post(
@@ -114,8 +119,8 @@ export class ShareServiseModule{
   }
 
   deleteShareRequest(taskId: string):Observable<any>{
-    console.log('taskId:', taskId);
-    console.log('usernameFrom:', this.userServiseModule.getUserFromLocalStorege().key_entry);
+    // console.log('taskId:', taskId);
+    // console.log('usernameFrom:', this.userServiseModule.getUserFromLocalStorege().key_entry);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
     return this.http.post(
@@ -129,8 +134,6 @@ export class ShareServiseModule{
   }
 
   applyShareRequest(taskId: string):Observable<any>{
-    console.log('taskId:', taskId);
-    console.log('usernameFrom:', this.userServiseModule.getUserFromLocalStorege().key_entry);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
     return this.http.post(
@@ -138,15 +141,13 @@ export class ShareServiseModule{
         {
             username_to: this.userServiseModule.getUserFromLocalStorege().key_entry,
             task_id: taskId,
-            passwors: this.userServiseModule.getUserFromLocalStorege().password
+            password: this.userServiseModule.getUserFromLocalStorege().password
         },
         options
     ).map(this.extractData).catch(this.handleError);
   }
 
   cancelShareRequest(taskId: string):Observable<any>{
-    console.log('taskId:', taskId);
-    console.log('usernameFrom:', this.userServiseModule.getUserFromLocalStorege().key_entry);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
     return this.http.post(
@@ -167,7 +168,7 @@ export class ShareServiseModule{
       return idsArray;
   }
   private extractData(res: Response) {
-    console.log(res.json());
+    //console.log(res.json());
     return res.json() || {};
   }
 

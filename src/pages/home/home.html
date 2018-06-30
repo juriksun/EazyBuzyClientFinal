@@ -10,16 +10,16 @@
 
 <ion-content>
   <ion-list no-lines>
-    <ion-item  
-      *ngFor="let task of tasks"
+    <ion-item class="task"
+      *ngFor="let task of tasksServiseModule.tasks"
       (click)="onTask(task);"
     >
       <ion-icon item-start [name]="task.task_place.place_type.icon" class="taskIcon"></ion-icon>
       <h2>{{task.name}}</h2>
       <ion-icon name="md-time" item-end class="clockItem" *ngIf="task.time.start_time != '' || task.time.duration || task.time.date"></ion-icon>
-      <ion-note item-end *ngIf="task.time">
-        <p>{{task.time.start_time}}</p>
-        <p *ngIf="task.time.duration">{{task.time.duration}}</p>
+      <ion-note item-end *ngIf="task.time" class="taskTime">
+        <p *ngIf="task.time.start_time">{{task.time.start_time}}(t)</p>
+        <p *ngIf="task.time.duration">{{task.time.duration}}(d)</p>
         <p *ngIf="task.time.date">{{task.time.date}}</p>
       </ion-note>
       <div class="placeForPin" item-end>

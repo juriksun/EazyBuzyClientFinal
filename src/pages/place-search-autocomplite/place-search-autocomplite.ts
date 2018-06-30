@@ -105,7 +105,7 @@ export class PlaceSearchAutocomplitePage {
     geoCode(address:any, item) {
         let geocoder = new google.maps.Geocoder();
         geocoder.geocode({ 'address': address }, (results, status) => {
-            console.log(results);
+            // console.log(results);
             this.viewCtrl.dismiss({
                 point_name: this.pointName,
                 field_adress: item,

@@ -24,6 +24,9 @@
 
 <ion-content>
   <ion-item no-lines *ngIf="route">
+      <h2>
+          <span>Date: </span>{{route.date}}
+      </h2>
     <h2>
         <span>Avilable Hours: </span>{{convertMinutesToTime(route.route_start_time)}} - {{convertMinutesToTime(route.route_current_time)}}
     </h2>

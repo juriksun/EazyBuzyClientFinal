@@ -40,7 +40,7 @@ export class SharePage {
       this.userName.setFocus();
     }, 150);
     this.taskId = this.navParams.get('task_id');
-    console.log('this.taskId:',this.taskId);
+    // console.log('this.taskId:',this.taskId);
   }
 
   ionViewDidLoad() {

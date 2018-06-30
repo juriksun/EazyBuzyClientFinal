@@ -25,7 +25,7 @@ export class RouteListPage {
 
   ionViewDidLoad() {
     // this.getImage(this.imgMapUrl)
-    console.log('ionViewDidLoad RouteListPage');
+    // console.log('ionViewDidLoad RouteListPage');
   }
 
   getImage(imgMapUrl){
@@ -33,7 +33,7 @@ export class RouteListPage {
     .subscribe(
       response => {
         if (response) {
-          console.log(response);
+          // console.log(response);
         }
       },
       error => {

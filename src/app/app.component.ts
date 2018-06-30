@@ -17,12 +17,13 @@ import { SearchFilterPage } from '../pages/serch-filter/serch-filter';
 import { TaskPage } from '../pages/task/task';
 import { ShareServiseModule } from '../modules/share_mdl.component';
 import { MessagesPage } from '../pages/messages/messages';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
+  userPic: string;
   rootPage: any;
 
   pages: Array<{title: string, component: any}>;
@@ -32,25 +33,27 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public  app: App,
-    private userServiseModule: UserServiseModule,
+    public userServiseModule: UserServiseModule,
     private shareServiseModule: ShareServiseModule
     // public navCtrl: NavController
   ) {
 
     if (!this.userServiseModule.checkIfLogedIn()) {
-      console.log('neeed login');
+      //console.log('neeed login');
       this.rootPage = LoginPage;
+
       // this.loginForm = this.fb.group({
       //   username: ['', [Validators.required, Validators.minLength(2)]],
       //   password: ['', [Validators.required, Validators.minLength(2)]]
       // });
     } else {
-      console.log('logged in');
+      this.userPic = this.userServiseModule.getUserFromLocalStorege().image_profile;
+      //console.log('logged in');
       this.shareServiseModule.onGetAllShareTasks();
       this.shareServiseModule.onSubscribeShareTasks();
       this.rootPage = HomePage;
     }
-    console.log('ionViewDidLoad AddNewTaskPage');
+    //console.log('ionViewDidLoad AddNewTaskPage');
 
     // this.rootPage = LoginPage;
     // this.platform.registerBackButtonAction(()=>{
@@ -123,7 +126,7 @@ export class MyApp {
 
   logOut(){
     this.userServiseModule.loggOut();
-    console.log('log out');
+    //console.log('log out');
     this.shareServiseModule.stopSubscribeShareTasks();
     this.nav.setRoot(LoginPage)
     // this.navCtrl.setRoot(LoginPage);

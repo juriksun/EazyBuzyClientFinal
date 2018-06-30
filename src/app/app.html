@@ -1,12 +1,23 @@
-<ion-menu [content]="content">
-  <ion-header>
+<ion-menu [content]="content" id="menu1">
+  <!-- <ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
   <ion-content>
     <ion-list>
+      <div style="background: url('assets/user-profile-bg.jpg') no-repeat; background-size: 160%; padding: 10px;">
+        <ng-container *ngIf="userServiseModule.user" >
+        <img width="175" height="175" 
+          [src]="userServiseModule.user.image_profile"
+          style="border-radius: 50%; margin: 10px auto; display: block; border: 2px solid rgb(151, 146, 146)"
+        >
+        <p style="color: white">{{userServiseModule.user.first_name}} {{userServiseModule.user.last_name}}</p>
+        <p style="color: white">{{userServiseModule.user.email}}</p>
+        
+      </ng-container>
+      </div>
         <button menuClose ion-item
           color="royal" 
           (click)="onAddTask()"

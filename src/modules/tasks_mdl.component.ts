@@ -10,27 +10,53 @@ import { User } from "../models/user.model";
 import { UserServiseModule } from "./user_mdl.component";
 import { Url } from "../models/url.model";
 import { Task } from "../models/task.model";
+import { EventServiceModule } from "./event_mdl.component";
 
 @Injectable()
 export class TasksServiseModule{
-  tasks:Task[] = [];
-  private url: string = 'http://localhost:3000/';
-  // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+  tasks: Task[];
+  // private url: string = 'http://localhost:3000/';
+  private url: string = 'https://eazy-buzy-server.herokuapp.com/';
   // private url: string = Url.getUrl();
 
   constructor(
     private http: Http,
-    private userServiseModule: UserServiseModule
+    private userServiseModule: UserServiseModule,
+    public eventServiceModule: EventServiceModule
   ) {}
 
+  onGetAllTasks(){
+    this.getAllTasks()
+      .subscribe(
+        response => {
+          if(response){
+            this.tasks = response.tasks;
+          }else {
+            this.eventServiceModule.createEventMessage({message : "Error - response is undifined", status : false});
+          }
+        },
+        error =>{
+          console.log(error);
+          this.eventServiceModule.createEventMessage({message : "Error - problem with server", status : false});
+        }
+      )
+  }
 
   getAllTasks():Observable<TaskResponse> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
+    // console.log(this.userServiseModule.user);
+    // console.log(JSON.stringify({
+    //   key_entry: this.userServiseModule.user.key_entry,
+    //   password: this.userServiseModule.user.password
+    // }));
     return this.http.post(
         `${this.url}get_all_tasks`,
         {
-          user: JSON.stringify(this.userServiseModule.getUserFromLocalStorege())
+          user: JSON.stringify({
+            key_entry: this.userServiseModule.user.key_entry,
+            password: this.userServiseModule.user.password
+          })
         },
         options
     ).map(this.extractData).catch(this.handleError);
@@ -60,7 +86,10 @@ export class TasksServiseModule{
     return this.http.post(
         `${this.url}create_task`,
         {
-            user: JSON.stringify(this.userServiseModule.getUserFromLocalStorege()),
+            user: JSON.stringify({
+              key_entry: this.userServiseModule.user.key_entry,
+              password: this.userServiseModule.user.password
+            }),
             task: JSON.stringify(task)
         },
         options
@@ -68,7 +97,7 @@ export class TasksServiseModule{
   }
 
   private extractData(res: Response) {
-    console.log(res.json());
+    // console.log(res.json());
     return res.json() || {};
   }
 
@@ -91,7 +120,10 @@ export class TasksServiseModule{
     return this.http.post(
         `${this.url}delete_task`,
         {
-          user: JSON.stringify(this.userServiseModule.getUserFromLocalStorege()),
+          user: JSON.stringify({
+            key_entry: this.userServiseModule.user.key_entry,
+            password: this.userServiseModule.user.password
+          }),
           task_id: taskId
         },
         options
@@ -99,14 +131,17 @@ export class TasksServiseModule{
   }
 
   updateTask(taskId, taskUpdateData):Observable<TaskResponse> {
-    console.log(taskId);
-    console.log(taskUpdateData);
+    // console.log(taskId);
+    // console.log(taskUpdateData);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
     return this.http.post(
         `${this.url}update_task`,
         {
-          user: JSON.stringify(this.userServiseModule.getUserFromLocalStorege()),
+          user: JSON.stringify({
+            key_entry: this.userServiseModule.user.key_entry,
+            password: this.userServiseModule.user.password
+          }),
           task_id: taskId,
           task_update_data: JSON.stringify(taskUpdateData)
         },
@@ -116,15 +151,18 @@ export class TasksServiseModule{
 
 
   addOrUpdateTask(taskId, taskUpdateData, locationData):Observable<TaskResponse> {
-    console.log(taskId);
-    console.log(taskUpdateData);
-    console.log(locationData);
+    // console.log(taskId);
+    // console.log(taskUpdateData);
+    // console.log(locationData);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
     return this.http.post(
         `${this.url}add_or_update_task`,
         {
-          user: JSON.stringify(this.userServiseModule.getUserFromLocalStorege()),
+          user: JSON.stringify({
+            key_entry: this.userServiseModule.user.key_entry,
+            password: this.userServiseModule.user.password
+          }),
           task_id: taskId,
           task_update_data: JSON.stringify(taskUpdateData),
           task_location_data: JSON.stringify(locationData)
