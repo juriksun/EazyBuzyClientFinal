@@ -15,8 +15,8 @@ import { EventServiceModule } from "./event_mdl.component";
 @Injectable()
 export class TasksServiseModule{
   tasks: Task[];
-  // private url: string = 'http://localhost:3000/';
-  private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+  private url: string = 'http://localhost:3000/';
+  // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
   // private url: string = Url.getUrl();
 
   constructor(

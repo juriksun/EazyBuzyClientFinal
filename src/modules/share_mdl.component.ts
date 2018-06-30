@@ -16,9 +16,9 @@ import { TasksServiseModule } from "./tasks_mdl.component";
 @Injectable()
 export class ShareServiseModule{
     public sharedWithMeTasks: any[] = [];
-    // private url: string = 'http://localhost:3000/';
+    private url: string = 'http://localhost:3000/';
     public subscribeHendel;
-  private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+  // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
 
   constructor(
     private http: Http,
