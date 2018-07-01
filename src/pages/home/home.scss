@@ -35,5 +35,14 @@ page-home {
     .task{
         height: 75px;
     }
+    .messageBadge{
+        background: red;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        line-height: 3px;
+        padding: 7px 2px 2px 2px;
+    }
 }
 

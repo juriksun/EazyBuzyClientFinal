@@ -1,10 +1,4 @@
 <ion-menu [content]="content" id="menu1">
-  <!-- <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-
   <ion-content>
     <ion-list>
       <div style="background: url('assets/user-profile-bg.jpg') no-repeat; background-size: 160%; padding: 10px;">
@@ -47,6 +41,9 @@
           (click)="onMessages()"
         >
           <ion-icon item-start name="ios-mail-open-outline" color="secondary" style="zoom: 1; opacity:0.6;"></ion-icon>
+          <ion-badge 
+            *ngIf="eventServiceModule.numOfNot"
+            item-end class="messageBadge">1</ion-badge>
           Notifications
         </button>
       </ion-list>

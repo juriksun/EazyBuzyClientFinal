@@ -4,13 +4,14 @@ import { ToastController } from "ionic-angular/components/toast/toast-controller
 
 @Injectable()
 export class EventServiceModule{
-  private checklist: any;
- private  checklistObserver: any;
-  private msgStack = [] ;
-  private currentMsg = null; 
-  constructor(
-    public toastCtrl: ToastController
-  ) {}
+    private checklist: any;
+    private  checklistObserver: any;
+    private msgStack = [] ;
+    private currentMsg = null; 
+    public numOfNot = 0;
+    constructor(
+        public toastCtrl: ToastController
+    ) {}
 
   createEventMessage({message , status}){
    

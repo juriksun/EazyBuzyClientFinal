@@ -2,6 +2,10 @@
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
+      <ion-badge 
+        item-end class="messageBadge"
+        *ngIf="eventServiceModule.numOfNot"
+      > </ion-badge>
     </button>
     <ion-title>Home</ion-title>
     

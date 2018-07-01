@@ -17,6 +17,8 @@ import { SearchFilterPage } from '../pages/serch-filter/serch-filter';
 import { TaskPage } from '../pages/task/task';
 import { ShareServiseModule } from '../modules/share_mdl.component';
 import { MessagesPage } from '../pages/messages/messages';
+import { TasksServiseModule } from '../modules/tasks_mdl.component';
+import { EventServiceModule } from '../modules/event_mdl.component';
 
 @Component({
   templateUrl: 'app.html'
@@ -34,7 +36,9 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public  app: App,
     public userServiseModule: UserServiseModule,
-    private shareServiseModule: ShareServiseModule
+    private shareServiseModule: ShareServiseModule,
+    public tasksServiseModule: TasksServiseModule,
+    public eventServiceModule: EventServiceModule
     // public navCtrl: NavController
   ) {
 
@@ -128,7 +132,10 @@ export class MyApp {
     this.userServiseModule.loggOut();
     //console.log('log out');
     this.shareServiseModule.stopSubscribeShareTasks();
-    this.nav.setRoot(LoginPage)
+    this.tasksServiseModule.tasks = [];
+    this.nav.setRoot(LoginPage);
+    
+
     // this.navCtrl.setRoot(LoginPage);
   }
 

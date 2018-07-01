@@ -36,6 +36,7 @@ onTask(task){
 }
 
 ionViewWillEnter(){
+  this.eventServiceModule.numOfNot = 0;
   this.getUserTasks();
 }
 

@@ -16,9 +16,9 @@ import { TasksServiseModule } from "./tasks_mdl.component";
 @Injectable()
 export class ShareServiseModule{
     public sharedWithMeTasks: any[] = [];
-    private url: string = 'http://localhost:3000/';
+    // private url: string = 'http://localhost:3000/';
     public subscribeHendel;
-  // private url: string = 'https://eazy-buzy-server.herokuapp.com/';
+  private url: string = 'https://eazy-buzy-server.herokuapp.com/';
 
   constructor(
     private http: Http,
@@ -33,6 +33,7 @@ export class ShareServiseModule{
           if(response){
             if(response.response.status_new){
               this.eventServiceModule.createEventMessage({message : 'Share - You have new shared task', status : response.status});
+              this.eventServiceModule.numOfNot ++;
             }
             this.sharedWithMeTasks = response.response.tasks;
           } else {
@@ -59,6 +60,7 @@ export class ShareServiseModule{
                     if(response.response.status_new > 0){
                         this.eventServiceModule.createEventMessage({message : 'Share - You have new shared task', status : response.status});
                         this.sharedWithMeTasks = response.response.tasks;
+                        this.eventServiceModule.numOfNot ++;
                     } else {
                         this.sharedWithMeTasks = response.response.tasks;
 

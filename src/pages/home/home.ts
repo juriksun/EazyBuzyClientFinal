@@ -28,7 +28,6 @@ export class HomePage {
       public userServiseModule: UserServiseModule,
       public eventServiceModule: EventServiceModule,
       public toastCtrl: ToastController
-
   ) {
     
   }
